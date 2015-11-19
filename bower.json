@@ -1,0 +1,20 @@
+{
+  "name": "sw-blog-generator",
+  "main": [
+    "dist/swBlogGenerator.js",
+    "dist/swBlogGenerator.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sample"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-route": "~1.4.3",
+    "ng-lodash": "~0.2.3",
+    "angular-cookies": "~1.4.7"
+  },
+  "private": true
+}
