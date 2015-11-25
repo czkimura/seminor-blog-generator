@@ -33,7 +33,7 @@ THE SOFTWARE.
 48:[2,16],51:[2,16],55:[2,16],60:[2,16]},{33:[1,139]},{33:[2,75]},{33:[2,32]},{72:[2,101],77:[2,101]},{14:[2,17],15:[2,17],19:[2,17],29:[2,17],34:[2,17],39:[2,17],44:[2,17],47:[2,17],48:[2,17],51:[2,17],55:[2,17],60:[2,17]}],defaultActions:{4:[2,1],55:[2,55],57:[2,20],61:[2,57],74:[2,81],83:[2,85],87:[2,18],91:[2,89],102:[2,53],105:[2,93],111:[2,19],112:[2,77],117:[2,97],120:[2,63],123:[2,69],124:[2,12],136:[2,75],137:[2,32]},parseError:function(a,b){throw new Error(a)},parse:function(a){function b(){var a;return a=c.lexer.lex()||1,"number"!=typeof a&&(a=c.symbols_[a]||a),a}var c=this,d=[0],e=[null],f=[],g=this.table,h="",i=0,j=0,k=0;this.lexer.setInput(a),this.lexer.yy=this.yy,this.yy.lexer=this.lexer,this.yy.parser=this,"undefined"==typeof this.lexer.yylloc&&(this.lexer.yylloc={});var l=this.lexer.yylloc;f.push(l);var m=this.lexer.options&&this.lexer.options.ranges;"function"==typeof this.yy.parseError&&(this.parseError=this.yy.parseError);for(var n,o,p,q,r,s,t,u,v,w={};;){if(p=d[d.length-1],this.defaultActions[p]?q=this.defaultActions[p]:((null===n||"undefined"==typeof n)&&(n=b()),q=g[p]&&g[p][n]),"undefined"==typeof q||!q.length||!q[0]){var x="";if(!k){v=[];for(s in g[p])this.terminals_[s]&&s>2&&v.push("'"+this.terminals_[s]+"'");x=this.lexer.showPosition?"Parse error on line "+(i+1)+":\n"+this.lexer.showPosition()+"\nExpecting "+v.join(", ")+", got '"+(this.terminals_[n]||n)+"'":"Parse error on line "+(i+1)+": Unexpected "+(1==n?"end of input":"'"+(this.terminals_[n]||n)+"'"),this.parseError(x,{text:this.lexer.match,token:this.terminals_[n]||n,line:this.lexer.yylineno,loc:l,expected:v})}}if(q[0]instanceof Array&&q.length>1)throw new Error("Parse Error: multiple actions possible at state: "+p+", token: "+n);switch(q[0]){case 1:d.push(n),e.push(this.lexer.yytext),f.push(this.lexer.yylloc),d.push(q[1]),n=null,o?(n=o,o=null):(j=this.lexer.yyleng,h=this.lexer.yytext,i=this.lexer.yylineno,l=this.lexer.yylloc,k>0&&k--);break;case 2:if(t=this.productions_[q[1]][1],w.$=e[e.length-t],w._$={first_line:f[f.length-(t||1)].first_line,last_line:f[f.length-1].last_line,first_column:f[f.length-(t||1)].first_column,last_column:f[f.length-1].last_column},m&&(w._$.range=[f[f.length-(t||1)].range[0],f[f.length-1].range[1]]),r=this.performAction.call(w,h,j,i,this.yy,q[1],e,f),"undefined"!=typeof r)return r;t&&(d=d.slice(0,-1*t*2),e=e.slice(0,-1*t),f=f.slice(0,-1*t)),d.push(this.productions_[q[1]][0]),e.push(w.$),f.push(w._$),u=g[d[d.length-2]][d[d.length-1]],d.push(u);break;case 3:return!0}}return!0}},c=function(){var a={EOF:1,parseError:function(a,b){if(!this.yy.parser)throw new Error(a);this.yy.parser.parseError(a,b)},setInput:function(a){return this._input=a,this._more=this._less=this.done=!1,this.yylineno=this.yyleng=0,this.yytext=this.matched=this.match="",this.conditionStack=["INITIAL"],this.yylloc={first_line:1,first_column:0,last_line:1,last_column:0},this.options.ranges&&(this.yylloc.range=[0,0]),this.offset=0,this},input:function(){var a=this._input[0];this.yytext+=a,this.yyleng++,this.offset++,this.match+=a,this.matched+=a;var b=a.match(/(?:\r\n?|\n).*/g);return b?(this.yylineno++,this.yylloc.last_line++):this.yylloc.last_column++,this.options.ranges&&this.yylloc.range[1]++,this._input=this._input.slice(1),a},unput:function(a){var b=a.length,c=a.split(/(?:\r\n?|\n)/g);this._input=a+this._input,this.yytext=this.yytext.substr(0,this.yytext.length-b-1),this.offset-=b;var d=this.match.split(/(?:\r\n?|\n)/g);this.match=this.match.substr(0,this.match.length-1),this.matched=this.matched.substr(0,this.matched.length-1),c.length-1&&(this.yylineno-=c.length-1);var e=this.yylloc.range;return this.yylloc={first_line:this.yylloc.first_line,last_line:this.yylineno+1,first_column:this.yylloc.first_column,last_column:c?(c.length===d.length?this.yylloc.first_column:0)+d[d.length-c.length].length-c[0].length:this.yylloc.first_column-b},this.options.ranges&&(this.yylloc.range=[e[0],e[0]+this.yyleng-b]),this},more:function(){return this._more=!0,this},less:function(a){this.unput(this.match.slice(a))},pastInput:function(){var a=this.matched.substr(0,this.matched.length-this.match.length);return(a.length>20?"...":"")+a.substr(-20).replace(/\n/g,"")},upcomingInput:function(){var a=this.match;return a.length<20&&(a+=this._input.substr(0,20-a.length)),(a.substr(0,20)+(a.length>20?"...":"")).replace(/\n/g,"")},showPosition:function(){var a=this.pastInput(),b=new Array(a.length+1).join("-");return a+this.upcomingInput()+"\n"+b+"^"},next:function(){if(this.done)return this.EOF;this._input||(this.done=!0);var a,b,c,d,e;this._more||(this.yytext="",this.match="");for(var f=this._currentRules(),g=0;g<f.length&&(c=this._input.match(this.rules[f[g]]),!c||b&&!(c[0].length>b[0].length)||(b=c,d=g,this.options.flex));g++);return b?(e=b[0].match(/(?:\r\n?|\n).*/g),e&&(this.yylineno+=e.length),this.yylloc={first_line:this.yylloc.last_line,last_line:this.yylineno+1,first_column:this.yylloc.last_column,last_column:e?e[e.length-1].length-e[e.length-1].match(/\r?\n?/)[0].length:this.yylloc.last_column+b[0].length},this.yytext+=b[0],this.match+=b[0],this.matches=b,this.yyleng=this.yytext.length,this.options.ranges&&(this.yylloc.range=[this.offset,this.offset+=this.yyleng]),this._more=!1,this._input=this._input.slice(b[0].length),this.matched+=b[0],a=this.performAction.call(this,this.yy,this,f[d],this.conditionStack[this.conditionStack.length-1]),this.done&&this._input&&(this.done=!1),a?a:void 0):""===this._input?this.EOF:this.parseError("Lexical error on line "+(this.yylineno+1)+". Unrecognized text.\n"+this.showPosition(),{text:"",token:null,line:this.yylineno})},lex:function(){var a=this.next();return"undefined"!=typeof a?a:this.lex()},begin:function(a){this.conditionStack.push(a)},popState:function(){return this.conditionStack.pop()},_currentRules:function(){return this.conditions[this.conditionStack[this.conditionStack.length-1]].rules},topState:function(){return this.conditionStack[this.conditionStack.length-2]},pushState:function(a){this.begin(a)}};return a.options={},a.performAction=function(a,b,c,d){function e(a,c){return b.yytext=b.yytext.substr(a,b.yyleng-c)}switch(c){case 0:if("\\\\"===b.yytext.slice(-2)?(e(0,1),this.begin("mu")):"\\"===b.yytext.slice(-1)?(e(0,1),this.begin("emu")):this.begin("mu"),b.yytext)return 15;break;case 1:return 15;case 2:return this.popState(),15;case 3:return this.begin("raw"),15;case 4:return this.popState(),"raw"===this.conditionStack[this.conditionStack.length-1]?15:(b.yytext=b.yytext.substr(5,b.yyleng-9),"END_RAW_BLOCK");case 5:return 15;case 6:return this.popState(),14;case 7:return 65;case 8:return 68;case 9:return 19;case 10:return this.popState(),this.begin("raw"),23;case 11:return 55;case 12:return 60;case 13:return 29;case 14:return 47;case 15:return this.popState(),44;case 16:return this.popState(),44;case 17:return 34;case 18:return 39;case 19:return 51;case 20:return 48;case 21:this.unput(b.yytext),this.popState(),this.begin("com");break;case 22:return this.popState(),14;case 23:return 48;case 24:return 73;case 25:return 72;case 26:return 72;case 27:return 87;case 28:break;case 29:return this.popState(),54;case 30:return this.popState(),33;case 31:return b.yytext=e(1,2).replace(/\\"/g,'"'),80;case 32:return b.yytext=e(1,2).replace(/\\'/g,"'"),80;case 33:return 85;case 34:return 82;case 35:return 82;case 36:return 83;case 37:return 84;case 38:return 81;case 39:return 75;case 40:return 77;case 41:return 72;case 42:return b.yytext=b.yytext.replace(/\\([\\\]])/g,"$1"),72;case 43:return"INVALID";case 44:return 5}},a.rules=[/^(?:[^\x00]*?(?=(\{\{)))/,/^(?:[^\x00]+)/,/^(?:[^\x00]{2,}?(?=(\{\{|\\\{\{|\\\\\{\{|$)))/,/^(?:\{\{\{\{(?=[^\/]))/,/^(?:\{\{\{\{\/[^\s!"#%-,\.\/;->@\[-\^`\{-~]+(?=[=}\s\/.])\}\}\}\})/,/^(?:[^\x00]*?(?=(\{\{\{\{)))/,/^(?:[\s\S]*?--(~)?\}\})/,/^(?:\()/,/^(?:\))/,/^(?:\{\{\{\{)/,/^(?:\}\}\}\})/,/^(?:\{\{(~)?>)/,/^(?:\{\{(~)?#>)/,/^(?:\{\{(~)?#\*?)/,/^(?:\{\{(~)?\/)/,/^(?:\{\{(~)?\^\s*(~)?\}\})/,/^(?:\{\{(~)?\s*else\s*(~)?\}\})/,/^(?:\{\{(~)?\^)/,/^(?:\{\{(~)?\s*else\b)/,/^(?:\{\{(~)?\{)/,/^(?:\{\{(~)?&)/,/^(?:\{\{(~)?!--)/,/^(?:\{\{(~)?![\s\S]*?\}\})/,/^(?:\{\{(~)?\*?)/,/^(?:=)/,/^(?:\.\.)/,/^(?:\.(?=([=~}\s\/.)|])))/,/^(?:[\/.])/,/^(?:\s+)/,/^(?:\}(~)?\}\})/,/^(?:(~)?\}\})/,/^(?:"(\\["]|[^"])*")/,/^(?:'(\\[']|[^'])*')/,/^(?:@)/,/^(?:true(?=([~}\s)])))/,/^(?:false(?=([~}\s)])))/,/^(?:undefined(?=([~}\s)])))/,/^(?:null(?=([~}\s)])))/,/^(?:-?[0-9]+(?:\.[0-9]+)?(?=([~}\s)])))/,/^(?:as\s+\|)/,/^(?:\|)/,/^(?:([^\s!"#%-,\.\/;->@\[-\^`\{-~]+(?=([=~}\s\/.)|]))))/,/^(?:\[(\\\]|[^\]])*\])/,/^(?:.)/,/^(?:$)/],a.conditions={mu:{rules:[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44],inclusive:!1},emu:{rules:[2],inclusive:!1},com:{rules:[6],inclusive:!1},raw:{rules:[3,4,5],inclusive:!1},INITIAL:{rules:[0,1,44],inclusive:!0}},a}();return b.lexer=c,a.prototype=b,b.Parser=a,new a}();b.__esModule=!0,b["default"]=c},function(a,b,c){"use strict";function d(){var a=arguments.length<=0||void 0===arguments[0]?{}:arguments[0];this.options=a}function e(a,b,c){void 0===b&&(b=a.length);var d=a[b-1],e=a[b-2];return d?"ContentStatement"===d.type?(e||!c?/\r?\n\s*?$/:/(^|\r?\n)\s*?$/).test(d.original):void 0:c}function f(a,b,c){void 0===b&&(b=-1);var d=a[b+1],e=a[b+2];return d?"ContentStatement"===d.type?(e||!c?/^\s*?\r?\n/:/^\s*?(\r?\n|$)/).test(d.original):void 0:c}function g(a,b,c){var d=a[null==b?0:b+1];if(d&&"ContentStatement"===d.type&&(c||!d.rightStripped)){var e=d.value;d.value=d.value.replace(c?/^\s+/:/^[ \t]*\r?\n?/,""),d.rightStripped=d.value!==e}}function h(a,b,c){var d=a[null==b?a.length-1:b-1];if(d&&"ContentStatement"===d.type&&(c||!d.leftStripped)){var e=d.value;return d.value=d.value.replace(c?/\s+$/:/[ \t]+$/,""),d.leftStripped=d.value!==e,d.leftStripped}}var i=c(1)["default"];b.__esModule=!0;var j=c(25),k=i(j);d.prototype=new k["default"],d.prototype.Program=function(a){var b=!this.options.ignoreStandalone,c=!this.isRootSeen;this.isRootSeen=!0;for(var d=a.body,i=0,j=d.length;j>i;i++){var k=d[i],l=this.accept(k);if(l){var m=e(d,i,c),n=f(d,i,c),o=l.openStandalone&&m,p=l.closeStandalone&&n,q=l.inlineStandalone&&m&&n;l.close&&g(d,i,!0),l.open&&h(d,i,!0),b&&q&&(g(d,i),h(d,i)&&"PartialStatement"===k.type&&(k.indent=/([ \t]+$)/.exec(d[i-1].original)[1])),b&&o&&(g((k.program||k.inverse).body),h(d,i)),b&&p&&(g(d,i),h((k.inverse||k.program).body))}}return a},d.prototype.BlockStatement=d.prototype.DecoratorBlock=d.prototype.PartialBlockStatement=function(a){this.accept(a.program),this.accept(a.inverse);var b=a.program||a.inverse,c=a.program&&a.inverse,d=c,i=c;if(c&&c.chained)for(d=c.body[0].program;i.chained;)i=i.body[i.body.length-1].program;var j={open:a.openStrip.open,close:a.closeStrip.close,openStandalone:f(b.body),closeStandalone:e((d||b).body)};if(a.openStrip.close&&g(b.body,null,!0),c){var k=a.inverseStrip;k.open&&h(b.body,null,!0),k.close&&g(d.body,null,!0),a.closeStrip.open&&h(i.body,null,!0),!this.options.ignoreStandalone&&e(b.body)&&f(d.body)&&(h(b.body),g(d.body))}else a.closeStrip.open&&h(b.body,null,!0);return j},d.prototype.Decorator=d.prototype.MustacheStatement=function(a){return a.strip},d.prototype.PartialStatement=d.prototype.CommentStatement=function(a){var b=a.strip||{};return{inlineStandalone:!0,open:b.open,close:b.close}},b["default"]=d,a.exports=b["default"]},function(a,b,c){"use strict";function d(){this.parents=[]}function e(a){this.acceptRequired(a,"path"),this.acceptArray(a.params),this.acceptKey(a,"hash")}function f(a){e.call(this,a),this.acceptKey(a,"program"),this.acceptKey(a,"inverse")}function g(a){this.acceptRequired(a,"name"),this.acceptArray(a.params),this.acceptKey(a,"hash")}var h=c(1)["default"];b.__esModule=!0;var i=c(6),j=h(i);d.prototype={constructor:d,mutating:!1,acceptKey:function(a,b){var c=this.accept(a[b]);if(this.mutating){if(c&&!d.prototype[c.type])throw new j["default"]('Unexpected node type "'+c.type+'" found when accepting '+b+" on "+a.type);a[b]=c}},acceptRequired:function(a,b){if(this.acceptKey(a,b),!a[b])throw new j["default"](a.type+" requires "+b)},acceptArray:function(a){for(var b=0,c=a.length;c>b;b++)this.acceptKey(a,b),a[b]||(a.splice(b,1),b--,c--)},accept:function(a){if(a){if(!this[a.type])throw new j["default"]("Unknown type: "+a.type,a);this.current&&this.parents.unshift(this.current),this.current=a;var b=this[a.type](a);return this.current=this.parents.shift(),!this.mutating||b?b:b!==!1?a:void 0}},Program:function(a){this.acceptArray(a.body)},MustacheStatement:e,Decorator:e,BlockStatement:f,DecoratorBlock:f,PartialStatement:g,PartialBlockStatement:function(a){g.call(this,a),this.acceptKey(a,"program")},ContentStatement:function(){},CommentStatement:function(){},SubExpression:e,PathExpression:function(){},StringLiteral:function(){},NumberLiteral:function(){},BooleanLiteral:function(){},UndefinedLiteral:function(){},NullLiteral:function(){},Hash:function(a){this.acceptArray(a.pairs)},HashPair:function(a){this.acceptRequired(a,"value")}},b["default"]=d,a.exports=b["default"]},function(a,b,c){"use strict";function d(a,b){if(b=b.path?b.path.original:b,a.path.original!==b){var c={loc:a.path.loc};throw new q["default"](a.path.original+" doesn't match "+b,c)}}function e(a,b){this.source=a,this.start={line:b.first_line,column:b.first_column},this.end={line:b.last_line,column:b.last_column}}function f(a){return/^\[.*\]$/.test(a)?a.substr(1,a.length-2):a}function g(a,b){return{open:"~"===a.charAt(2),close:"~"===b.charAt(b.length-3)}}function h(a){return a.replace(/^\{\{~?\!-?-?/,"").replace(/-?-?~?\}\}$/,"")}function i(a,b,c){c=this.locInfo(c);for(var d=a?"@":"",e=[],f=0,g="",h=0,i=b.length;i>h;h++){var j=b[h].part,k=b[h].original!==j;if(d+=(b[h].separator||"")+j,k||".."!==j&&"."!==j&&"this"!==j)e.push(j);else{if(e.length>0)throw new q["default"]("Invalid path: "+d,{loc:c});".."===j&&(f++,g+="../")}}return{type:"PathExpression",data:a,depth:f,parts:e,original:d,loc:c}}function j(a,b,c,d,e,f){var g=d.charAt(3)||d.charAt(2),h="{"!==g&&"&"!==g,i=/\*/.test(d);return{type:i?"Decorator":"MustacheStatement",path:a,params:b,hash:c,escaped:h,strip:e,loc:this.locInfo(f)}}function k(a,b,c,e){d(a,c),e=this.locInfo(e);var f={type:"Program",body:b,strip:{},loc:e};return{type:"BlockStatement",path:a.path,params:a.params,hash:a.hash,program:f,openStrip:{},inverseStrip:{},closeStrip:{},loc:e}}function l(a,b,c,e,f,g){e&&e.path&&d(a,e);var h=/\*/.test(a.open);b.blockParams=a.blockParams;var i=void 0,j=void 0;if(c){if(h)throw new q["default"]("Unexpected inverse block on decorator",c);c.chain&&(c.program.body[0].closeStrip=e.strip),j=c.strip,i=c.program}return f&&(f=i,i=b,b=f),{type:h?"DecoratorBlock":"BlockStatement",path:a.path,params:a.params,hash:a.hash,program:b,inverse:i,openStrip:a.strip,inverseStrip:j,closeStrip:e&&e.strip,loc:this.locInfo(g)}}function m(a,b){if(!b&&a.length){var c=a[0].loc,d=a[a.length-1].loc;c&&d&&(b={source:c.source,start:{line:c.start.line,column:c.start.column},end:{line:d.end.line,column:d.end.column}})}return{type:"Program",body:a,strip:{},loc:b}}function n(a,b,c,e){return d(a,c),{type:"PartialBlockStatement",name:a.path,params:a.params,hash:a.hash,program:b,openStrip:a.strip,closeStrip:c&&c.strip,loc:this.locInfo(e)}}var o=c(1)["default"];b.__esModule=!0,b.SourceLocation=e,b.id=f,b.stripFlags=g,b.stripComment=h,b.preparePath=i,b.prepareMustache=j,b.prepareRawBlock=k,b.prepareBlock=l,b.prepareProgram=m,b.preparePartialBlock=n;var p=c(6),q=o(p)},function(a,b,c){"use strict";function d(){}function e(a,b,c){if(null==a||"string"!=typeof a&&"Program"!==a.type)throw new k["default"]("You must pass a string or Handlebars AST to Handlebars.precompile. You passed "+a);b=b||{},"data"in b||(b.data=!0),b.compat&&(b.useDepths=!0);var d=c.parse(a,b),e=(new c.Compiler).compile(d,b);return(new c.JavaScriptCompiler).compile(e,b)}function f(a,b,c){function d(){var d=c.parse(a,b),e=(new c.Compiler).compile(d,b),f=(new c.JavaScriptCompiler).compile(e,b,void 0,!0);return c.template(f)}function e(a,b){return f||(f=d()),f.call(this,a,b)}if(void 0===b&&(b={}),null==a||"string"!=typeof a&&"Program"!==a.type)throw new k["default"]("You must pass a string or Handlebars AST to Handlebars.compile. You passed "+a);"data"in b||(b.data=!0),b.compat&&(b.useDepths=!0);var f=void 0;return e._setup=function(a){return f||(f=d()),f._setup(a)},e._child=function(a,b,c,e){return f||(f=d()),f._child(a,b,c,e)},e}function g(a,b){if(a===b)return!0;if(l.isArray(a)&&l.isArray(b)&&a.length===b.length){for(var c=0;c<a.length;c++)if(!g(a[c],b[c]))return!1;return!0}}function h(a){if(!a.path.parts){var b=a.path;a.path={type:"PathExpression",data:!1,depth:0,parts:[b.original+""],original:b.original+"",loc:b.loc}}}var i=c(1)["default"];b.__esModule=!0,b.Compiler=d,b.precompile=e,b.compile=f;var j=c(6),k=i(j),l=c(5),m=c(21),n=i(m),o=[].slice;d.prototype={compiler:d,equals:function(a){var b=this.opcodes.length;if(a.opcodes.length!==b)return!1;for(var c=0;b>c;c++){var d=this.opcodes[c],e=a.opcodes[c];if(d.opcode!==e.opcode||!g(d.args,e.args))return!1}b=this.children.length;for(var c=0;b>c;c++)if(!this.children[c].equals(a.children[c]))return!1;return!0},guid:0,compile:function(a,b){this.sourceNode=[],this.opcodes=[],this.children=[],this.options=b,this.stringParams=b.stringParams,this.trackIds=b.trackIds,b.blockParams=b.blockParams||[];var c=b.knownHelpers;if(b.knownHelpers={helperMissing:!0,blockHelperMissing:!0,each:!0,"if":!0,unless:!0,"with":!0,log:!0,lookup:!0},c)for(var d in c)d in c&&(b.knownHelpers[d]=c[d]);return this.accept(a)},compileProgram:function(a){var b=new this.compiler,c=b.compile(a,this.options),d=this.guid++;return this.usePartial=this.usePartial||c.usePartial,this.children[d]=c,this.useDepths=this.useDepths||c.useDepths,d},accept:function(a){if(!this[a.type])throw new k["default"]("Unknown type: "+a.type,a);this.sourceNode.unshift(a);var b=this[a.type](a);return this.sourceNode.shift(),b},Program:function(a){this.options.blockParams.unshift(a.blockParams);for(var b=a.body,c=b.length,d=0;c>d;d++)this.accept(b[d]);return this.options.blockParams.shift(),this.isSimple=1===c,this.blockParams=a.blockParams?a.blockParams.length:0,this},BlockStatement:function(a){h(a);var b=a.program,c=a.inverse;b=b&&this.compileProgram(b),c=c&&this.compileProgram(c);var d=this.classifySexpr(a);"helper"===d?this.helperSexpr(a,b,c):"simple"===d?(this.simpleSexpr(a),this.opcode("pushProgram",b),this.opcode("pushProgram",c),this.opcode("emptyHash"),this.opcode("blockValue",a.path.original)):(this.ambiguousSexpr(a,b,c),this.opcode("pushProgram",b),this.opcode("pushProgram",c),this.opcode("emptyHash"),this.opcode("ambiguousBlockValue")),this.opcode("append")},DecoratorBlock:function(a){var b=a.program&&this.compileProgram(a.program),c=this.setupFullMustacheParams(a,b,void 0),d=a.path;this.useDecorators=!0,this.opcode("registerDecorator",c.length,d.original)},PartialStatement:function(a){this.usePartial=!0;var b=a.program;b&&(b=this.compileProgram(a.program));var c=a.params;if(c.length>1)throw new k["default"]("Unsupported number of partial arguments: "+c.length,a);c.length||(this.options.explicitPartialContext?this.opcode("pushLiteral","undefined"):c.push({type:"PathExpression",parts:[],depth:0}));var d=a.name.original,e="SubExpression"===a.name.type;e&&this.accept(a.name),this.setupFullMustacheParams(a,b,void 0,!0);var f=a.indent||"";this.options.preventIndent&&f&&(this.opcode("appendContent",f),f=""),this.opcode("invokePartial",e,d,f),this.opcode("append")},PartialBlockStatement:function(a){this.PartialStatement(a)},MustacheStatement:function(a){this.SubExpression(a),a.escaped&&!this.options.noEscape?this.opcode("appendEscaped"):this.opcode("append")},Decorator:function(a){this.DecoratorBlock(a)},ContentStatement:function(a){a.value&&this.opcode("appendContent",a.value)},CommentStatement:function(){},SubExpression:function(a){h(a);var b=this.classifySexpr(a);"simple"===b?this.simpleSexpr(a):"helper"===b?this.helperSexpr(a):this.ambiguousSexpr(a)},ambiguousSexpr:function(a,b,c){var d=a.path,e=d.parts[0],f=null!=b||null!=c;this.opcode("getContext",d.depth),this.opcode("pushProgram",b),this.opcode("pushProgram",c),d.strict=!0,this.accept(d),this.opcode("invokeAmbiguous",e,f)},simpleSexpr:function(a){var b=a.path;b.strict=!0,this.accept(b),this.opcode("resolvePossibleLambda")},helperSexpr:function(a,b,c){var d=this.setupFullMustacheParams(a,b,c),e=a.path,f=e.parts[0];if(this.options.knownHelpers[f])this.opcode("invokeKnownHelper",d.length,f);else{if(this.options.knownHelpersOnly)throw new k["default"]("You specified knownHelpersOnly, but used the unknown helper "+f,a);e.strict=!0,e.falsy=!0,this.accept(e),this.opcode("invokeHelper",d.length,e.original,n["default"].helpers.simpleId(e))}},PathExpression:function(a){this.addDepth(a.depth),this.opcode("getContext",a.depth);var b=a.parts[0],c=n["default"].helpers.scopedId(a),d=!a.depth&&!c&&this.blockParamIndex(b);d?this.opcode("lookupBlockParam",d,a.parts):b?a.data?(this.options.data=!0,this.opcode("lookupData",a.depth,a.parts,a.strict)):this.opcode("lookupOnContext",a.parts,a.falsy,a.strict,c):this.opcode("pushContext")},StringLiteral:function(a){this.opcode("pushString",a.value)},NumberLiteral:function(a){this.opcode("pushLiteral",a.value)},BooleanLiteral:function(a){this.opcode("pushLiteral",a.value)},UndefinedLiteral:function(){this.opcode("pushLiteral","undefined")},NullLiteral:function(){this.opcode("pushLiteral","null")},Hash:function(a){var b=a.pairs,c=0,d=b.length;for(this.opcode("pushHash");d>c;c++)this.pushParam(b[c].value);for(;c--;)this.opcode("assignToHash",b[c].key);this.opcode("popHash")},opcode:function(a){this.opcodes.push({opcode:a,args:o.call(arguments,1),loc:this.sourceNode[0].loc})},addDepth:function(a){a&&(this.useDepths=!0)},classifySexpr:function(a){var b=n["default"].helpers.simpleId(a.path),c=b&&!!this.blockParamIndex(a.path.parts[0]),d=!c&&n["default"].helpers.helperExpression(a),e=!c&&(d||b);if(e&&!d){var f=a.path.parts[0],g=this.options;g.knownHelpers[f]?d=!0:g.knownHelpersOnly&&(e=!1)}return d?"helper":e?"ambiguous":"simple"},pushParams:function(a){for(var b=0,c=a.length;c>b;b++)this.pushParam(a[b])},pushParam:function(a){var b=null!=a.value?a.value:a.original||"";if(this.stringParams)b.replace&&(b=b.replace(/^(\.?\.\/)*/g,"").replace(/\//g,".")),a.depth&&this.addDepth(a.depth),this.opcode("getContext",a.depth||0),this.opcode("pushStringParam",b,a.type),"SubExpression"===a.type&&this.accept(a);else{if(this.trackIds){var c=void 0;if(!a.parts||n["default"].helpers.scopedId(a)||a.depth||(c=this.blockParamIndex(a.parts[0])),c){var d=a.parts.slice(1).join(".");this.opcode("pushId","BlockParam",c,d)}else b=a.original||b,b.replace&&(b=b.replace(/^this(?:\.|$)/,"").replace(/^\.\//,"").replace(/^\.$/,"")),this.opcode("pushId",a.type,b)}this.accept(a)}},setupFullMustacheParams:function(a,b,c,d){var e=a.params;return this.pushParams(e),this.opcode("pushProgram",b),this.opcode("pushProgram",c),a.hash?this.accept(a.hash):this.opcode("emptyHash",d),e},blockParamIndex:function(a){for(var b=0,c=this.options.blockParams.length;c>b;b++){var d=this.options.blockParams[b],e=d&&l.indexOf(d,a);if(d&&e>=0)return[b,e]}}}},function(a,b,c){"use strict";function d(a){this.value=a}function e(){}function f(a,b,c,d){var e=b.popStack(),f=0,g=c.length;for(a&&g--;g>f;f++)e=b.nameLookup(e,c[f],d);return a?[b.aliasable("container.strict"),"(",e,", ",b.quotedString(c[f]),")"]:e}var g=c(1)["default"];b.__esModule=!0;var h=c(4),i=c(6),j=g(i),k=c(5),l=c(29),m=g(l);e.prototype={nameLookup:function(a,b){return e.isValidJavaScriptVariableName(b)?[a,".",b]:[a,"[",JSON.stringify(b),"]"]},depthedLookup:function(a){return[this.aliasable("container.lookup"),'(depths, "',a,'")']},compilerInfo:function(){var a=h.COMPILER_REVISION,b=h.REVISION_CHANGES[a];return[a,b]},appendToBuffer:function(a,b,c){return k.isArray(a)||(a=[a]),a=this.source.wrap(a,b),this.environment.isSimple?["return ",a,";"]:c?["buffer += ",a,";"]:(a.appendToBuffer=!0,a)},initializeBuffer:function(){return this.quotedString("")},compile:function(a,b,c,d){this.environment=a,this.options=b,this.stringParams=this.options.stringParams,this.trackIds=this.options.trackIds,this.precompile=!d,this.name=this.environment.name,this.isChild=!!c,this.context=c||{decorators:[],programs:[],environments:[]},this.preamble(),this.stackSlot=0,this.stackVars=[],this.aliases={},this.registers={list:[]},this.hashes=[],this.compileStack=[],this.inlineStack=[],this.blockParams=[],this.compileChildren(a,b),this.useDepths=this.useDepths||a.useDepths||a.useDecorators||this.options.compat,this.useBlockParams=this.useBlockParams||a.useBlockParams;var e=a.opcodes,f=void 0,g=void 0,h=void 0,i=void 0;for(h=0,i=e.length;i>h;h++)f=e[h],this.source.currentLocation=f.loc,g=g||f.loc,this[f.opcode].apply(this,f.args);if(this.source.currentLocation=g,this.pushSource(""),this.stackSlot||this.inlineStack.length||this.compileStack.length)throw new j["default"]("Compile completed with content left on stack");this.decorators.isEmpty()?this.decorators=void 0:(this.useDecorators=!0,this.decorators.prepend("var decorators = container.decorators;\n"),this.decorators.push("return fn;"),d?this.decorators=Function.apply(this,["fn","props","container","depth0","data","blockParams","depths",this.decorators.merge()]):(this.decorators.prepend("function(fn, props, container, depth0, data, blockParams, depths) {\n"),this.decorators.push("}\n"),this.decorators=this.decorators.merge()));var k=this.createFunctionContext(d);if(this.isChild)return k;var l={compiler:this.compilerInfo(),main:k};this.decorators&&(l.main_d=this.decorators,l.useDecorators=!0);var m=this.context,n=m.programs,o=m.decorators;for(h=0,i=n.length;i>h;h++)n[h]&&(l[h]=n[h],o[h]&&(l[h+"_d"]=o[h],l.useDecorators=!0));return this.environment.usePartial&&(l.usePartial=!0),this.options.data&&(l.useData=!0),this.useDepths&&(l.useDepths=!0),this.useBlockParams&&(l.useBlockParams=!0),this.options.compat&&(l.compat=!0),d?l.compilerOptions=this.options:(l.compiler=JSON.stringify(l.compiler),this.source.currentLocation={start:{line:1,column:0}},l=this.objectLiteral(l),b.srcName?(l=l.toStringWithSourceMap({file:b.destName}),l.map=l.map&&l.map.toString()):l=l.toString()),l},preamble:function(){this.lastContext=0,this.source=new m["default"](this.options.srcName),this.decorators=new m["default"](this.options.srcName)},createFunctionContext:function(a){var b="",c=this.stackVars.concat(this.registers.list);c.length>0&&(b+=", "+c.join(", "));var d=0;for(var e in this.aliases){var f=this.aliases[e];this.aliases.hasOwnProperty(e)&&f.children&&f.referenceCount>1&&(b+=", alias"+ ++d+"="+e,f.children[0]="alias"+d)}var g=["container","depth0","helpers","partials","data"];(this.useBlockParams||this.useDepths)&&g.push("blockParams"),this.useDepths&&g.push("depths");var h=this.mergeSource(b);return a?(g.push(h),Function.apply(this,g)):this.source.wrap(["function(",g.join(","),") {\n  ",h,"}"])},mergeSource:function(a){var b=this.environment.isSimple,c=!this.forceBuffer,d=void 0,e=void 0,f=void 0,g=void 0;return this.source.each(function(a){a.appendToBuffer?(f?a.prepend("  + "):f=a,g=a):(f&&(e?f.prepend("buffer += "):d=!0,g.add(";"),f=g=void 0),e=!0,b||(c=!1))}),c?f?(f.prepend("return "),g.add(";")):e||this.source.push('return "";'):(a+=", buffer = "+(d?"":this.initializeBuffer()),f?(f.prepend("return buffer + "),g.add(";")):this.source.push("return buffer;")),a&&this.source.prepend("var "+a.substring(2)+(d?"":";\n")),this.source.merge()},blockValue:function(a){var b=this.aliasable("helpers.blockHelperMissing"),c=[this.contextName(0)];this.setupHelperArgs(a,0,c);var d=this.popStack();c.splice(1,0,d),this.push(this.source.functionCall(b,"call",c))},ambiguousBlockValue:function(){var a=this.aliasable("helpers.blockHelperMissing"),b=[this.contextName(0)];this.setupHelperArgs("",0,b,!0),this.flushInline();var c=this.topStack();b.splice(1,0,c),this.pushSource(["if (!",this.lastHelper,") { ",c," = ",this.source.functionCall(a,"call",b),"}"])},appendContent:function(a){this.pendingContent?a=this.pendingContent+a:this.pendingLocation=this.source.currentLocation,this.pendingContent=a},append:function(){if(this.isInline())this.replaceStack(function(a){return[" != null ? ",a,' : ""']}),this.pushSource(this.appendToBuffer(this.popStack()));else{var a=this.popStack();this.pushSource(["if (",a," != null) { ",this.appendToBuffer(a,void 0,!0)," }"]),this.environment.isSimple&&this.pushSource(["else { ",this.appendToBuffer("''",void 0,!0)," }"])}},appendEscaped:function(){this.pushSource(this.appendToBuffer([this.aliasable("container.escapeExpression"),"(",this.popStack(),")"]))},getContext:function(a){this.lastContext=a},pushContext:function(){this.pushStackLiteral(this.contextName(this.lastContext))},lookupOnContext:function(a,b,c,d){var e=0;d||!this.options.compat||this.lastContext?this.pushContext():this.push(this.depthedLookup(a[e++])),this.resolvePath("context",a,e,b,c)},lookupBlockParam:function(a,b){this.useBlockParams=!0,this.push(["blockParams[",a[0],"][",a[1],"]"]),this.resolvePath("context",b,1)},lookupData:function(a,b,c){a?this.pushStackLiteral("container.data(data, "+a+")"):this.pushStackLiteral("data"),this.resolvePath("data",b,0,!0,c)},resolvePath:function(a,b,c,d,e){var g=this;if(this.options.strict||this.options.assumeObjects)return void this.push(f(this.options.strict&&e,this,b,a));for(var h=b.length;h>c;c++)this.replaceStack(function(e){var f=g.nameLookup(e,b[c],a);return d?[" && ",f]:[" != null ? ",f," : ",e]})},resolvePossibleLambda:function(){this.push([this.aliasable("container.lambda"),"(",this.popStack(),", ",this.contextName(0),")"])},pushStringParam:function(a,b){this.pushContext(),this.pushString(b),"SubExpression"!==b&&("string"==typeof a?this.pushString(a):this.pushStackLiteral(a))},emptyHash:function(a){this.trackIds&&this.push("{}"),this.stringParams&&(this.push("{}"),this.push("{}")),this.pushStackLiteral(a?"undefined":"{}")},pushHash:function(){this.hash&&this.hashes.push(this.hash),this.hash={values:[],types:[],contexts:[],ids:[]}},popHash:function(){var a=this.hash;this.hash=this.hashes.pop(),this.trackIds&&this.push(this.objectLiteral(a.ids)),this.stringParams&&(this.push(this.objectLiteral(a.contexts)),this.push(this.objectLiteral(a.types))),this.push(this.objectLiteral(a.values))},pushString:function(a){this.pushStackLiteral(this.quotedString(a))},pushLiteral:function(a){this.pushStackLiteral(a)},pushProgram:function(a){null!=a?this.pushStackLiteral(this.programExpression(a)):this.pushStackLiteral(null)},registerDecorator:function(a,b){var c=this.nameLookup("decorators",b,"decorator"),d=this.setupHelperArgs(b,a);this.decorators.push(["fn = ",this.decorators.functionCall(c,"",["fn","props","container",d])," || fn;"])},invokeHelper:function(a,b,c){var d=this.popStack(),e=this.setupHelper(a,b),f=c?[e.name," || "]:"",g=["("].concat(f,d);this.options.strict||g.push(" || ",this.aliasable("helpers.helperMissing")),g.push(")"),this.push(this.source.functionCall(g,"call",e.callParams))},invokeKnownHelper:function(a,b){var c=this.setupHelper(a,b);this.push(this.source.functionCall(c.name,"call",c.callParams))},invokeAmbiguous:function(a,b){this.useRegister("helper");var c=this.popStack();this.emptyHash();var d=this.setupHelper(0,a,b),e=this.lastHelper=this.nameLookup("helpers",a,"helper"),f=["(","(helper = ",e," || ",c,")"];this.options.strict||(f[0]="(helper = ",f.push(" != null ? helper : ",this.aliasable("helpers.helperMissing"))),this.push(["(",f,d.paramsInit?["),(",d.paramsInit]:[],"),","(typeof helper === ",this.aliasable('"function"')," ? ",this.source.functionCall("helper","call",d.callParams)," : helper))"])},invokePartial:function(a,b,c){var d=[],e=this.setupParams(b,1,d);a&&(b=this.popStack(),delete e.name),c&&(e.indent=JSON.stringify(c)),e.helpers="helpers",e.partials="partials",e.decorators="container.decorators",a?d.unshift(b):d.unshift(this.nameLookup("partials",b,"partial")),this.options.compat&&(e.depths="depths"),e=this.objectLiteral(e),
 d.push(e),this.push(this.source.functionCall("container.invokePartial","",d))},assignToHash:function(a){var b=this.popStack(),c=void 0,d=void 0,e=void 0;this.trackIds&&(e=this.popStack()),this.stringParams&&(d=this.popStack(),c=this.popStack());var f=this.hash;c&&(f.contexts[a]=c),d&&(f.types[a]=d),e&&(f.ids[a]=e),f.values[a]=b},pushId:function(a,b,c){"BlockParam"===a?this.pushStackLiteral("blockParams["+b[0]+"].path["+b[1]+"]"+(c?" + "+JSON.stringify("."+c):"")):"PathExpression"===a?this.pushString(b):"SubExpression"===a?this.pushStackLiteral("true"):this.pushStackLiteral("null")},compiler:e,compileChildren:function(a,b){for(var c=a.children,d=void 0,e=void 0,f=0,g=c.length;g>f;f++){d=c[f],e=new this.compiler;var h=this.matchExistingProgram(d);null==h?(this.context.programs.push(""),h=this.context.programs.length,d.index=h,d.name="program"+h,this.context.programs[h]=e.compile(d,b,this.context,!this.precompile),this.context.decorators[h]=e.decorators,this.context.environments[h]=d,this.useDepths=this.useDepths||e.useDepths,this.useBlockParams=this.useBlockParams||e.useBlockParams):(d.index=h,d.name="program"+h,this.useDepths=this.useDepths||d.useDepths,this.useBlockParams=this.useBlockParams||d.useBlockParams)}},matchExistingProgram:function(a){for(var b=0,c=this.context.environments.length;c>b;b++){var d=this.context.environments[b];if(d&&d.equals(a))return b}},programExpression:function(a){var b=this.environment.children[a],c=[b.index,"data",b.blockParams];return(this.useBlockParams||this.useDepths)&&c.push("blockParams"),this.useDepths&&c.push("depths"),"container.program("+c.join(", ")+")"},useRegister:function(a){this.registers[a]||(this.registers[a]=!0,this.registers.list.push(a))},push:function(a){return a instanceof d||(a=this.source.wrap(a)),this.inlineStack.push(a),a},pushStackLiteral:function(a){this.push(new d(a))},pushSource:function(a){this.pendingContent&&(this.source.push(this.appendToBuffer(this.source.quotedString(this.pendingContent),this.pendingLocation)),this.pendingContent=void 0),a&&this.source.push(a)},replaceStack:function(a){var b=["("],c=void 0,e=void 0,f=void 0;if(!this.isInline())throw new j["default"]("replaceStack on non-inline");var g=this.popStack(!0);if(g instanceof d)c=[g.value],b=["(",c],f=!0;else{e=!0;var h=this.incrStack();b=["((",this.push(h)," = ",g,")"],c=this.topStack()}var i=a.call(this,c);f||this.popStack(),e&&this.stackSlot--,this.push(b.concat(i,")"))},incrStack:function(){return this.stackSlot++,this.stackSlot>this.stackVars.length&&this.stackVars.push("stack"+this.stackSlot),this.topStackName()},topStackName:function(){return"stack"+this.stackSlot},flushInline:function(){var a=this.inlineStack;this.inlineStack=[];for(var b=0,c=a.length;c>b;b++){var e=a[b];if(e instanceof d)this.compileStack.push(e);else{var f=this.incrStack();this.pushSource([f," = ",e,";"]),this.compileStack.push(f)}}},isInline:function(){return this.inlineStack.length},popStack:function(a){var b=this.isInline(),c=(b?this.inlineStack:this.compileStack).pop();if(!a&&c instanceof d)return c.value;if(!b){if(!this.stackSlot)throw new j["default"]("Invalid stack pop");this.stackSlot--}return c},topStack:function(){var a=this.isInline()?this.inlineStack:this.compileStack,b=a[a.length-1];return b instanceof d?b.value:b},contextName:function(a){return this.useDepths&&a?"depths["+a+"]":"depth"+a},quotedString:function(a){return this.source.quotedString(a)},objectLiteral:function(a){return this.source.objectLiteral(a)},aliasable:function(a){var b=this.aliases[a];return b?(b.referenceCount++,b):(b=this.aliases[a]=this.source.wrap(a),b.aliasable=!0,b.referenceCount=1,b)},setupHelper:function(a,b,c){var d=[],e=this.setupHelperArgs(b,a,d,c),f=this.nameLookup("helpers",b,"helper"),g=this.aliasable(this.contextName(0)+" != null ? "+this.contextName(0)+" : {}");return{params:d,paramsInit:e,name:f,callParams:[g].concat(d)}},setupParams:function(a,b,c){var d={},e=[],f=[],g=[],h=!c,i=void 0;h&&(c=[]),d.name=this.quotedString(a),d.hash=this.popStack(),this.trackIds&&(d.hashIds=this.popStack()),this.stringParams&&(d.hashTypes=this.popStack(),d.hashContexts=this.popStack());var j=this.popStack(),k=this.popStack();(k||j)&&(d.fn=k||"container.noop",d.inverse=j||"container.noop");for(var l=b;l--;)i=this.popStack(),c[l]=i,this.trackIds&&(g[l]=this.popStack()),this.stringParams&&(f[l]=this.popStack(),e[l]=this.popStack());return h&&(d.args=this.source.generateArray(c)),this.trackIds&&(d.ids=this.source.generateArray(g)),this.stringParams&&(d.types=this.source.generateArray(f),d.contexts=this.source.generateArray(e)),this.options.data&&(d.data="data"),this.useBlockParams&&(d.blockParams="blockParams"),d},setupHelperArgs:function(a,b,c,d){var e=this.setupParams(a,b,c);return e=this.objectLiteral(e),d?(this.useRegister("options"),c.push("options"),["options=",e]):c?(c.push(e),""):e}},function(){for(var a="break else new var case finally return void catch for switch while continue function this with default if throw delete in try do instanceof typeof abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient debugger implements protected volatile double import public let yield await null true false".split(" "),b=e.RESERVED_WORDS={},c=0,d=a.length;d>c;c++)b[a[c]]=!0}(),e.isValidJavaScriptVariableName=function(a){return!e.RESERVED_WORDS[a]&&/^[a-zA-Z_$][0-9a-zA-Z_$]*$/.test(a)},b["default"]=e,a.exports=b["default"]},function(a,b,c){"use strict";function d(a,b,c){if(f.isArray(a)){for(var d=[],e=0,g=a.length;g>e;e++)d.push(b.wrap(a[e],c));return d}return"boolean"==typeof a||"number"==typeof a?a+"":a}function e(a){this.srcFile=a,this.source=[]}b.__esModule=!0;var f=c(5),g=void 0;try{}catch(h){}g||(g=function(a,b,c,d){this.src="",d&&this.add(d)},g.prototype={add:function(a){f.isArray(a)&&(a=a.join("")),this.src+=a},prepend:function(a){f.isArray(a)&&(a=a.join("")),this.src=a+this.src},toStringWithSourceMap:function(){return{code:this.toString()}},toString:function(){return this.src}}),e.prototype={isEmpty:function(){return!this.source.length},prepend:function(a,b){this.source.unshift(this.wrap(a,b))},push:function(a,b){this.source.push(this.wrap(a,b))},merge:function(){var a=this.empty();return this.each(function(b){a.add(["  ",b,"\n"])}),a},each:function(a){for(var b=0,c=this.source.length;c>b;b++)a(this.source[b])},empty:function(){var a=this.currentLocation||{start:{}};return new g(a.start.line,a.start.column,this.srcFile)},wrap:function(a){var b=arguments.length<=1||void 0===arguments[1]?this.currentLocation||{start:{}}:arguments[1];return a instanceof g?a:(a=d(a,this,b),new g(b.start.line,b.start.column,this.srcFile,a))},functionCall:function(a,b,c){return c=this.generateList(c),this.wrap([a,b?"."+b+"(":"(",c,")"])},quotedString:function(a){return'"'+(a+"").replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g,"\\n").replace(/\r/g,"\\r").replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029")+'"'},objectLiteral:function(a){var b=[];for(var c in a)if(a.hasOwnProperty(c)){var e=d(a[c],this);"undefined"!==e&&b.push([this.quotedString(c),":",e])}var f=this.generateList(b);return f.prepend("{"),f.add("}"),f},generateList:function(a){for(var b=this.empty(),c=0,e=a.length;e>c;c++)c&&b.add(","),b.add(d(a[c],this));return b},generateArray:function(a){var b=this.generateList(a);return b.prepend("["),b.add("]"),b}},b["default"]=e,a.exports=b["default"]}])});
 /**
- * @license AngularJS v1.4.7
+ * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -91,7 +91,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.4.7/' +
+    message += '\nhttp://errors.angularjs.org/1.4.8/' +
       (module ? module + '/' : '') + code;
 
     for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
@@ -301,20 +301,24 @@ msie = document.documentMode;
  *                   String ...)
  */
 function isArrayLike(obj) {
-  if (obj == null || isWindow(obj)) {
-    return false;
-  }
+
+  // `null`, `undefined` and `window` are not array-like
+  if (obj == null || isWindow(obj)) return false;
+
+  // arrays, strings and jQuery/jqLite objects are array like
+  // * jqLite is either the jQuery or jqLite constructor function
+  // * we have to check the existance of jqLite first as this method is called
+  //   via the forEach method when constructing the jqLite object in the first place
+  if (isArray(obj) || isString(obj) || (jqLite && obj instanceof jqLite)) return true;
 
   // Support: iOS 8.2 (not reproducible in simulator)
   // "length" in obj used to prevent JIT error (gh-11508)
   var length = "length" in Object(obj) && obj.length;
 
-  if (obj.nodeType === NODE_TYPE_ELEMENT && length) {
-    return true;
-  }
-
-  return isString(obj) || isArray(obj) || length === 0 ||
-         typeof length === 'number' && length > 0 && (length - 1) in obj;
+  // NodeList objects (with `item` method) and
+  // other objects with suitable length characteristics are array-like
+  return isNumber(length) &&
+    (length >= 0 && (length - 1) in obj || typeof obj.item == 'function');
 }
 
 /**
@@ -459,6 +463,10 @@ function baseExtend(dst, objs, deep) {
           dst[key] = new Date(src.valueOf());
         } else if (isRegExp(src)) {
           dst[key] = new RegExp(src);
+        } else if (src.nodeName) {
+          dst[key] = src.cloneNode(true);
+        } else if (isElement(src)) {
+          dst[key] = src.clone();
         } else {
           if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
           baseExtend(dst[key], [src], true);
@@ -574,7 +582,7 @@ identity.$inject = [];
 function valueFn(value) {return function() {return value;};}
 
 function hasCustomToString(obj) {
-  return isFunction(obj.toString) && obj.toString !== Object.prototype.toString;
+  return isFunction(obj.toString) && obj.toString !== toString;
 }
 
 
@@ -773,9 +781,9 @@ function isPromiseLike(obj) {
 }
 
 
-var TYPED_ARRAY_REGEXP = /^\[object (Uint8(Clamped)?)|(Uint16)|(Uint32)|(Int8)|(Int16)|(Int32)|(Float(32)|(64))Array\]$/;
+var TYPED_ARRAY_REGEXP = /^\[object (?:Uint8|Uint8Clamped|Uint16|Uint32|Int8|Int16|Int32|Float32|Float64)Array\]$/;
 function isTypedArray(value) {
-  return TYPED_ARRAY_REGEXP.test(toString.call(value));
+  return value && isNumber(value.length) && TYPED_ARRAY_REGEXP.test(toString.call(value));
 }
 
 
@@ -897,100 +905,111 @@ function arrayRemove(array, value) {
  </file>
  </example>
  */
-function copy(source, destination, stackSource, stackDest) {
-  if (isWindow(source) || isScope(source)) {
-    throw ngMinErr('cpws',
-      "Can't copy! Making copies of Window or Scope instances is not supported.");
-  }
-  if (isTypedArray(destination)) {
-    throw ngMinErr('cpta',
-      "Can't copy! TypedArray destination cannot be mutated.");
-  }
+function copy(source, destination) {
+  var stackSource = [];
+  var stackDest = [];
 
-  if (!destination) {
-    destination = source;
-    if (isObject(source)) {
-      var index;
-      if (stackSource && (index = stackSource.indexOf(source)) !== -1) {
-        return stackDest[index];
-      }
-
-      // TypedArray, Date and RegExp have specific copy functionality and must be
-      // pushed onto the stack before returning.
-      // Array and other objects create the base object and recurse to copy child
-      // objects. The array/object will be pushed onto the stack when recursed.
-      if (isArray(source)) {
-        return copy(source, [], stackSource, stackDest);
-      } else if (isTypedArray(source)) {
-        destination = new source.constructor(source);
-      } else if (isDate(source)) {
-        destination = new Date(source.getTime());
-      } else if (isRegExp(source)) {
-        destination = new RegExp(source.source, source.toString().match(/[^\/]*$/)[0]);
-        destination.lastIndex = source.lastIndex;
-      } else if (isFunction(source.cloneNode)) {
-          destination = source.cloneNode(true);
-      } else {
-        var emptyObject = Object.create(getPrototypeOf(source));
-        return copy(source, emptyObject, stackSource, stackDest);
-      }
-
-      if (stackDest) {
-        stackSource.push(source);
-        stackDest.push(destination);
-      }
+  if (destination) {
+    if (isTypedArray(destination)) {
+      throw ngMinErr('cpta', "Can't copy! TypedArray destination cannot be mutated.");
     }
-  } else {
-    if (source === destination) throw ngMinErr('cpi',
-      "Can't copy! Source and destination are identical.");
-
-    stackSource = stackSource || [];
-    stackDest = stackDest || [];
-
-    if (isObject(source)) {
-      stackSource.push(source);
-      stackDest.push(destination);
+    if (source === destination) {
+      throw ngMinErr('cpi', "Can't copy! Source and destination are identical.");
     }
 
+    // Empty the destination object
+    if (isArray(destination)) {
+      destination.length = 0;
+    } else {
+      forEach(destination, function(value, key) {
+        if (key !== '$$hashKey') {
+          delete destination[key];
+        }
+      });
+    }
+
+    stackSource.push(source);
+    stackDest.push(destination);
+    return copyRecurse(source, destination);
+  }
+
+  return copyElement(source);
+
+  function copyRecurse(source, destination) {
+    var h = destination.$$hashKey;
     var result, key;
     if (isArray(source)) {
-      destination.length = 0;
-      for (var i = 0; i < source.length; i++) {
-        destination.push(copy(source[i], null, stackSource, stackDest));
+      for (var i = 0, ii = source.length; i < ii; i++) {
+        destination.push(copyElement(source[i]));
+      }
+    } else if (isBlankObject(source)) {
+      // createMap() fast path --- Safe to avoid hasOwnProperty check because prototype chain is empty
+      for (key in source) {
+        destination[key] = copyElement(source[key]);
+      }
+    } else if (source && typeof source.hasOwnProperty === 'function') {
+      // Slow path, which must rely on hasOwnProperty
+      for (key in source) {
+        if (source.hasOwnProperty(key)) {
+          destination[key] = copyElement(source[key]);
+        }
       }
     } else {
-      var h = destination.$$hashKey;
-      if (isArray(destination)) {
-        destination.length = 0;
-      } else {
-        forEach(destination, function(value, key) {
-          delete destination[key];
-        });
-      }
-      if (isBlankObject(source)) {
-        // createMap() fast path --- Safe to avoid hasOwnProperty check because prototype chain is empty
-        for (key in source) {
-          destination[key] = copy(source[key], null, stackSource, stackDest);
-        }
-      } else if (source && typeof source.hasOwnProperty === 'function') {
-        // Slow path, which must rely on hasOwnProperty
-        for (key in source) {
-          if (source.hasOwnProperty(key)) {
-            destination[key] = copy(source[key], null, stackSource, stackDest);
-          }
-        }
-      } else {
-        // Slowest path --- hasOwnProperty can't be called as a method
-        for (key in source) {
-          if (hasOwnProperty.call(source, key)) {
-            destination[key] = copy(source[key], null, stackSource, stackDest);
-          }
+      // Slowest path --- hasOwnProperty can't be called as a method
+      for (key in source) {
+        if (hasOwnProperty.call(source, key)) {
+          destination[key] = copyElement(source[key]);
         }
       }
-      setHashKey(destination,h);
     }
+    setHashKey(destination, h);
+    return destination;
   }
-  return destination;
+
+  function copyElement(source) {
+    // Simple values
+    if (!isObject(source)) {
+      return source;
+    }
+
+    // Already copied values
+    var index = stackSource.indexOf(source);
+    if (index !== -1) {
+      return stackDest[index];
+    }
+
+    if (isWindow(source) || isScope(source)) {
+      throw ngMinErr('cpws',
+        "Can't copy! Making copies of Window or Scope instances is not supported.");
+    }
+
+    var needsRecurse = false;
+    var destination;
+
+    if (isArray(source)) {
+      destination = [];
+      needsRecurse = true;
+    } else if (isTypedArray(source)) {
+      destination = new source.constructor(source);
+    } else if (isDate(source)) {
+      destination = new Date(source.getTime());
+    } else if (isRegExp(source)) {
+      destination = new RegExp(source.source, source.toString().match(/[^\/]*$/)[0]);
+      destination.lastIndex = source.lastIndex;
+    } else if (isFunction(source.cloneNode)) {
+        destination = source.cloneNode(true);
+    } else {
+      destination = Object.create(getPrototypeOf(source));
+      needsRecurse = true;
+    }
+
+    stackSource.push(source);
+    stackDest.push(destination);
+
+    return needsRecurse
+      ? copyRecurse(source, destination)
+      : destination;
+  }
 }
 
 /**
@@ -2114,7 +2133,7 @@ function setupModuleLoader(window) {
            * @param {string} name constant name
            * @param {*} object Constant value.
            * @description
-           * Because the constant are fixed, they get applied before other provide methods.
+           * Because the constants are fixed, they get applied before other provide methods.
            * See {@link auto.$provide#constant $provide.constant()}.
            */
           constant: invokeLater('$provide', 'constant', 'unshift'),
@@ -2413,11 +2432,11 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.4.7',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.4.8',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 4,
-  dot: 7,
-  codeName: 'dark-luminescence'
+  dot: 8,
+  codeName: 'ice-manipulation'
 };
 
 
@@ -2799,6 +2818,14 @@ function jqLiteParseHTML(html, context) {
   return [];
 }
 
+
+// IE9-11 has no method "contains" in SVG element and in Node.prototype. Bug #10259.
+var jqLiteContains = Node.prototype.contains || function(arg) {
+  // jshint bitwise: false
+  return !!(this.compareDocumentPosition(arg) & 16);
+  // jshint bitwise: true
+};
+
 /////////////////////////////////////////////
 function JQLite(element) {
   if (element instanceof JQLite) {
@@ -2857,17 +2884,23 @@ function jqLiteOff(element, type, fn, unsupported) {
       delete events[type];
     }
   } else {
-    forEach(type.split(' '), function(type) {
-      if (isDefined(fn)) {
-        var listenerFns = events[type];
-        arrayRemove(listenerFns || [], fn);
-        if (listenerFns && listenerFns.length > 0) {
-          return;
-        }
-      }
 
-      removeEventListenerFn(element, type, handle);
-      delete events[type];
+    var removeHandler = function(type) {
+      var listenerFns = events[type];
+      if (isDefined(fn)) {
+        arrayRemove(listenerFns || [], fn);
+      }
+      if (!(isDefined(fn) && listenerFns && listenerFns.length > 0)) {
+        removeEventListenerFn(element, type, handle);
+        delete events[type];
+      }
+    };
+
+    forEach(type.split(' '), function(type) {
+      removeHandler(type);
+      if (MOUSE_EVENT_MAP[type]) {
+        removeHandler(MOUSE_EVENT_MAP[type]);
+      }
     });
   }
 }
@@ -3322,6 +3355,9 @@ function createEventHandler(element, events) {
       return event.immediatePropagationStopped === true;
     };
 
+    // Some events have special handlers that wrap the real handler
+    var handlerWrapper = eventFns.specialHandlerWrapper || defaultHandlerWrapper;
+
     // Copy event handlers in case event handlers array is modified during execution.
     if ((eventFnsLength > 1)) {
       eventFns = shallowCopy(eventFns);
@@ -3329,7 +3365,7 @@ function createEventHandler(element, events) {
 
     for (var i = 0; i < eventFnsLength; i++) {
       if (!event.isImmediatePropagationStopped()) {
-        eventFns[i].call(element, event);
+        handlerWrapper(element, event, eventFns[i]);
       }
     }
   };
@@ -3338,6 +3374,22 @@ function createEventHandler(element, events) {
   //       events on `element`
   eventHandler.elem = element;
   return eventHandler;
+}
+
+function defaultHandlerWrapper(element, event, handler) {
+  handler.call(element, event);
+}
+
+function specialMouseHandlerWrapper(target, event, handler) {
+  // Refer to jQuery's implementation of mouseenter & mouseleave
+  // Read about mouseenter and mouseleave:
+  // http://www.quirksmode.org/js/events_mouse.html#link8
+  var related = event.relatedTarget;
+  // For mousenter/leave call the handler if related is outside the target.
+  // NB: No relatedTarget if the mouse left/entered the browser window
+  if (!related || (related !== target && !jqLiteContains.call(target, related))) {
+    handler.call(target, event);
+  }
 }
 
 //////////////////////////////////////////
@@ -3368,35 +3420,28 @@ forEach({
     var types = type.indexOf(' ') >= 0 ? type.split(' ') : [type];
     var i = types.length;
 
-    while (i--) {
-      type = types[i];
+    var addHandler = function(type, specialHandlerWrapper, noEventListener) {
       var eventFns = events[type];
 
       if (!eventFns) {
-        events[type] = [];
-
-        if (type === 'mouseenter' || type === 'mouseleave') {
-          // Refer to jQuery's implementation of mouseenter & mouseleave
-          // Read about mouseenter and mouseleave:
-          // http://www.quirksmode.org/js/events_mouse.html#link8
-
-          jqLiteOn(element, MOUSE_EVENT_MAP[type], function(event) {
-            var target = this, related = event.relatedTarget;
-            // For mousenter/leave call the handler if related is outside the target.
-            // NB: No relatedTarget if the mouse left/entered the browser window
-            if (!related || (related !== target && !target.contains(related))) {
-              handle(event, type);
-            }
-          });
-
-        } else {
-          if (type !== '$destroy') {
-            addEventListenerFn(element, type, handle);
-          }
+        eventFns = events[type] = [];
+        eventFns.specialHandlerWrapper = specialHandlerWrapper;
+        if (type !== '$destroy' && !noEventListener) {
+          addEventListenerFn(element, type, handle);
         }
-        eventFns = events[type];
       }
+
       eventFns.push(fn);
+    };
+
+    while (i--) {
+      type = types[i];
+      if (MOUSE_EVENT_MAP[type]) {
+        addHandler(MOUSE_EVENT_MAP[type], specialMouseHandlerWrapper);
+        addHandler(type, undefined, true);
+      } else {
+        addHandler(type);
+      }
     }
   },
 
@@ -4577,7 +4622,7 @@ function $AnchorScrollProvider() {
    * When called, it scrolls to the element related to the specified `hash` or (if omitted) to the
    * current value of {@link ng.$location#hash $location.hash()}, according to the rules specified
    * in the
-   * [HTML5 spec](http://dev.w3.org/html5/spec/Overview.html#the-indicated-part-of-the-document).
+   * [HTML5 spec](http://www.w3.org/html/wg/drafts/html/master/browsers.html#the-indicated-part-of-the-document).
    *
    * It also watches the {@link ng.$location#hash $location.hash()} and automatically scrolls to
    * match any anchor whenever it changes. This can be disabled by calling
@@ -5092,7 +5137,7 @@ var $AnimateProvider = ['$provide', function($provide) {
      * when an animation is detected (and animations are enabled), $animate will do the heavy lifting
      * to ensure that animation runs with the triggered DOM operation.
      *
-     * By default $animate doesn't trigger an animations. This is because the `ngAnimate` module isn't
+     * By default $animate doesn't trigger any animations. This is because the `ngAnimate` module isn't
      * included and only when it is active then the animation hooks that `$animate` triggers will be
      * functional. Once active then all structural `ng-` directives will trigger animations as they perform
      * their DOM-related operations (enter, leave and move). Other directives such as `ngClass`,
@@ -5944,9 +5989,9 @@ function $CacheFactoryProvider() {
 
       var size = 0,
           stats = extend({}, options, {id: cacheId}),
-          data = {},
+          data = createMap(),
           capacity = (options && options.capacity) || Number.MAX_VALUE,
-          lruHash = {},
+          lruHash = createMap(),
           freshEnd = null,
           staleEnd = null;
 
@@ -6074,6 +6119,8 @@ function $CacheFactoryProvider() {
             delete lruHash[key];
           }
 
+          if (!(key in data)) return;
+
           delete data[key];
           size--;
         },
@@ -6088,9 +6135,9 @@ function $CacheFactoryProvider() {
          * Clears the cache object of any entries.
          */
         removeAll: function() {
-          data = {};
+          data = createMap();
           size = 0;
-          lruHash = {};
+          lruHash = createMap();
           freshEnd = staleEnd = null;
         },
 
@@ -7491,6 +7538,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               return template.replace(/\{\{/g, startSymbol).replace(/}}/g, endSymbol);
         },
         NG_ATTR_BINDING = /^ngAttr[A-Z]/;
+    var MULTI_ELEMENT_DIR_RE = /^(.+)Start$/;
 
     compile.$$addBindingInfo = debugInfoEnabled ? function $$addBindingInfo($element, binding) {
       var bindings = $element.data('$binding') || [];
@@ -7542,6 +7590,14 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       var namespace = null;
       return function publicLinkFn(scope, cloneConnectFn, options) {
         assertArg(scope, 'scope');
+
+        if (previousCompileContext && previousCompileContext.needsNewScope) {
+          // A parent directive did a replace and a directive on this element asked
+          // for transclusion, which caused us to lose a layer of element on which
+          // we could hold the new transclusion scope, so we will create it manually
+          // here.
+          scope = scope.$parent.$new();
+        }
 
         options = options || {};
         var parentBoundTranscludeFn = options.parentBoundTranscludeFn,
@@ -7688,11 +7744,6 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             if (nodeLinkFn.scope) {
               childScope = scope.$new();
               compile.$$addScopeInfo(jqLite(node), childScope);
-              var destroyBindings = nodeLinkFn.$$destroyBindings;
-              if (destroyBindings) {
-                nodeLinkFn.$$destroyBindings = null;
-                childScope.$on('$destroyed', destroyBindings);
-              }
             } else {
               childScope = scope;
             }
@@ -7711,8 +7762,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               childBoundTranscludeFn = null;
             }
 
-            nodeLinkFn(childLinkFn, childScope, node, $rootElement, childBoundTranscludeFn,
-                       nodeLinkFn);
+            nodeLinkFn(childLinkFn, childScope, node, $rootElement, childBoundTranscludeFn);
 
           } else if (childLinkFn) {
             childLinkFn(scope, node.childNodes, undefined, parentBoundTranscludeFn);
@@ -7781,13 +7831,11 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
                 });
             }
 
-            var directiveNName = ngAttrName.replace(/(Start|End)$/, '');
-            if (directiveIsMultiElement(directiveNName)) {
-              if (ngAttrName === directiveNName + 'Start') {
-                attrStartName = name;
-                attrEndName = name.substr(0, name.length - 5) + 'end';
-                name = name.substr(0, name.length - 6);
-              }
+            var multiElementMatch = ngAttrName.match(MULTI_ELEMENT_DIR_RE);
+            if (multiElementMatch && directiveIsMultiElement(multiElementMatch[1])) {
+              attrStartName = name;
+              attrEndName = name.substr(0, name.length - 5) + 'end';
+              name = name.substr(0, name.length - 6);
             }
 
             nName = directiveNormalize(name.toLowerCase());
@@ -8026,7 +8074,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           } else {
             $template = jqLite(jqLiteClone(compileNode)).contents();
             $compileNode.empty(); // clear contents
-            childTranscludeFn = compile($template, transcludeFn);
+            childTranscludeFn = compile($template, transcludeFn, undefined,
+                undefined, { needsNewScope: directive.$$isolateScope || directive.$$newScope});
           }
         }
 
@@ -8068,8 +8117,11 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             var templateDirectives = collectDirectives(compileNode, [], newTemplateAttrs);
             var unprocessedDirectives = directives.splice(i + 1, directives.length - (i + 1));
 
-            if (newIsolateScopeDirective) {
-              markDirectivesAsIsolate(templateDirectives);
+            if (newIsolateScopeDirective || newScopeDirective) {
+              // The original directive caused the current element to be replaced but this element
+              // also needs to have a new scope, so we need to tell the template directives
+              // that they would need to get their scope from further up, if they require transclusion
+              markDirectiveScope(templateDirectives, newIsolateScopeDirective, newScopeDirective);
             }
             directives = directives.concat(templateDirectives).concat(unprocessedDirectives);
             mergeTemplateAttributes(templateAttrs, newTemplateAttrs);
@@ -8222,10 +8274,9 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         return elementControllers;
       }
 
-      function nodeLinkFn(childLinkFn, scope, linkNode, $rootElement, boundTranscludeFn,
-                          thisLinkFn) {
-        var i, ii, linkFn, controller, isolateScope, elementControllers, transcludeFn, $element,
-            attrs;
+      function nodeLinkFn(childLinkFn, scope, linkNode, $rootElement, boundTranscludeFn) {
+        var linkFn, isolateScope, controllerScope, elementControllers, transcludeFn, $element,
+            attrs, removeScopeBindingWatches, removeControllerBindingWatches;
 
         if (compileNode === linkNode) {
           attrs = templateAttrs;
@@ -8235,8 +8286,11 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           attrs = new Attributes($element, templateAttrs);
         }
 
+        controllerScope = scope;
         if (newIsolateScopeDirective) {
           isolateScope = scope.$new(true);
+        } else if (newScopeDirective) {
+          controllerScope = scope.$parent;
         }
 
         if (boundTranscludeFn) {
@@ -8257,42 +8311,34 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           compile.$$addScopeClass($element, true);
           isolateScope.$$isolateBindings =
               newIsolateScopeDirective.$$isolateBindings;
-          initializeDirectiveBindings(scope, attrs, isolateScope,
-                                      isolateScope.$$isolateBindings,
-                                      newIsolateScopeDirective, isolateScope);
-        }
-        if (elementControllers) {
-          // Initialize bindToController bindings for new/isolate scopes
-          var scopeDirective = newIsolateScopeDirective || newScopeDirective;
-          var bindings;
-          var controllerForBindings;
-          if (scopeDirective && elementControllers[scopeDirective.name]) {
-            bindings = scopeDirective.$$bindings.bindToController;
-            controller = elementControllers[scopeDirective.name];
-
-            if (controller && controller.identifier && bindings) {
-              controllerForBindings = controller;
-              thisLinkFn.$$destroyBindings =
-                  initializeDirectiveBindings(scope, attrs, controller.instance,
-                                              bindings, scopeDirective);
-            }
+          removeScopeBindingWatches = initializeDirectiveBindings(scope, attrs, isolateScope,
+                                        isolateScope.$$isolateBindings,
+                                        newIsolateScopeDirective);
+          if (removeScopeBindingWatches) {
+            isolateScope.$on('$destroy', removeScopeBindingWatches);
           }
-          for (i in elementControllers) {
-            controller = elementControllers[i];
-            var controllerResult = controller();
+        }
 
-            if (controllerResult !== controller.instance) {
-              // If the controller constructor has a return value, overwrite the instance
-              // from setupControllers and update the element data
-              controller.instance = controllerResult;
-              $element.data('$' + i + 'Controller', controllerResult);
-              if (controller === controllerForBindings) {
-                // Remove and re-install bindToController bindings
-                thisLinkFn.$$destroyBindings();
-                thisLinkFn.$$destroyBindings =
-                  initializeDirectiveBindings(scope, attrs, controllerResult, bindings, scopeDirective);
-              }
-            }
+        // Initialize bindToController bindings
+        for (var name in elementControllers) {
+          var controllerDirective = controllerDirectives[name];
+          var controller = elementControllers[name];
+          var bindings = controllerDirective.$$bindings.bindToController;
+
+          if (controller.identifier && bindings) {
+            removeControllerBindingWatches =
+              initializeDirectiveBindings(controllerScope, attrs, controller.instance, bindings, controllerDirective);
+          }
+
+          var controllerResult = controller();
+          if (controllerResult !== controller.instance) {
+            // If the controller constructor has a return value, overwrite the instance
+            // from setupControllers
+            controller.instance = controllerResult;
+            $element.data('$' + controllerDirective.name + 'Controller', controllerResult);
+            removeControllerBindingWatches && removeControllerBindingWatches();
+            removeControllerBindingWatches =
+              initializeDirectiveBindings(controllerScope, attrs, controller.instance, bindings, controllerDirective);
           }
         }
 
@@ -8352,10 +8398,15 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       }
     }
 
-    function markDirectivesAsIsolate(directives) {
-      // mark all directives as needing isolate scope.
+    // Depending upon the context in which a directive finds itself it might need to have a new isolated
+    // or child scope created. For instance:
+    // * if the directive has been pulled into a template because another directive with a higher priority
+    // asked for element transclusion
+    // * if the directive itself asks for transclusion but it is at the root of a template and the original
+    // element was replaced. See https://github.com/angular/angular.js/issues/12936
+    function markDirectiveScope(directives, isolateScope, newScope) {
       for (var j = 0, jj = directives.length; j < jj; j++) {
-        directives[j] = inherit(directives[j], {$$isolateScope: true});
+        directives[j] = inherit(directives[j], {$$isolateScope: isolateScope, $$newScope: newScope});
       }
     }
 
@@ -8502,7 +8553,9 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             var templateDirectives = collectDirectives(compileNode, [], tempTemplateAttrs);
 
             if (isObject(origAsyncDirective.scope)) {
-              markDirectivesAsIsolate(templateDirectives);
+              // the original directive that caused the template to be loaded async required
+              // an isolate scope
+              markDirectiveScope(templateDirectives, true);
             }
             directives = templateDirectives.concat(directives);
             mergeTemplateAttributes(tAttrs, tempTemplateAttrs);
@@ -8551,7 +8604,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               childBoundTranscludeFn = boundTranscludeFn;
             }
             afterTemplateNodeLinkFn(afterTemplateChildLinkFn, scope, linkNode, $rootElement,
-              childBoundTranscludeFn, afterTemplateNodeLinkFn);
+              childBoundTranscludeFn);
           }
           linkQueue = null;
         });
@@ -8568,8 +8621,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           if (afterTemplateNodeLinkFn.transcludeOnThisElement) {
             childBoundTranscludeFn = createBoundTranscludeFn(scope, afterTemplateNodeLinkFn.transclude, boundTranscludeFn);
           }
-          afterTemplateNodeLinkFn(afterTemplateChildLinkFn, scope, node, rootElement, childBoundTranscludeFn,
-                                  afterTemplateNodeLinkFn);
+          afterTemplateNodeLinkFn(afterTemplateChildLinkFn, scope, node, rootElement, childBoundTranscludeFn);
         }
       };
     }
@@ -8781,7 +8833,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         // Copy over user data (that includes Angular's $scope etc.). Don't copy private
         // data here because there's no public interface in jQuery to do that and copying over
         // event listeners (which is the main use of private data) wouldn't work anyway.
-        jqLite(newNode).data(jqLite(firstElementToRemove).data());
+        jqLite.data(newNode, jqLite.data(firstElementToRemove));
 
         // Remove data of the replaced element. We cannot just call .remove()
         // on the element it since that would deallocate scope that is needed
@@ -8829,9 +8881,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
     // Set up $watches for isolate scope and controller bindings. This process
     // only occurs for isolate scopes and new scopes with controllerAs.
-    function initializeDirectiveBindings(scope, attrs, destination, bindings,
-                                         directive, newScope) {
-      var onNewScopeDestroyed;
+    function initializeDirectiveBindings(scope, attrs, destination, bindings, directive) {
+      var removeWatchCollection = [];
       forEach(bindings, function(definition, scopeName) {
         var attrName = definition.attrName,
         optional = definition.optional,
@@ -8893,14 +8944,13 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               return lastValue = parentValue;
             };
             parentValueWatch.$stateful = true;
-            var unwatch;
+            var removeWatch;
             if (definition.collection) {
-              unwatch = scope.$watchCollection(attrs[attrName], parentValueWatch);
+              removeWatch = scope.$watchCollection(attrs[attrName], parentValueWatch);
             } else {
-              unwatch = scope.$watch($parse(attrs[attrName], parentValueWatch), null, parentGet.literal);
+              removeWatch = scope.$watch($parse(attrs[attrName], parentValueWatch), null, parentGet.literal);
             }
-            onNewScopeDestroyed = (onNewScopeDestroyed || []);
-            onNewScopeDestroyed.push(unwatch);
+            removeWatchCollection.push(removeWatch);
             break;
 
           case '&':
@@ -8916,16 +8966,12 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             break;
         }
       });
-      var destroyBindings = onNewScopeDestroyed ? function destroyBindings() {
-        for (var i = 0, ii = onNewScopeDestroyed.length; i < ii; ++i) {
-          onNewScopeDestroyed[i]();
+
+      return removeWatchCollection.length && function removeWatches() {
+        for (var i = 0, ii = removeWatchCollection.length; i < ii; ++i) {
+          removeWatchCollection[i]();
         }
-      } : noop;
-      if (newScope && destroyBindings !== noop) {
-        newScope.$on('$destroy', destroyBindings);
-        return noop;
-      }
-      return destroyBindings;
+      };
     }
   }];
 }
@@ -9650,9 +9696,9 @@ function $HttpProvider() {
    * Configure `$http` service to return promises without the shorthand methods `success` and `error`.
    * This should be used to make sure that applications work without these methods.
    *
-   * Defaults to false. If no value is specified, returns the current configured value.
+   * Defaults to true. If no value is specified, returns the current configured value.
    *
-   * @param {boolean=} value If true, `$http` will return a normal promise without the `success` and `error` methods.
+   * @param {boolean=} value If true, `$http` will return a promise with the deprecated legacy `success` and `error` methods.
    *
    * @returns {boolean|Object} If a value is specified, returns the $httpProvider for chaining.
    *    otherwise, returns the current configured value.
@@ -10304,11 +10350,8 @@ function $HttpProvider() {
       function transformResponse(response) {
         // make a copy since the response must be cacheable
         var resp = extend({}, response);
-        if (!response.data) {
-          resp.data = response.data;
-        } else {
-          resp.data = transformData(response.data, response.headers, response.status, config.transformResponse);
-        }
+        resp.data = transformData(response.data, response.headers, response.status,
+                                  config.transformResponse);
         return (isSuccess(response.status))
           ? resp
           : $q.reject(resp);
@@ -11942,9 +11985,9 @@ var locationPrototype = {
    * @description
    * This method is getter / setter.
    *
-   * Return hash fragment when called without any parameter.
+   * Returns the hash fragment when called without any parameters.
    *
-   * Change hash fragment when called with parameter and return `$location`.
+   * Changes the hash fragment when called with a parameter and returns `$location`.
    *
    *
    * ```js
@@ -11965,8 +12008,8 @@ var locationPrototype = {
    * @name $location#replace
    *
    * @description
-   * If called, all changes to $location during current `$digest` will be replacing current history
-   * record, instead of adding new one.
+   * If called, all changes to $location during the current `$digest` will replace the current history
+   * record, instead of adding a new one.
    */
   replace: function() {
     this.$$replace = true;
@@ -12286,7 +12329,7 @@ function $LocationProvider() {
         var oldUrl = $location.absUrl();
         var oldState = $location.$$state;
         var defaultPrevented;
-
+        newUrl = trimEmptyHash(newUrl);
         $location.$$parse(newUrl);
         $location.$$state = newState;
 
@@ -14427,13 +14470,14 @@ function $ParseProvider() {
     function addInterceptor(parsedExpression, interceptorFn) {
       if (!interceptorFn) return parsedExpression;
       var watchDelegate = parsedExpression.$$watchDelegate;
+      var useInputs = false;
 
       var regularWatch =
           watchDelegate !== oneTimeLiteralWatchDelegate &&
           watchDelegate !== oneTimeWatchDelegate;
 
       var fn = regularWatch ? function regularInterceptedExpression(scope, locals, assign, inputs) {
-        var value = parsedExpression(scope, locals, assign, inputs);
+        var value = useInputs && inputs ? inputs[0] : parsedExpression(scope, locals, assign, inputs);
         return interceptorFn(value, scope, locals);
       } : function oneTimeInterceptedExpression(scope, locals, assign, inputs) {
         var value = parsedExpression(scope, locals, assign, inputs);
@@ -14451,6 +14495,7 @@ function $ParseProvider() {
         // If there is an interceptor, but no watchDelegate then treat the interceptor like
         // we treat filters - it is assumed to be a pure function unless flagged with $stateful
         fn.$$watchDelegate = inputsWatchDelegate;
+        useInputs = !parsedExpression.inputs;
         fn.inputs = parsedExpression.inputs ? parsedExpression.inputs : [parsedExpression];
       }
 
@@ -14511,6 +14556,8 @@ function $ParseProvider() {
  * ```
  *
  * Note: progress/notify callbacks are not currently supported via the ES6-style interface.
+ *
+ * Note: unlike ES6 behaviour, an exception thrown in the constructor function will NOT implicitly reject the promise.
  *
  * However, the more traditional CommonJS-style usage is still available, and documented below.
  *
@@ -15096,15 +15143,15 @@ function $$RAFProvider() { //rAF
  *     exposed as $$____ properties
  *
  * Loop operations are optimized by using while(count--) { ... }
- *   - this means that in order to keep the same order of execution as addition we have to add
+ *   - This means that in order to keep the same order of execution as addition we have to add
  *     items to the array at the beginning (unshift) instead of at the end (push)
  *
  * Child scopes are created and removed often
- *   - Using an array would be slow since inserts in middle are expensive so we use linked list
+ *   - Using an array would be slow since inserts in the middle are expensive; so we use linked lists
  *
- * There are few watches then a lot of observers. This is why you don't want the observer to be
- * implemented in the same way as watch. Watch requires return of initialization function which
- * are expensive to construct.
+ * There are fewer watches than observers. This is why you don't want the observer to be implemented
+ * in the same way as watch. Watch requires return of the initialization function which is expensive
+ * to construct.
  */
 
 
@@ -15146,7 +15193,7 @@ function $$RAFProvider() { //rAF
  * Every application has a single root {@link ng.$rootScope.Scope scope}.
  * All other scopes are descendant scopes of the root scope. Scopes provide separation
  * between the model and the view, via a mechanism for watching the model for changes.
- * They also provide an event emission/broadcast and subscription facility. See the
+ * They also provide event emission/broadcast and subscription facility. See the
  * {@link guide/scope developer guide on scopes}.
  */
 function $RootScopeProvider() {
@@ -15181,6 +15228,29 @@ function $RootScopeProvider() {
 
     function destroyChildScope($event) {
         $event.currentScope.$$destroyed = true;
+    }
+
+    function cleanUpScope($scope) {
+
+      if (msie === 9) {
+        // There is a memory leak in IE9 if all child scopes are not disconnected
+        // completely when a scope is destroyed. So this code will recurse up through
+        // all this scopes children
+        //
+        // See issue https://github.com/angular/angular.js/issues/10706
+        $scope.$$childHead && cleanUpScope($scope.$$childHead);
+        $scope.$$nextSibling && cleanUpScope($scope.$$nextSibling);
+      }
+
+      // The code below works around IE9 and V8's memory leaks
+      //
+      // See:
+      // - https://code.google.com/p/v8/issues/detail?id=2073#c26
+      // - https://github.com/angular/angular.js/issues/6794#issuecomment-38648909
+      // - https://github.com/angular/angular.js/issues/1313#issuecomment-10378451
+
+      $scope.$parent = $scope.$$nextSibling = $scope.$$prevSibling = $scope.$$childHead =
+          $scope.$$childTail = $scope.$root = $scope.$$watchers = null;
     }
 
     /**
@@ -15979,16 +16049,9 @@ function $RootScopeProvider() {
         this.$on = this.$watch = this.$watchGroup = function() { return noop; };
         this.$$listeners = {};
 
-        // All of the code below is bogus code that works around V8's memory leak via optimized code
-        // and inline caches.
-        //
-        // see:
-        // - https://code.google.com/p/v8/issues/detail?id=2073#c26
-        // - https://github.com/angular/angular.js/issues/6794#issuecomment-38648909
-        // - https://github.com/angular/angular.js/issues/1313#issuecomment-10378451
-
-        this.$parent = this.$$nextSibling = this.$$prevSibling = this.$$childHead =
-            this.$$childTail = this.$root = this.$$watchers = null;
+        // Disconnect the next sibling to prevent `cleanUpScope` destroying those too
+        this.$$nextSibling = null;
+        cleanUpScope(this);
       },
 
       /**
@@ -16984,7 +17047,7 @@ function $SceDelegateProvider() {
  * By default, Angular only loads templates from the same domain and protocol as the application
  * document.  This is done by calling {@link ng.$sce#getTrustedResourceUrl
  * $sce.getTrustedResourceUrl} on the template URL.  To load templates from other domains and/or
- * protocols, you may either either {@link ng.$sceDelegateProvider#resourceUrlWhitelist whitelist
+ * protocols, you may either {@link ng.$sceDelegateProvider#resourceUrlWhitelist whitelist
  * them} or {@link ng.$sce#trustAsResourceUrl wrap it} into a trusted value.
  *
  * *Please note*:
@@ -19235,7 +19298,7 @@ function limitToFilter() {
     if (!isArray(input) && !isString(input)) return input;
 
     begin = (!begin || isNaN(begin)) ? 0 : toInt(begin);
-    begin = (begin < 0 && begin >= -input.length) ? input.length + begin : begin;
+    begin = (begin < 0) ? Math.max(0, input.length + begin) : begin;
 
     if (limit >= 0) {
       return input.slice(begin, begin + limit);
@@ -20595,7 +20658,8 @@ var ngFormDirective = formDirectiveFactory(true);
 
 // Regex code is obtained from SO: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime#answer-3143231
 var ISO_DATE_REGEXP = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/;
-var URL_REGEXP = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
+// See valid URLs in RFC3987 (http://tools.ietf.org/html/rfc3987)
+var URL_REGEXP = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
 var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 var NUMBER_REGEXP = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))([eE][+-]?\d+)?\s*$/;
 var DATE_REGEXP = /^(\d{4})-(\d{2})-(\d{2})$/;
@@ -24161,7 +24225,13 @@ var ngIfDirective = ['$animate', function($animate) {
  * @param {string} ngInclude|src angular expression evaluating to URL. If the source is a string constant,
  *                 make sure you wrap it in **single** quotes, e.g. `src="'myPartialTemplate.html'"`.
  * @param {string=} onload Expression to evaluate when a new partial is loaded.
- *
+ *                  <div class="alert alert-warning">
+ *                  **Note:** When using onload on SVG elements in IE11, the browser will try to call
+ *                  a function with the name on the window element, which will usually throw a
+ *                  "function is undefined" error. To fix this, you can instead use `data-onload` or a
+ *                  different form that {@link guide/directive#normalization matches} `onload`.
+ *                  </div>
+   *
  * @param {string=} autoscroll Whether `ngInclude` should call {@link ng.$anchorScroll
  *                  $anchorScroll} to scroll the viewport after the content is loaded.
  *
@@ -25754,12 +25824,13 @@ var DEFAULT_REGEXP = /(\s+|^)default(\s+|$)/;
           </label><br />
         </form>
         <pre>user.name = <span ng-bind="user.name"></span></pre>
+        <pre>user.data = <span ng-bind="user.data"></span></pre>
       </div>
     </file>
     <file name="app.js">
       angular.module('optionsExample', [])
         .controller('ExampleController', ['$scope', function($scope) {
-          $scope.user = { name: 'say', data: '' };
+          $scope.user = { name: 'John', data: '' };
 
           $scope.cancel = function(e) {
             if (e.keyCode == 27) {
@@ -25774,20 +25845,20 @@ var DEFAULT_REGEXP = /(\s+|^)default(\s+|$)/;
       var other = element(by.model('user.data'));
 
       it('should allow custom events', function() {
-        input.sendKeys(' hello');
+        input.sendKeys(' Doe');
         input.click();
-        expect(model.getText()).toEqual('say');
+        expect(model.getText()).toEqual('John');
         other.click();
-        expect(model.getText()).toEqual('say hello');
+        expect(model.getText()).toEqual('John Doe');
       });
 
       it('should $rollbackViewValue when model changes', function() {
-        input.sendKeys(' hello');
-        expect(input.getAttribute('value')).toEqual('say hello');
+        input.sendKeys(' Doe');
+        expect(input.getAttribute('value')).toEqual('John Doe');
         input.sendKeys(protractor.Key.ESCAPE);
-        expect(input.getAttribute('value')).toEqual('say');
+        expect(input.getAttribute('value')).toEqual('John');
         other.click();
-        expect(model.getText()).toEqual('say');
+        expect(model.getText()).toEqual('John');
       });
     </file>
   </example>
@@ -25813,7 +25884,7 @@ var DEFAULT_REGEXP = /(\s+|^)default(\s+|$)/;
     <file name="app.js">
       angular.module('optionsExample', [])
         .controller('ExampleController', ['$scope', function($scope) {
-          $scope.user = { name: 'say' };
+          $scope.user = { name: 'Igor' };
         }]);
     </file>
   </example>
@@ -26046,19 +26117,27 @@ var ngOptionsMinErr = minErr('ngOptions');
  *
  * ## Complex Models (objects or collections)
  *
- * **Note:** By default, `ngModel` watches the model by reference, not value. This is important when
- * binding any input directive to a model that is an object or a collection.
+ * By default, `ngModel` watches the model by reference, not value. This is important to know when
+ * binding the select to a model that is an object or a collection.
  *
- * Since this is a common situation for `ngOptions` the directive additionally watches the model using
- * `$watchCollection` when the select has the `multiple` attribute or when there is a `track by` clause in
- * the options expression. This allows ngOptions to trigger a re-rendering of the options even if the actual
- * object/collection has not changed identity but only a property on the object or an item in the collection
- * changes.
+ * One issue occurs if you want to preselect an option. For example, if you set
+ * the model to an object that is equal to an object in your collection, `ngOptions` won't be able to set the selection,
+ * because the objects are not identical. So by default, you should always reference the item in your collection
+ * for preselections, e.g.: `$scope.selected = $scope.collection[3]`.
+ *
+ * Another solution is to use a `track by` clause, because then `ngOptions` will track the identity
+ * of the item not by reference, but by the result of the `track by` expression. For example, if your
+ * collection items have an id property, you would `track by item.id`.
+ *
+ * A different issue with objects or collections is that ngModel won't detect if an object property or
+ * a collection item changes. For that reason, `ngOptions` additionally watches the model using
+ * `$watchCollection`, when the expression contains a `track by` clause or the the select has the `multiple` attribute.
+ * This allows ngOptions to trigger a re-rendering of the options even if the actual object/collection
+ * has not changed identity, but only a property on the object or an item in the collection changes.
  *
  * Note that `$watchCollection` does a shallow comparison of the properties of the object (or the items in the collection
- * if the model is an array). This means that changing a property deeper inside the object/collection that the
- * first level will not trigger a re-rendering.
- *
+ * if the model is an array). This means that changing a property deeper than the first level inside the
+ * object/collection will not trigger a re-rendering.
  *
  * ## `select` **`as`**
  *
@@ -26071,17 +26150,13 @@ var ngOptionsMinErr = minErr('ngOptions');
  * ### `select` **`as`** and **`track by`**
  *
  * <div class="alert alert-warning">
- * Do not use `select` **`as`** and **`track by`** in the same expression. They are not designed to work together.
+ * Be careful when using `select` **`as`** and **`track by`** in the same expression.
  * </div>
  *
- * Consider the following example:
- *
- * ```html
- * <select ng-options="item.subItem as item.label for item in values track by item.id" ng-model="selected"></select>
- * ```
+ * Given this array of items on the $scope:
  *
  * ```js
- * $scope.values = [{
+ * $scope.items = [{
  *   id: 1,
  *   label: 'aLabel',
  *   subItem: { name: 'aSubItem' }
@@ -26090,20 +26165,33 @@ var ngOptionsMinErr = minErr('ngOptions');
  *   label: 'bLabel',
  *   subItem: { name: 'bSubItem' }
  * }];
- *
- * $scope.selected = { name: 'aSubItem' };
  * ```
  *
- * With the purpose of preserving the selection, the **`track by`** expression is always applied to the element
- * of the data source (to `item` in this example). To calculate whether an element is selected, we do the
- * following:
+ * This will work:
  *
- * 1. Apply **`track by`** to the elements in the array. In the example: `[1, 2]`
- * 2. Apply **`track by`** to the already selected value in `ngModel`.
- *    In the example: this is not possible as **`track by`** refers to `item.id`, but the selected
- *    value from `ngModel` is `{name: 'aSubItem'}`, so the **`track by`** expression is applied to
- *    a wrong object, the selected element can't be found, `<select>` is always reset to the "not
- *    selected" option.
+ * ```html
+ * <select ng-options="item as item.label for item in items track by item.id" ng-model="selected"></select>
+ * ```
+ * ```js
+ * $scope.selected = $scope.items[0];
+ * ```
+ *
+ * but this will not work:
+ *
+ * ```html
+ * <select ng-options="item.subItem as item.label for item in items track by item.id" ng-model="selected"></select>
+ * ```
+ * ```js
+ * $scope.selected = $scope.items[0].subItem;
+ * ```
+ *
+ * In both examples, the **`track by`** expression is applied successfully to each `item` in the
+ * `items` array. Because the selected option has been set programmatically in the controller, the
+ * **`track by`** expression is also applied to the `ngModel` value. In the first example, the
+ * `ngModel` value is `items[0]` and the **`track by`** expression evaluates to `items[0].id` with
+ * no issue. In the second example, the `ngModel` value is `items[0].subItem` and the **`track by`**
+ * expression evaluates to `items[0].subItem.id` (which is undefined). As a result, the model value
+ * is not matched against any `<option>` and the `<select>` appears as having no selected value.
  *
  *
  * @param {string} ngModel Assignable angular expression to data-bind to.
@@ -26405,11 +26493,8 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
   var optionTemplate = document.createElement('option'),
       optGroupTemplate = document.createElement('optgroup');
 
-  return {
-    restrict: 'A',
-    terminal: true,
-    require: ['select', '?ngModel'],
-    link: function(scope, selectElement, attr, ctrls) {
+
+    function ngOptionsPostLink(scope, selectElement, attr, ctrls) {
 
       // if ngModel is not defined, we don't need to do anything
       var ngModelCtrl = ctrls[1];
@@ -26463,7 +26548,6 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
       var removeUnknownOption = function() {
         unknownOption.remove();
       };
-
 
       // Update the controller methods for multiple selectable options
       if (!multiple) {
@@ -26639,13 +26723,15 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
         var emptyOption_ = emptyOption && emptyOption[0];
         var unknownOption_ = unknownOption && unknownOption[0];
 
+        // We cannot rely on the extracted empty option being the same as the compiled empty option,
+        // because the compiled empty option might have been replaced by a comment because
+        // it had an "element" transclusion directive on it (such as ngIf)
         if (emptyOption_ || unknownOption_) {
           while (current &&
                 (current === emptyOption_ ||
                 current === unknownOption_ ||
-                emptyOption_ && emptyOption_.nodeType === NODE_TYPE_COMMENT)) {
-            // Empty options might have directives that transclude
-            // and insert comments (e.g. ngIf)
+                current.nodeType === NODE_TYPE_COMMENT ||
+                current.value === '')) {
             current = current.nextSibling;
           }
         }
@@ -26742,7 +26828,20 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
         }
 
       }
+  }
 
+  return {
+    restrict: 'A',
+    terminal: true,
+    require: ['select', '?ngModel'],
+    link: {
+      pre: function ngOptionsPreLink(scope, selectElement, attr, ctrls) {
+        // Deactivate the SelectController.register method to prevent
+        // option directives from accidentally registering themselves
+        // (and unwanted $destroy handlers etc.)
+        ctrls[0].registerOption = noop;
+      },
+      post: ngOptionsPostLink
     }
   };
 }];
@@ -27029,7 +27128,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  * Version 1.4 removed the alphabetic sorting. We now rely on the order returned by the browser
  * when running `for key in myObj`. It seems that browsers generally follow the strategy of providing
  * keys in the order in which they were defined, although there are exceptions when keys are deleted
- * and reinstated. See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete#Cross-browser_issues
+ * and reinstated. See the [MDN page on `delete` for more info](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete#Cross-browser_notes).
  *
  * If this is not desired, the recommended workaround is to convert your object into an array
  * that is sorted into the order that you prefer before providing it to `ngRepeat`.  You could
@@ -27039,15 +27138,21 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  *
  * # Tracking and Duplicates
  *
- * When the contents of the collection change, `ngRepeat` makes the corresponding changes to the DOM:
+ * `ngRepeat` uses {@link $rootScope.Scope#$watchCollection $watchCollection} to detect changes in
+ * the collection. When a change happens, ngRepeat then makes the corresponding changes to the DOM:
  *
  * * When an item is added, a new instance of the template is added to the DOM.
  * * When an item is removed, its template instance is removed from the DOM.
  * * When items are reordered, their respective templates are reordered in the DOM.
  *
- * By default, `ngRepeat` does not allow duplicate items in arrays. This is because when
- * there are duplicates, it is not possible to maintain a one-to-one mapping between collection
- * items and DOM elements.
+ * To minimize creation of DOM elements, `ngRepeat` uses a function
+ * to "keep track" of all items in the collection and their corresponding DOM elements.
+ * For example, if an item is added to the collection, ngRepeat will know that all other items
+ * already have DOM elements, and will not re-render them.
+ *
+ * The default tracking function (which tracks items by their identity) does not allow
+ * duplicate items in arrays. This is because when there are duplicates, it is not possible
+ * to maintain a one-to-one mapping between collection items and DOM elements.
  *
  * If you do need to repeat duplicate items, you can substitute the default tracking behavior
  * with your own using the `track by` expression.
@@ -27060,7 +27165,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  *    </div>
  * ```
  *
- * You may use arbitrary expressions in `track by`, including references to custom functions
+ * You may also use arbitrary expressions in `track by`, including references to custom functions
  * on the scope:
  * ```html
  *    <div ng-repeat="n in [42, 42, 43, 43] track by myTrackingFunction(n)">
@@ -27068,10 +27173,14 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  *    </div>
  * ```
  *
- * If you are working with objects that have an identifier property, you can track
+ * <div class="alert alert-success">
+ * If you are working with objects that have an identifier property, you should track
  * by the identifier instead of the whole object. Should you reload your data later, `ngRepeat`
  * will not have to rebuild the DOM elements for items it has already rendered, even if the
- * JavaScript objects in the collection have been substituted for new ones:
+ * JavaScript objects in the collection have been substituted for new ones. For large collections,
+ * this signifincantly improves rendering performance. If you don't have a unique identifier,
+ * `track by $index` can also provide a performance boost.
+ * </div>
  * ```html
  *    <div ng-repeat="model in collection track by model.id">
  *      {{model.name}}
@@ -28229,6 +28338,15 @@ var scriptDirective = ['$templateCache', function($templateCache) {
 
 var noopNgModelController = { $setViewValue: noop, $render: noop };
 
+function chromeHack(optionElement) {
+  // Workaround for https://code.google.com/p/chromium/issues/detail?id=381459
+  // Adding an <option selected="selected"> element to a <select required="required"> should
+  // automatically select the new element
+  if (optionElement[0].hasAttribute('selected')) {
+    optionElement[0].selected = true;
+  }
+}
+
 /**
  * @ngdoc type
  * @name  select.SelectController
@@ -28304,6 +28422,8 @@ var SelectController =
     }
     var count = optionsMap.get(value) || 0;
     optionsMap.put(value, count + 1);
+    self.ngModelCtrl.$render();
+    chromeHack(element);
   };
 
   // Tell the select control that an option, with the given value, has been removed
@@ -28324,6 +28444,39 @@ var SelectController =
   // Check whether the select control has an option matching the given value
   self.hasOption = function(value) {
     return !!optionsMap.get(value);
+  };
+
+
+  self.registerOption = function(optionScope, optionElement, optionAttrs, interpolateValueFn, interpolateTextFn) {
+
+    if (interpolateValueFn) {
+      // The value attribute is interpolated
+      var oldVal;
+      optionAttrs.$observe('value', function valueAttributeObserveAction(newVal) {
+        if (isDefined(oldVal)) {
+          self.removeOption(oldVal);
+        }
+        oldVal = newVal;
+        self.addOption(newVal, optionElement);
+      });
+    } else if (interpolateTextFn) {
+      // The text content is interpolated
+      optionScope.$watch(interpolateTextFn, function interpolateWatchAction(newVal, oldVal) {
+        optionAttrs.$set('value', newVal);
+        if (oldVal !== newVal) {
+          self.removeOption(oldVal);
+        }
+        self.addOption(newVal, optionElement);
+      });
+    } else {
+      // The value attribute is static
+      self.addOption(optionAttrs.value, optionElement);
+    }
+
+    optionElement.on('$destroy', function() {
+      self.removeOption(optionAttrs.value);
+      self.ngModelCtrl.$render();
+    });
   };
 }];
 
@@ -28370,6 +28523,8 @@ var SelectController =
  *
  * @param {string} ngModel Assignable angular expression to data-bind to.
  * @param {string=} name Property name of the form under which the control is published.
+ * @param {string=} multiple Allows multiple options to be selected. The selected values will be
+ *     bound to the model as an array.
  * @param {string=} required Sets `required` validation error key if the value is not entered.
  * @param {string=} ngRequired Adds required attribute and required validation constraint to
  * the element when the ngRequired expression evaluates to true. Use ngRequired instead of required
@@ -28535,7 +28690,13 @@ var selectDirective = function() {
     restrict: 'E',
     require: ['select', '?ngModel'],
     controller: SelectController,
-    link: function(scope, element, attr, ctrls) {
+    priority: 1,
+    link: {
+      pre: selectPreLink
+    }
+  };
+
+  function selectPreLink(scope, element, attr, ctrls) {
 
       // if ngModel is not defined, we don't need to do anything
       var ngModelCtrl = ctrls[1];
@@ -28605,7 +28766,6 @@ var selectDirective = function() {
 
       }
     }
-  };
 };
 
 
@@ -28613,16 +28773,6 @@ var selectDirective = function() {
 // of dynamically created (and destroyed) option elements to their containing select
 // directive via its controller.
 var optionDirective = ['$interpolate', function($interpolate) {
-
-  function chromeHack(optionElement) {
-    // Workaround for https://code.google.com/p/chromium/issues/detail?id=381459
-    // Adding an <option selected="selected"> element to a <select required="required"> should
-    // automatically select the new element
-    if (optionElement[0].hasAttribute('selected')) {
-      optionElement[0].selected = true;
-    }
-  }
-
   return {
     restrict: 'E',
     priority: 100,
@@ -28630,12 +28780,12 @@ var optionDirective = ['$interpolate', function($interpolate) {
 
       if (isDefined(attr.value)) {
         // If the value attribute is defined, check if it contains an interpolation
-        var valueInterpolated = $interpolate(attr.value, true);
+        var interpolateValueFn = $interpolate(attr.value, true);
       } else {
         // If the value attribute is not defined then we fall back to the
         // text content of the option element, which may be interpolated
-        var interpolateFn = $interpolate(element.text(), true);
-        if (!interpolateFn) {
+        var interpolateTextFn = $interpolate(element.text(), true);
+        if (!interpolateTextFn) {
           attr.$set('value', element.text());
         }
       }
@@ -28649,44 +28799,8 @@ var optionDirective = ['$interpolate', function($interpolate) {
             selectCtrl = parent.data(selectCtrlName) ||
               parent.parent().data(selectCtrlName); // in case we are in optgroup
 
-        function addOption(optionValue) {
-          selectCtrl.addOption(optionValue, element);
-          selectCtrl.ngModelCtrl.$render();
-          chromeHack(element);
-        }
-
-        // Only update trigger option updates if this is an option within a `select`
-        // that also has `ngModel` attached
-        if (selectCtrl && selectCtrl.ngModelCtrl) {
-
-          if (valueInterpolated) {
-            // The value attribute is interpolated
-            var oldVal;
-            attr.$observe('value', function valueAttributeObserveAction(newVal) {
-              if (isDefined(oldVal)) {
-                selectCtrl.removeOption(oldVal);
-              }
-              oldVal = newVal;
-              addOption(newVal);
-            });
-          } else if (interpolateFn) {
-            // The text content is interpolated
-            scope.$watch(interpolateFn, function interpolateWatchAction(newVal, oldVal) {
-              attr.$set('value', newVal);
-              if (oldVal !== newVal) {
-                selectCtrl.removeOption(oldVal);
-              }
-              addOption(newVal);
-            });
-          } else {
-            // The value attribute is static
-            addOption(attr.value);
-          }
-
-          element.on('$destroy', function() {
-            selectCtrl.removeOption(attr.value);
-            selectCtrl.ngModelCtrl.$render();
-          });
+        if (selectCtrl) {
+          selectCtrl.registerOption(scope, element, attr, interpolateValueFn, interpolateTextFn);
         }
       };
     }
@@ -28937,7 +29051,7 @@ $provide.value("$locale", {
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 /**
- * @license AngularJS v1.4.7
+ * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -29929,6 +30043,690 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 })(window, window.angular);
 
 /**
+ * @license AngularJS v1.4.8
+ * (c) 2010-2015 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
+(function(window, angular, undefined) {'use strict';
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+var $sanitizeMinErr = angular.$$minErr('$sanitize');
+
+/**
+ * @ngdoc module
+ * @name ngSanitize
+ * @description
+ *
+ * # ngSanitize
+ *
+ * The `ngSanitize` module provides functionality to sanitize HTML.
+ *
+ *
+ * <div doc-module-components="ngSanitize"></div>
+ *
+ * See {@link ngSanitize.$sanitize `$sanitize`} for usage.
+ */
+
+/*
+ * HTML Parser By Misko Hevery (misko@hevery.com)
+ * based on:  HTML Parser By John Resig (ejohn.org)
+ * Original code by Erik Arvidsson, Mozilla Public License
+ * http://erik.eae.net/simplehtmlparser/simplehtmlparser.js
+ *
+ * // Use like so:
+ * htmlParser(htmlString, {
+ *     start: function(tag, attrs, unary) {},
+ *     end: function(tag) {},
+ *     chars: function(text) {},
+ *     comment: function(text) {}
+ * });
+ *
+ */
+
+
+/**
+ * @ngdoc service
+ * @name $sanitize
+ * @kind function
+ *
+ * @description
+ *   The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are
+ *   then serialized back to properly escaped html string. This means that no unsafe input can make
+ *   it into the returned string, however, since our parser is more strict than a typical browser
+ *   parser, it's possible that some obscure input, which would be recognized as valid HTML by a
+ *   browser, won't make it through the sanitizer. The input may also contain SVG markup.
+ *   The whitelist is configured using the functions `aHrefSanitizationWhitelist` and
+ *   `imgSrcSanitizationWhitelist` of {@link ng.$compileProvider `$compileProvider`}.
+ *
+ * @param {string} html HTML input.
+ * @returns {string} Sanitized HTML.
+ *
+ * @example
+   <example module="sanitizeExample" deps="angular-sanitize.js">
+   <file name="index.html">
+     <script>
+         angular.module('sanitizeExample', ['ngSanitize'])
+           .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
+             $scope.snippet =
+               '<p style="color:blue">an html\n' +
+               '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+               'snippet</p>';
+             $scope.deliberatelyTrustDangerousSnippet = function() {
+               return $sce.trustAsHtml($scope.snippet);
+             };
+           }]);
+     </script>
+     <div ng-controller="ExampleController">
+        Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <td>Directive</td>
+           <td>How</td>
+           <td>Source</td>
+           <td>Rendered</td>
+         </tr>
+         <tr id="bind-html-with-sanitize">
+           <td>ng-bind-html</td>
+           <td>Automatically uses $sanitize</td>
+           <td><pre>&lt;div ng-bind-html="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind-html="snippet"></div></td>
+         </tr>
+         <tr id="bind-html-with-trust">
+           <td>ng-bind-html</td>
+           <td>Bypass $sanitize by explicitly trusting the dangerous value</td>
+           <td>
+           <pre>&lt;div ng-bind-html="deliberatelyTrustDangerousSnippet()"&gt;
+&lt;/div&gt;</pre>
+           </td>
+           <td><div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div></td>
+         </tr>
+         <tr id="bind-default">
+           <td>ng-bind</td>
+           <td>Automatically escapes</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+       </div>
+   </file>
+   <file name="protractor.js" type="protractor">
+     it('should sanitize the html snippet by default', function() {
+       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+         toBe('<p>an html\n<em>click here</em>\nsnippet</p>');
+     });
+
+     it('should inline raw snippet if bound to a trusted value', function() {
+       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).
+         toBe("<p style=\"color:blue\">an html\n" +
+              "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
+              "snippet</p>");
+     });
+
+     it('should escape snippet without any filter', function() {
+       expect(element(by.css('#bind-default div')).getInnerHtml()).
+         toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
+              "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
+              "snippet&lt;/p&gt;");
+     });
+
+     it('should update', function() {
+       element(by.model('snippet')).clear();
+       element(by.model('snippet')).sendKeys('new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+         toBe('new <b>text</b>');
+       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).toBe(
+         'new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-default div')).getInnerHtml()).toBe(
+         "new &lt;b onclick=\"alert(1)\"&gt;text&lt;/b&gt;");
+     });
+   </file>
+   </example>
+ */
+function $SanitizeProvider() {
+  this.$get = ['$$sanitizeUri', function($$sanitizeUri) {
+    return function(html) {
+      var buf = [];
+      htmlParser(html, htmlSanitizeWriter(buf, function(uri, isImage) {
+        return !/^unsafe/.test($$sanitizeUri(uri, isImage));
+      }));
+      return buf.join('');
+    };
+  }];
+}
+
+function sanitizeText(chars) {
+  var buf = [];
+  var writer = htmlSanitizeWriter(buf, angular.noop);
+  writer.chars(chars);
+  return buf.join('');
+}
+
+
+// Regular Expressions for parsing tags and attributes
+var START_TAG_REGEXP =
+       /^<((?:[a-zA-Z])[\w:-]*)((?:\s+[\w:-]+(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)\s*(>?)/,
+  END_TAG_REGEXP = /^<\/\s*([\w:-]+)[^>]*>/,
+  ATTR_REGEXP = /([\w:-]+)(?:\s*=\s*(?:(?:"((?:[^"])*)")|(?:'((?:[^'])*)')|([^>\s]+)))?/g,
+  BEGIN_TAG_REGEXP = /^</,
+  BEGING_END_TAGE_REGEXP = /^<\//,
+  COMMENT_REGEXP = /<!--(.*?)-->/g,
+  DOCTYPE_REGEXP = /<!DOCTYPE([^>]*?)>/i,
+  CDATA_REGEXP = /<!\[CDATA\[(.*?)]]>/g,
+  SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
+  // Match everything outside of normal chars and " (quote character)
+  NON_ALPHANUMERIC_REGEXP = /([^\#-~| |!])/g;
+
+
+// Good source of info about elements and attributes
+// http://dev.w3.org/html5/spec/Overview.html#semantics
+// http://simon.html5.org/html-elements
+
+// Safe Void Elements - HTML5
+// http://dev.w3.org/html5/spec/Overview.html#void-elements
+var voidElements = makeMap("area,br,col,hr,img,wbr");
+
+// Elements that you can, intentionally, leave open (and which close themselves)
+// http://dev.w3.org/html5/spec/Overview.html#optional-tags
+var optionalEndTagBlockElements = makeMap("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr"),
+    optionalEndTagInlineElements = makeMap("rp,rt"),
+    optionalEndTagElements = angular.extend({},
+                                            optionalEndTagInlineElements,
+                                            optionalEndTagBlockElements);
+
+// Safe Block Elements - HTML5
+var blockElements = angular.extend({}, optionalEndTagBlockElements, makeMap("address,article," +
+        "aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5," +
+        "h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,script,section,table,ul"));
+
+// Inline Elements - HTML5
+var inlineElements = angular.extend({}, optionalEndTagInlineElements, makeMap("a,abbr,acronym,b," +
+        "bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s," +
+        "samp,small,span,strike,strong,sub,sup,time,tt,u,var"));
+
+// SVG Elements
+// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Elements
+// Note: the elements animate,animateColor,animateMotion,animateTransform,set are intentionally omitted.
+// They can potentially allow for arbitrary javascript to be executed. See #11290
+var svgElements = makeMap("circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph," +
+        "hkern,image,linearGradient,line,marker,metadata,missing-glyph,mpath,path,polygon,polyline," +
+        "radialGradient,rect,stop,svg,switch,text,title,tspan,use");
+
+// Special Elements (can contain anything)
+var specialElements = makeMap("script,style");
+
+var validElements = angular.extend({},
+                                   voidElements,
+                                   blockElements,
+                                   inlineElements,
+                                   optionalEndTagElements,
+                                   svgElements);
+
+//Attributes that have href and hence need to be sanitized
+var uriAttrs = makeMap("background,cite,href,longdesc,src,usemap,xlink:href");
+
+var htmlAttrs = makeMap('abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,' +
+    'color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,' +
+    'ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,' +
+    'scope,scrolling,shape,size,span,start,summary,tabindex,target,title,type,' +
+    'valign,value,vspace,width');
+
+// SVG attributes (without "id" and "name" attributes)
+// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Attributes
+var svgAttrs = makeMap('accent-height,accumulate,additive,alphabetic,arabic-form,ascent,' +
+    'baseProfile,bbox,begin,by,calcMode,cap-height,class,color,color-rendering,content,' +
+    'cx,cy,d,dx,dy,descent,display,dur,end,fill,fill-rule,font-family,font-size,font-stretch,' +
+    'font-style,font-variant,font-weight,from,fx,fy,g1,g2,glyph-name,gradientUnits,hanging,' +
+    'height,horiz-adv-x,horiz-origin-x,ideographic,k,keyPoints,keySplines,keyTimes,lang,' +
+    'marker-end,marker-mid,marker-start,markerHeight,markerUnits,markerWidth,mathematical,' +
+    'max,min,offset,opacity,orient,origin,overline-position,overline-thickness,panose-1,' +
+    'path,pathLength,points,preserveAspectRatio,r,refX,refY,repeatCount,repeatDur,' +
+    'requiredExtensions,requiredFeatures,restart,rotate,rx,ry,slope,stemh,stemv,stop-color,' +
+    'stop-opacity,strikethrough-position,strikethrough-thickness,stroke,stroke-dasharray,' +
+    'stroke-dashoffset,stroke-linecap,stroke-linejoin,stroke-miterlimit,stroke-opacity,' +
+    'stroke-width,systemLanguage,target,text-anchor,to,transform,type,u1,u2,underline-position,' +
+    'underline-thickness,unicode,unicode-range,units-per-em,values,version,viewBox,visibility,' +
+    'width,widths,x,x-height,x1,x2,xlink:actuate,xlink:arcrole,xlink:role,xlink:show,xlink:title,' +
+    'xlink:type,xml:base,xml:lang,xml:space,xmlns,xmlns:xlink,y,y1,y2,zoomAndPan', true);
+
+var validAttrs = angular.extend({},
+                                uriAttrs,
+                                svgAttrs,
+                                htmlAttrs);
+
+function makeMap(str, lowercaseKeys) {
+  var obj = {}, items = str.split(','), i;
+  for (i = 0; i < items.length; i++) {
+    obj[lowercaseKeys ? angular.lowercase(items[i]) : items[i]] = true;
+  }
+  return obj;
+}
+
+
+/**
+ * @example
+ * htmlParser(htmlString, {
+ *     start: function(tag, attrs, unary) {},
+ *     end: function(tag) {},
+ *     chars: function(text) {},
+ *     comment: function(text) {}
+ * });
+ *
+ * @param {string} html string
+ * @param {object} handler
+ */
+function htmlParser(html, handler) {
+  if (typeof html !== 'string') {
+    if (html === null || typeof html === 'undefined') {
+      html = '';
+    } else {
+      html = '' + html;
+    }
+  }
+  var index, chars, match, stack = [], last = html, text;
+  stack.last = function() { return stack[stack.length - 1]; };
+
+  while (html) {
+    text = '';
+    chars = true;
+
+    // Make sure we're not in a script or style element
+    if (!stack.last() || !specialElements[stack.last()]) {
+
+      // Comment
+      if (html.indexOf("<!--") === 0) {
+        // comments containing -- are not allowed unless they terminate the comment
+        index = html.indexOf("--", 4);
+
+        if (index >= 0 && html.lastIndexOf("-->", index) === index) {
+          if (handler.comment) handler.comment(html.substring(4, index));
+          html = html.substring(index + 3);
+          chars = false;
+        }
+      // DOCTYPE
+      } else if (DOCTYPE_REGEXP.test(html)) {
+        match = html.match(DOCTYPE_REGEXP);
+
+        if (match) {
+          html = html.replace(match[0], '');
+          chars = false;
+        }
+      // end tag
+      } else if (BEGING_END_TAGE_REGEXP.test(html)) {
+        match = html.match(END_TAG_REGEXP);
+
+        if (match) {
+          html = html.substring(match[0].length);
+          match[0].replace(END_TAG_REGEXP, parseEndTag);
+          chars = false;
+        }
+
+      // start tag
+      } else if (BEGIN_TAG_REGEXP.test(html)) {
+        match = html.match(START_TAG_REGEXP);
+
+        if (match) {
+          // We only have a valid start-tag if there is a '>'.
+          if (match[4]) {
+            html = html.substring(match[0].length);
+            match[0].replace(START_TAG_REGEXP, parseStartTag);
+          }
+          chars = false;
+        } else {
+          // no ending tag found --- this piece should be encoded as an entity.
+          text += '<';
+          html = html.substring(1);
+        }
+      }
+
+      if (chars) {
+        index = html.indexOf("<");
+
+        text += index < 0 ? html : html.substring(0, index);
+        html = index < 0 ? "" : html.substring(index);
+
+        if (handler.chars) handler.chars(decodeEntities(text));
+      }
+
+    } else {
+      // IE versions 9 and 10 do not understand the regex '[^]', so using a workaround with [\W\w].
+      html = html.replace(new RegExp("([\\W\\w]*)<\\s*\\/\\s*" + stack.last() + "[^>]*>", 'i'),
+        function(all, text) {
+          text = text.replace(COMMENT_REGEXP, "$1").replace(CDATA_REGEXP, "$1");
+
+          if (handler.chars) handler.chars(decodeEntities(text));
+
+          return "";
+      });
+
+      parseEndTag("", stack.last());
+    }
+
+    if (html == last) {
+      throw $sanitizeMinErr('badparse', "The sanitizer was unable to parse the following block " +
+                                        "of html: {0}", html);
+    }
+    last = html;
+  }
+
+  // Clean up any remaining tags
+  parseEndTag();
+
+  function parseStartTag(tag, tagName, rest, unary) {
+    tagName = angular.lowercase(tagName);
+    if (blockElements[tagName]) {
+      while (stack.last() && inlineElements[stack.last()]) {
+        parseEndTag("", stack.last());
+      }
+    }
+
+    if (optionalEndTagElements[tagName] && stack.last() == tagName) {
+      parseEndTag("", tagName);
+    }
+
+    unary = voidElements[tagName] || !!unary;
+
+    if (!unary) {
+      stack.push(tagName);
+    }
+
+    var attrs = {};
+
+    rest.replace(ATTR_REGEXP,
+      function(match, name, doubleQuotedValue, singleQuotedValue, unquotedValue) {
+        var value = doubleQuotedValue
+          || singleQuotedValue
+          || unquotedValue
+          || '';
+
+        attrs[name] = decodeEntities(value);
+    });
+    if (handler.start) handler.start(tagName, attrs, unary);
+  }
+
+  function parseEndTag(tag, tagName) {
+    var pos = 0, i;
+    tagName = angular.lowercase(tagName);
+    if (tagName) {
+      // Find the closest opened tag of the same type
+      for (pos = stack.length - 1; pos >= 0; pos--) {
+        if (stack[pos] == tagName) break;
+      }
+    }
+
+    if (pos >= 0) {
+      // Close all the open elements, up the stack
+      for (i = stack.length - 1; i >= pos; i--)
+        if (handler.end) handler.end(stack[i]);
+
+      // Remove the open elements from the stack
+      stack.length = pos;
+    }
+  }
+}
+
+var hiddenPre=document.createElement("pre");
+/**
+ * decodes all entities into regular string
+ * @param value
+ * @returns {string} A string with decoded entities.
+ */
+function decodeEntities(value) {
+  if (!value) { return ''; }
+
+  hiddenPre.innerHTML = value.replace(/</g,"&lt;");
+  // innerText depends on styling as it doesn't display hidden elements.
+  // Therefore, it's better to use textContent not to cause unnecessary reflows.
+  return hiddenPre.textContent;
+}
+
+/**
+ * Escapes all potentially dangerous characters, so that the
+ * resulting string can be safely inserted into attribute or
+ * element text.
+ * @param value
+ * @returns {string} escaped text
+ */
+function encodeEntities(value) {
+  return value.
+    replace(/&/g, '&amp;').
+    replace(SURROGATE_PAIR_REGEXP, function(value) {
+      var hi = value.charCodeAt(0);
+      var low = value.charCodeAt(1);
+      return '&#' + (((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000) + ';';
+    }).
+    replace(NON_ALPHANUMERIC_REGEXP, function(value) {
+      return '&#' + value.charCodeAt(0) + ';';
+    }).
+    replace(/</g, '&lt;').
+    replace(/>/g, '&gt;');
+}
+
+/**
+ * create an HTML/XML writer which writes to buffer
+ * @param {Array} buf use buf.jain('') to get out sanitized html string
+ * @returns {object} in the form of {
+ *     start: function(tag, attrs, unary) {},
+ *     end: function(tag) {},
+ *     chars: function(text) {},
+ *     comment: function(text) {}
+ * }
+ */
+function htmlSanitizeWriter(buf, uriValidator) {
+  var ignore = false;
+  var out = angular.bind(buf, buf.push);
+  return {
+    start: function(tag, attrs, unary) {
+      tag = angular.lowercase(tag);
+      if (!ignore && specialElements[tag]) {
+        ignore = tag;
+      }
+      if (!ignore && validElements[tag] === true) {
+        out('<');
+        out(tag);
+        angular.forEach(attrs, function(value, key) {
+          var lkey=angular.lowercase(key);
+          var isImage = (tag === 'img' && lkey === 'src') || (lkey === 'background');
+          if (validAttrs[lkey] === true &&
+            (uriAttrs[lkey] !== true || uriValidator(value, isImage))) {
+            out(' ');
+            out(key);
+            out('="');
+            out(encodeEntities(value));
+            out('"');
+          }
+        });
+        out(unary ? '/>' : '>');
+      }
+    },
+    end: function(tag) {
+        tag = angular.lowercase(tag);
+        if (!ignore && validElements[tag] === true) {
+          out('</');
+          out(tag);
+          out('>');
+        }
+        if (tag == ignore) {
+          ignore = false;
+        }
+      },
+    chars: function(chars) {
+        if (!ignore) {
+          out(encodeEntities(chars));
+        }
+      }
+  };
+}
+
+
+// define ngSanitize module and register $sanitize service
+angular.module('ngSanitize', []).provider('$sanitize', $SanitizeProvider);
+
+/* global sanitizeText: false */
+
+/**
+ * @ngdoc filter
+ * @name linky
+ * @kind function
+ *
+ * @description
+ * Finds links in text input and turns them into html links. Supports http/https/ftp/mailto and
+ * plain email address links.
+ *
+ * Requires the {@link ngSanitize `ngSanitize`} module to be installed.
+ *
+ * @param {string} text Input text.
+ * @param {string} target Window (_blank|_self|_parent|_top) or named frame to open links in.
+ * @returns {string} Html-linkified text.
+ *
+ * @usage
+   <span ng-bind-html="linky_expression | linky"></span>
+ *
+ * @example
+   <example module="linkyExample" deps="angular-sanitize.js">
+     <file name="index.html">
+       <script>
+         angular.module('linkyExample', ['ngSanitize'])
+           .controller('ExampleController', ['$scope', function($scope) {
+             $scope.snippet =
+               'Pretty text with some links:\n'+
+               'http://angularjs.org/,\n'+
+               'mailto:us@somewhere.org,\n'+
+               'another@somewhere.org,\n'+
+               'and one more: ftp://127.0.0.1/.';
+             $scope.snippetWithTarget = 'http://angularjs.org/';
+           }]);
+       </script>
+       <div ng-controller="ExampleController">
+       Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <td>Filter</td>
+           <td>Source</td>
+           <td>Rendered</td>
+         </tr>
+         <tr id="linky-filter">
+           <td>linky filter</td>
+           <td>
+             <pre>&lt;div ng-bind-html="snippet | linky"&gt;<br>&lt;/div&gt;</pre>
+           </td>
+           <td>
+             <div ng-bind-html="snippet | linky"></div>
+           </td>
+         </tr>
+         <tr id="linky-target">
+          <td>linky target</td>
+          <td>
+            <pre>&lt;div ng-bind-html="snippetWithTarget | linky:'_blank'"&gt;<br>&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <div ng-bind-html="snippetWithTarget | linky:'_blank'"></div>
+          </td>
+         </tr>
+         <tr id="escaped-html">
+           <td>no filter</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+     </file>
+     <file name="protractor.js" type="protractor">
+       it('should linkify the snippet with urls', function() {
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(4);
+       });
+
+       it('should not linkify snippet without the linky filter', function() {
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, mailto:us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#escaped-html a')).count()).toEqual(0);
+       });
+
+       it('should update', function() {
+         element(by.model('snippet')).clear();
+         element(by.model('snippet')).sendKeys('new http://link.');
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('new http://link.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(1);
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText())
+             .toBe('new http://link.');
+       });
+
+       it('should work with the target property', function() {
+        expect(element(by.id('linky-target')).
+            element(by.binding("snippetWithTarget | linky:'_blank'")).getText()).
+            toBe('http://angularjs.org/');
+        expect(element(by.css('#linky-target a')).getAttribute('target')).toEqual('_blank');
+       });
+     </file>
+   </example>
+ */
+angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
+  var LINKY_URL_REGEXP =
+        /((ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,
+      MAILTO_REGEXP = /^mailto:/i;
+
+  return function(text, target) {
+    if (!text) return text;
+    var match;
+    var raw = text;
+    var html = [];
+    var url;
+    var i;
+    while ((match = raw.match(LINKY_URL_REGEXP))) {
+      // We can not end in these as they are sometimes found at the end of the sentence
+      url = match[0];
+      // if we did not match ftp/http/www/mailto then assume mailto
+      if (!match[2] && !match[4]) {
+        url = (match[3] ? 'http://' : 'mailto:') + url;
+      }
+      i = match.index;
+      addText(raw.substr(0, i));
+      addLink(url, match[0].replace(MAILTO_REGEXP, ''));
+      raw = raw.substring(i + match[0].length);
+    }
+    addText(raw);
+    return $sanitize(html.join(''));
+
+    function addText(text) {
+      if (!text) {
+        return;
+      }
+      html.push(sanitizeText(text));
+    }
+
+    function addLink(url, text) {
+      html.push('<a ');
+      if (angular.isDefined(target)) {
+        html.push('target="',
+                  target,
+                  '" ');
+      }
+      html.push('href="',
+                url.replace(/"/g, '&quot;'),
+                '">');
+      addText(text);
+      html.push('</a>');
+    }
+  };
+}]);
+
+
+})(window, window.angular);
+
+/**
  * @license
  * lodash 3.8.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern exports="amd,commonjs,node" iife="angular.module('ngLodash', []).constant('lodash', null).config(function ($provide) { %output% $provide.constant('lodash', _);});" --output build/ng-lodash.js`
@@ -29939,7 +30737,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
  */
 angular.module("ngLodash",[]).constant("lodash",null).config(["$provide",function(a){function b(a,b){if(a!==b){var c=a===a,d=b===b;if(a>b||!c||a===x&&d)return 1;if(b>a||!d||b===x&&c)return-1}return 0}function c(a,b,c){for(var d=a.length,e=c?d:-1;c?e--:++e<d;)if(b(a[e],e,a))return e;return-1}function d(a,b,c){if(b!==b)return o(a,c);for(var d=c-1,e=a.length;++d<e;)if(a[d]===b)return d;return-1}function e(a){return"function"==typeof a||!1}function f(a){return"string"==typeof a?a:null==a?"":a+""}function g(a){return a.charCodeAt(0)}function h(a,b){for(var c=-1,d=a.length;++c<d&&b.indexOf(a.charAt(c))>-1;);return c}function i(a,b){for(var c=a.length;c--&&b.indexOf(a.charAt(c))>-1;);return c}function j(a,c){return b(a.criteria,c.criteria)||a.index-c.index}function k(a,c,d){for(var e=-1,f=a.criteria,g=c.criteria,h=f.length,i=d.length;++e<h;){var j=b(f[e],g[e]);if(j)return e>=i?j:j*(d[e]?1:-1)}return a.index-c.index}function l(a){return Ra[a]}function m(a){return Sa[a]}function n(a){return"\\"+Va[a]}function o(a,b,c){for(var d=a.length,e=b+(c?0:-1);c?e--:++e<d;){var f=a[e];if(f!==f)return e}return-1}function p(a){return!!a&&"object"==typeof a}function q(a){return 160>=a&&a>=9&&13>=a||32==a||160==a||5760==a||6158==a||a>=8192&&(8202>=a||8232==a||8233==a||8239==a||8287==a||12288==a||65279==a)}function r(a,b){for(var c=-1,d=a.length,e=-1,f=[];++c<d;)a[c]===b&&(a[c]=Q,f[++e]=c);return f}function s(a,b){for(var c,d=-1,e=a.length,f=-1,g=[];++d<e;){var h=a[d],i=b?b(h,d,a):h;d&&c===i||(c=i,g[++f]=h)}return g}function t(a){for(var b=-1,c=a.length;++b<c&&q(a.charCodeAt(b)););return b}function u(a){for(var b=a.length;b--&&q(a.charCodeAt(b)););return b}function v(a){return Ta[a]}function w(a){function q(a){if(p(a)&&!zh(a)&&!(a instanceof ba)){if(a instanceof _)return a;if(Qf.call(a,"__chain__")&&Qf.call(a,"__wrapped__"))return fd(a)}return new _(a)}function X(){}function _(a,b,c){this.__wrapped__=a,this.__actions__=c||[],this.__chain__=!!b}function ba(a){this.__wrapped__=a,this.__actions__=null,this.__dir__=1,this.__dropCount__=0,this.__filtered__=!1,this.__iteratees__=null,this.__takeCount__=vg,this.__views__=null}function Ra(){var a=this.__actions__,b=this.__iteratees__,c=this.__views__,d=new ba(this.__wrapped__);return d.__actions__=a?cb(a):null,d.__dir__=this.__dir__,d.__filtered__=this.__filtered__,d.__iteratees__=b?cb(b):null,d.__takeCount__=this.__takeCount__,d.__views__=c?cb(c):null,d}function Sa(){if(this.__filtered__){var a=new ba(this);a.__dir__=-1,a.__filtered__=!0}else a=this.clone(),a.__dir__*=-1;return a}function Ta(){var a=this.__wrapped__.value();if(!zh(a))return ac(a,this.__actions__);var b=this.__dir__,c=0>b,d=Mc(0,a.length,this.__views__),e=d.start,f=d.end,g=f-e,h=c?f:e-1,i=pg(g,this.__takeCount__),j=this.__iteratees__,k=j?j.length:0,l=0,m=[];a:for(;g--&&i>l;){h+=b;for(var n=-1,o=a[h];++n<k;){var p=j[n],q=p.iteratee,r=p.type;if(r==M){if(p.done&&(c?h>p.index:h<p.index)&&(p.count=0,p.done=!1),p.index=h,!p.done){var s=p.limit;if(!(p.done=s>-1?p.count++>=s:!q(o)))continue a}}else{var t=q(o);if(r==O)o=t;else if(!t){if(r==N)continue a;break a}}}m[l++]=o}return m}function Ua(){this.__data__={}}function Va(a){return this.has(a)&&delete this.__data__[a]}function Wa(a){return"__proto__"==a?x:this.__data__[a]}function Xa(a){return"__proto__"!=a&&Qf.call(this.__data__,a)}function Ya(a,b){return"__proto__"!=a&&(this.__data__[a]=b),this}function Za(a){var b=a?a.length:0;for(this.data={hash:lg(null),set:new dg};b--;)this.push(a[b])}function $a(a,b){var c=a.data,d="string"==typeof b||xe(b)?c.set.has(b):c.hash[b];return d?0:-1}function _a(a){var b=this.data;"string"==typeof a||xe(a)?b.set.add(a):b.hash[a]=!0}function cb(a,b){var c=-1,d=a.length;for(b||(b=Bf(d));++c<d;)b[c]=a[c];return b}function db(a,b){for(var c=-1,d=a.length;++c<d&&b(a[c],c,a)!==!1;);return a}function eb(a,b){for(var c=a.length;c--&&b(a[c],c,a)!==!1;);return a}function fb(a,b){for(var c=-1,d=a.length;++c<d;)if(!b(a[c],c,a))return!1;return!0}function gb(a,b){for(var c=-1,d=a.length,e=-1,f=[];++c<d;){var g=a[c];b(g,c,a)&&(f[++e]=g)}return f}function hb(a,b){for(var c=-1,d=a.length,e=Bf(d);++c<d;)e[c]=b(a[c],c,a);return e}function ib(a){for(var b=-1,c=a.length,d=ug;++b<c;){var e=a[b];e>d&&(d=e)}return d}function jb(a){for(var b=-1,c=a.length,d=vg;++b<c;){var e=a[b];d>e&&(d=e)}return d}function kb(a,b,c,d){var e=-1,f=a.length;for(d&&f&&(c=a[++e]);++e<f;)c=b(c,a[e],e,a);return c}function lb(a,b,c,d){var e=a.length;for(d&&e&&(c=a[--e]);e--;)c=b(c,a[e],e,a);return c}function mb(a,b){for(var c=-1,d=a.length;++c<d;)if(b(a[c],c,a))return!0;return!1}function nb(a){for(var b=a.length,c=0;b--;)c+=+a[b]||0;return c}function ob(a,b){return a===x?b:a}function pb(a,b,c,d){return a!==x&&Qf.call(d,c)?a:b}function qb(a,b,c){var d=Lh(b);ag.apply(d,Pg(b));for(var e=-1,f=d.length;++e<f;){var g=d[e],h=a[g],i=c(h,b[g],g,a,b);(i===i?i===h:h!==h)&&(h!==x||g in a)||(a[g]=i)}return a}function rb(a,b){for(var c=-1,d=null==a,e=!d&&Rc(a),f=e&&a.length,g=b.length,h=Bf(g);++c<g;){var i=b[c];e?h[c]=Sc(i,f)?a[i]:x:h[c]=d?x:a[i]}return h}function sb(a,b,c){c||(c={});for(var d=-1,e=b.length;++d<e;){var f=b[d];c[f]=a[f]}return c}function tb(a,b,c){var d=typeof a;return"function"==d?b===x?a:dc(a,b,c):null==a?of:"object"==d?Lb(a):b===x?uf(a):Mb(a,b)}function ub(a,b,c,d,e,f,g){var h;if(c&&(h=e?c(a,d,e):c(a)),h!==x)return h;if(!xe(a))return a;var i=zh(a);if(i){if(h=Nc(a),!b)return cb(a,h)}else{var j=Sf.call(a),k=j==W;if(j!=Z&&j!=R&&(!k||e))return Pa[j]?Pc(a,j,b):e?a:{};if(h=Oc(k?{}:a),!b)return Eg(h,a)}f||(f=[]),g||(g=[]);for(var l=f.length;l--;)if(f[l]==a)return g[l];return f.push(a),g.push(h),(i?db:Db)(a,function(d,e){h[e]=ub(d,b,c,e,a,f,g)}),h}function vb(a,b,c){if("function"!=typeof a)throw new Kf(P);return eg(function(){a.apply(x,c)},b)}function wb(a,b){var c=a?a.length:0,e=[];if(!c)return e;var f=-1,g=Lc(),h=g==d,i=h&&b.length>=200?Lg(b):null,j=b.length;i&&(g=$a,h=!1,b=i);a:for(;++f<c;){var k=a[f];if(h&&k===k){for(var l=j;l--;)if(b[l]===k)continue a;e.push(k)}else g(b,k,0)<0&&e.push(k)}return e}function xb(a,b){var c=!0;return Gg(a,function(a,d,e){return c=!!b(a,d,e)}),c}function yb(a,b,c,d){var e=a.length;for(c=null==c?0:+c||0,0>c&&(c=-c>e?0:e+c),d=d===x||d>e?e:+d||0,0>d&&(d+=e),e=c>d?0:d>>>0,c>>>=0;e>c;)a[c++]=b;return a}function zb(a,b){var c=[];return Gg(a,function(a,d,e){b(a,d,e)&&c.push(a)}),c}function Ab(a,b,c,d){var e;return c(a,function(a,c,f){return b(a,c,f)?(e=d?c:a,!1):void 0}),e}function Bb(a,b,c){for(var d=-1,e=a.length,f=-1,g=[];++d<e;){var h=a[d];if(p(h)&&Rc(h)&&(c||zh(h)||qe(h))){b&&(h=Bb(h,b,c));for(var i=-1,j=h.length;++i<j;)g[++f]=h[i]}else c||(g[++f]=h)}return g}function Cb(a,b){return Ig(a,b,Oe)}function Db(a,b){return Ig(a,b,Lh)}function Eb(a,b){return Jg(a,b,Lh)}function Fb(a,b){for(var c=-1,d=b.length,e=-1,f=[];++c<d;){var g=b[c];Bh(a[g])&&(f[++e]=g)}return f}function Gb(a,b,c){if(null!=a){c!==x&&c in dd(a)&&(b=[c]);for(var d=-1,e=b.length;null!=a&&++d<e;)a=a[b[d]];return d&&d==e?a:x}}function Hb(a,b,c,d,e,f){if(a===b)return!0;var g=typeof a,h=typeof b;return"function"!=g&&"object"!=g&&"function"!=h&&"object"!=h||null==a||null==b?a!==a&&b!==b:Ib(a,b,Hb,c,d,e,f)}function Ib(a,b,c,d,e,f,g){var h=zh(a),i=zh(b),j=S,k=S;h||(j=Sf.call(a),j==R?j=Z:j!=Z&&(h=Fe(a))),i||(k=Sf.call(b),k==R?k=Z:k!=Z&&(i=Fe(b)));var l=j==Z,m=k==Z,n=j==k;if(n&&!h&&!l)return Hc(a,b,j);if(!e){var o=l&&Qf.call(a,"__wrapped__"),p=m&&Qf.call(b,"__wrapped__");if(o||p)return c(o?a.value():a,p?b.value():b,d,e,f,g)}if(!n)return!1;f||(f=[]),g||(g=[]);for(var q=f.length;q--;)if(f[q]==a)return g[q]==b;f.push(a),g.push(b);var r=(h?Gc:Ic)(a,b,c,d,e,f,g);return f.pop(),g.pop(),r}function Jb(a,b,c,d,e){for(var f=-1,g=b.length,h=!e;++f<g;)if(h&&d[f]?c[f]!==a[b[f]]:!(b[f]in a))return!1;for(f=-1;++f<g;){var i=b[f],j=a[i],k=c[f];if(h&&d[f])var l=j!==x||i in a;else l=e?e(j,k,i):x,l===x&&(l=Hb(k,j,e,!0));if(!l)return!1}return!0}function Kb(a,b){var c=-1,d=Rc(a)?Bf(a.length):[];return Gg(a,function(a,e,f){d[++c]=b(a,e,f)}),d}function Lb(a){var b=Lh(a),c=b.length;if(!c)return nf(!0);if(1==c){var d=b[0],e=a[d];if(Xc(e))return function(a){return null==a?!1:a[d]===e&&(e!==x||d in dd(a))}}for(var f=Bf(c),g=Bf(c);c--;)e=a[b[c]],f[c]=e,g[c]=Xc(e);return function(a){return null!=a&&Jb(dd(a),b,f,g)}}function Mb(a,b){var c=zh(a),d=Uc(a)&&Xc(b),e=a+"";return a=ed(a),function(f){if(null==f)return!1;var g=e;if(f=dd(f),!(!c&&d||g in f)){if(f=1==a.length?f:Gb(f,Ub(a,0,-1)),null==f)return!1;g=td(a),f=dd(f)}return f[g]===b?b!==x||g in f:Hb(b,f[g],null,!0)}}function Nb(a,b,c,d,e){if(!xe(a))return a;var f=Rc(b)&&(zh(b)||Fe(b));if(!f){var g=Lh(b);ag.apply(g,Pg(b))}return db(g||b,function(h,i){if(g&&(i=h,h=b[i]),p(h))d||(d=[]),e||(e=[]),Ob(a,b,i,Nb,c,d,e);else{var j=a[i],k=c?c(j,h,i,a,b):x,l=k===x;l&&(k=h),!f&&k===x||!l&&(k===k?k===j:j!==j)||(a[i]=k)}}),a}function Ob(a,b,c,d,e,f,g){for(var h=f.length,i=b[c];h--;)if(f[h]==i)return void(a[c]=g[h]);var j=a[c],k=e?e(j,i,c,a,b):x,l=k===x;l&&(k=i,Rc(i)&&(zh(i)||Fe(i))?k=zh(j)?j:Rc(j)?cb(j):[]:Ch(i)||qe(i)?k=qe(j)?Ie(j):Ch(j)?j:{}:l=!1),f.push(i),g.push(k),l?a[c]=d(k,i,e,f,g):(k===k?k!==j:j===j)&&(a[c]=k)}function Pb(a){return function(b){return null==b?x:b[a]}}function Qb(a){var b=a+"";return a=ed(a),function(c){return Gb(c,a,b)}}function Rb(a,b){for(var c=a?b.length:0;c--;){var d=parseFloat(b[c]);if(d!=e&&Sc(d)){var e=d;fg.call(a,d,1)}}return a}function Sb(a,b){return a+Zf(tg()*(b-a+1))}function Tb(a,b,c,d,e){return e(a,function(a,e,f){c=d?(d=!1,a):b(c,a,e,f)}),c}function Ub(a,b,c){var d=-1,e=a.length;b=null==b?0:+b||0,0>b&&(b=-b>e?0:e+b),c=c===x||c>e?e:+c||0,0>c&&(c+=e),e=b>c?0:c-b>>>0,b>>>=0;for(var f=Bf(e);++d<e;)f[d]=a[d+b];return f}function Vb(a,b){var c;return Gg(a,function(a,d,e){return c=b(a,d,e),!c}),!!c}function Wb(a,b){var c=a.length;for(a.sort(b);c--;)a[c]=a[c].value;return a}function Xb(a,b,c){var d=Kc(),e=-1;b=hb(b,function(a){return d(a)});var f=Kb(a,function(a){var c=hb(b,function(b){return b(a)});return{criteria:c,index:++e,value:a}});return Wb(f,function(a,b){return k(a,b,c)})}function Yb(a,b){var c=0;return Gg(a,function(a,d,e){c+=+b(a,d,e)||0}),c}function Zb(a,b){var c=-1,e=Lc(),f=a.length,g=e==d,h=g&&f>=200,i=h?Lg():null,j=[];i?(e=$a,g=!1):(h=!1,i=b?[]:j);a:for(;++c<f;){var k=a[c],l=b?b(k,c,a):k;if(g&&k===k){for(var m=i.length;m--;)if(i[m]===l)continue a;b&&i.push(l),j.push(k)}else e(i,l,0)<0&&((b||h)&&i.push(l),j.push(k))}return j}function $b(a,b){for(var c=-1,d=b.length,e=Bf(d);++c<d;)e[c]=a[b[c]];return e}function _b(a,b,c,d){for(var e=a.length,f=d?e:-1;(d?f--:++f<e)&&b(a[f],f,a););return c?Ub(a,d?0:f,d?f+1:e):Ub(a,d?f+1:0,d?e:f)}function ac(a,b){var c=a;c instanceof ba&&(c=c.value());for(var d=-1,e=b.length;++d<e;){var f=[c],g=b[d];ag.apply(f,g.args),c=g.func.apply(g.thisArg,f)}return c}function bc(a,b,c){var d=0,e=a?a.length:d;if("number"==typeof b&&b===b&&yg>=e){for(;e>d;){var f=d+e>>>1,g=a[f];(c?b>=g:b>g)?d=f+1:e=f}return e}return cc(a,b,of,c)}function cc(a,b,c,d){b=c(b);for(var e=0,f=a?a.length:0,g=b!==b,h=b===x;f>e;){var i=Zf((e+f)/2),j=c(a[i]),k=j===j;if(g)var l=k||d;else l=h?k&&(d||j!==x):d?b>=j:b>j;l?e=i+1:f=i}return pg(f,xg)}function dc(a,b,c){if("function"!=typeof a)return of;if(b===x)return a;switch(c){case 1:return function(c){return a.call(b,c)};case 3:return function(c,d,e){return a.call(b,c,d,e)};case 4:return function(c,d,e,f){return a.call(b,c,d,e,f)};case 5:return function(c,d,e,f,g){return a.call(b,c,d,e,f,g)}}return function(){return a.apply(b,arguments)}}function ec(a){return Wf.call(a,0)}function fc(a,b,c){for(var d=c.length,e=-1,f=og(a.length-d,0),g=-1,h=b.length,i=Bf(f+h);++g<h;)i[g]=b[g];for(;++e<d;)i[c[e]]=a[e];for(;f--;)i[g++]=a[e++];return i}function gc(a,b,c){for(var d=-1,e=c.length,f=-1,g=og(a.length-e,0),h=-1,i=b.length,j=Bf(g+i);++f<g;)j[f]=a[f];for(var k=f;++h<i;)j[k+h]=b[h];for(;++d<e;)j[k+c[d]]=a[f++];return j}function hc(a,b){return function(c,d,e){var f=b?b():{};if(d=Kc(d,e,3),zh(c))for(var g=-1,h=c.length;++g<h;){var i=c[g];a(f,i,d(i,g,c),c)}else Gg(c,function(b,c,e){a(f,b,d(b,c,e),e)});return f}}function ic(a){return ke(function(b,c){var d=-1,e=null==b?0:c.length,f=e>2&&c[e-2],g=e>2&&c[2],h=e>1&&c[e-1];for("function"==typeof f?(f=dc(f,h,5),e-=2):(f="function"==typeof h?h:null,e-=f?1:0),g&&Tc(c[0],c[1],g)&&(f=3>e?null:f,e=1);++d<e;){var i=c[d];i&&a(b,i,f)}return b})}function jc(a,b){return function(c,d){var e=c?Og(c):0;if(!Wc(e))return a(c,d);for(var f=b?e:-1,g=dd(c);(b?f--:++f<e)&&d(g[f],f,g)!==!1;);return c}}function kc(a){return function(b,c,d){for(var e=dd(b),f=d(b),g=f.length,h=a?g:-1;a?h--:++h<g;){var i=f[h];if(c(e[i],i,e)===!1)break}return b}}function lc(a,b){function c(){var e=this&&this!==ab&&this instanceof c?d:a;return e.apply(b,arguments)}var d=nc(a);return c}function mc(a){return function(b){for(var c=-1,d=lf(Ye(b)),e=d.length,f="";++c<e;)f=a(f,d[c],c);return f}}function nc(a){return function(){var b=Fg(a.prototype),c=a.apply(b,arguments);return xe(c)?c:b}}function oc(a){function b(c,d,e){e&&Tc(c,d,e)&&(d=null);var f=Fc(c,a,null,null,null,null,null,d);return f.placeholder=b.placeholder,f}return b}function pc(a,b){return function(c,d,e){e&&Tc(c,d,e)&&(d=null);var f=Kc(),h=null==d;if(f===tb&&h||(h=!1,d=f(d,e,3)),h){var i=zh(c);if(i||!Ee(c))return a(i?c:cd(c));d=g}return Jc(c,d,b)}}function qc(a,b){return function(d,e,f){if(e=Kc(e,f,3),zh(d)){var g=c(d,e,b);return g>-1?d[g]:x}return Ab(d,e,a)}}function rc(a){return function(b,d,e){return b&&b.length?(d=Kc(d,e,3),c(b,d,a)):-1}}function sc(a){return function(b,c,d){return c=Kc(c,d,3),Ab(b,c,a,!0)}}function tc(a){return function(){var b=arguments.length;if(!b)return function(){return arguments[0]};for(var c,d=a?b:-1,e=0,f=Bf(b);a?d--:++d<b;){var g=f[e++]=arguments[d];if("function"!=typeof g)throw new Kf(P);var h=c?"":Ng(g);c="wrapper"==h?new _([]):c}for(d=c?-1:b;++d<b;){g=f[d],h=Ng(g);var i="wrapper"==h?Mg(g):null;c=i&&Vc(i[0])&&i[1]==(G|C|E|H)&&!i[4].length&&1==i[9]?c[Ng(i[0])].apply(c,i[3]):1==g.length&&Vc(g)?c[h]():c.thru(g)}return function(){var a=arguments;if(c&&1==a.length&&zh(a[0]))return c.plant(a[0]).value();for(var d=0,e=f[d].apply(this,a);++d<b;)e=f[d].call(this,e);return e}}}function uc(a,b){return function(c,d,e){return"function"==typeof d&&e===x&&zh(c)?a(c,d):b(c,dc(d,e,3))}}function vc(a){return function(b,c,d){return("function"!=typeof c||d!==x)&&(c=dc(c,d,3)),a(b,c,Oe)}}function wc(a){return function(b,c,d){return("function"!=typeof c||d!==x)&&(c=dc(c,d,3)),a(b,c)}}function xc(a){return function(b,c,d){var e={};return c=Kc(c,d,3),Db(b,function(b,d,f){var g=c(b,d,f);d=a?g:d,b=a?b:g,e[d]=b}),e}}function yc(a){return function(b,c,d){return b=f(b),(a?b:"")+Cc(b,c,d)+(a?"":b)}}function zc(a){var b=ke(function(c,d){var e=r(d,b.placeholder);return Fc(c,a,null,d,e)});return b}function Ac(a,b){return function(c,d,e,f){var g=arguments.length<3;return"function"==typeof d&&f===x&&zh(c)?a(c,d,e,g):Tb(c,Kc(d,f,4),e,g,b)}}function Bc(a,b,c,d,e,f,g,h,i,j){function k(){for(var u=arguments.length,v=u,w=Bf(u);v--;)w[v]=arguments[v];if(d&&(w=fc(w,d,e)),f&&(w=gc(w,f,g)),o||q){var y=k.placeholder,B=r(w,y);if(u-=B.length,j>u){var C=h?cb(h):null,D=og(j-u,0),G=o?B:null,H=o?null:B,I=o?w:null,J=o?null:w;b|=o?E:F,b&=~(o?F:E),p||(b&=~(z|A));var K=[a,b,c,I,G,J,H,C,i,D],L=Bc.apply(x,K);return Vc(a)&&Qg(L,K),L.placeholder=y,L}}var M=m?c:this;n&&(a=M[t]),h&&(w=_c(w,h)),l&&i<w.length&&(w.length=i);var N=this&&this!==ab&&this instanceof k?s||nc(a):a;return N.apply(M,w)}var l=b&G,m=b&z,n=b&A,o=b&C,p=b&B,q=b&D,s=!n&&nc(a),t=a;return k}function Cc(a,b,c){var d=a.length;if(b=+b,d>=b||!mg(b))return"";var e=b-d;return c=null==c?" ":c+"",cf(c,Xf(e/c.length)).slice(0,e)}function Dc(a,b,c,d){function e(){for(var b=-1,h=arguments.length,i=-1,j=d.length,k=Bf(h+j);++i<j;)k[i]=d[i];for(;h--;)k[i++]=arguments[++b];var l=this&&this!==ab&&this instanceof e?g:a;return l.apply(f?c:this,k)}var f=b&z,g=nc(a);return e}function Ec(a){return function(b,c,d,e){var f=Kc(d);return f===tb&&null==d?bc(b,c,a):cc(b,c,f(d,e,1),a)}}function Fc(a,b,c,d,e,f,g,h){var i=b&A;if(!i&&"function"!=typeof a)throw new Kf(P);var j=d?d.length:0;if(j||(b&=~(E|F),d=e=null),j-=e?e.length:0,b&F){var k=d,l=e;d=e=null}var m=i?null:Mg(a),n=[a,b,c,d,e,k,l,f,g,h];if(m&&(Yc(n,m),b=n[1],h=n[9]),n[9]=null==h?i?0:a.length:og(h-j,0)||0,b==z)var o=lc(n[0],n[2]);else o=b!=E&&b!=(z|E)||n[4].length?Bc.apply(x,n):Dc.apply(x,n);var p=m?Kg:Qg;return p(o,n)}function Gc(a,b,c,d,e,f,g){var h=-1,i=a.length,j=b.length,k=!0;if(i!=j&&!(e&&j>i))return!1;for(;k&&++h<i;){var l=a[h],m=b[h];if(k=x,d&&(k=e?d(m,l,h):d(l,m,h)),k===x)if(e)for(var n=j;n--&&(m=b[n],!(k=l&&l===m||c(l,m,d,e,f,g))););else k=l&&l===m||c(l,m,d,e,f,g)}return!!k}function Hc(a,b,c){switch(c){case T:case U:return+a==+b;case V:return a.name==b.name&&a.message==b.message;case Y:return a!=+a?b!=+b:a==+b;case $:case aa:return a==b+""}return!1}function Ic(a,b,c,d,e,f,g){var h=Lh(a),i=h.length,j=Lh(b),k=j.length;if(i!=k&&!e)return!1;for(var l=e,m=-1;++m<i;){var n=h[m],o=e?n in b:Qf.call(b,n);if(o){var p=a[n],q=b[n];o=x,d&&(o=e?d(q,p,n):d(p,q,n)),o===x&&(o=p&&p===q||c(p,q,d,e,f,g))}if(!o)return!1;l||(l="constructor"==n)}if(!l){var r=a.constructor,s=b.constructor;if(r!=s&&"constructor"in a&&"constructor"in b&&!("function"==typeof r&&r instanceof r&&"function"==typeof s&&s instanceof s))return!1}return!0}function Jc(a,b,c){var d=c?vg:ug,e=d,f=e;return Gg(a,function(a,g,h){var i=b(a,g,h);((c?e>i:i>e)||i===d&&i===f)&&(e=i,f=a)}),f}function Kc(a,b,c){var d=q.callback||mf;return d=d===mf?tb:d,c?d(a,b,c):d}function Lc(a,b,c){var e=q.indexOf||qd;return e=e===qd?d:e,a?e(a,b,c):e}function Mc(a,b,c){for(var d=-1,e=c?c.length:0;++d<e;){var f=c[d],g=f.size;switch(f.type){case"drop":a+=g;break;case"dropRight":b-=g;break;case"take":b=pg(b,a+g);break;case"takeRight":a=og(a,b-g)}}return{start:a,end:b}}function Nc(a){var b=a.length,c=new a.constructor(b);return b&&"string"==typeof a[0]&&Qf.call(a,"index")&&(c.index=a.index,c.input=a.input),c}function Oc(a){var b=a.constructor;return"function"==typeof b&&b instanceof b||(b=Hf),new b}function Pc(a,b,c){var d=a.constructor;switch(b){case ca:return ec(a);case T:case U:return new d(+a);case da:case ea:case fa:case ga:case ha:case ia:case ja:case ka:case la:var e=a.buffer;return new d(c?ec(e):e,a.byteOffset,a.length);case Y:case aa:return new d(a);case $:var f=new d(a.source,Ea.exec(a));f.lastIndex=a.lastIndex}return f}function Qc(a,b,c){null==a||Uc(b,a)||(b=ed(b),a=1==b.length?a:Gb(a,Ub(b,0,-1)),b=td(b));var d=null==a?a:a[b];return null==d?x:d.apply(a,c)}function Rc(a){return null!=a&&Wc(Og(a))}function Sc(a,b){return a=+a,b=null==b?Ag:b,a>-1&&a%1==0&&b>a}function Tc(a,b,c){if(!xe(c))return!1;var d=typeof b;if("number"==d?Rc(c)&&Sc(b,c.length):"string"==d&&b in c){var e=c[b];return a===a?a===e:e!==e}return!1}function Uc(a,b){var c=typeof a;if("string"==c&&xa.test(a)||"number"==c)return!0;if(zh(a))return!1;var d=!wa.test(a);return d||null!=b&&a in dd(b)}function Vc(a){var b=Ng(a);return!!b&&a===q[b]&&b in ba.prototype}function Wc(a){return"number"==typeof a&&a>-1&&a%1==0&&Ag>=a}function Xc(a){return a===a&&!xe(a)}function Yc(a,b){var c=a[1],d=b[1],e=c|d,f=G>e,g=d==G&&c==C||d==G&&c==H&&a[7].length<=b[8]||d==(G|H)&&c==C;if(!f&&!g)return a;d&z&&(a[2]=b[2],e|=c&z?0:B);var h=b[3];if(h){var i=a[3];a[3]=i?fc(i,h,b[4]):cb(h),a[4]=i?r(a[3],Q):cb(b[4])}return h=b[5],h&&(i=a[5],a[5]=i?gc(i,h,b[6]):cb(h),a[6]=i?r(a[5],Q):cb(b[6])),h=b[7],h&&(a[7]=cb(h)),d&G&&(a[8]=null==a[8]?b[8]:pg(a[8],b[8])),null==a[9]&&(a[9]=b[9]),a[0]=b[0],a[1]=e,a}function Zc(a,b){a=dd(a);for(var c=-1,d=b.length,e={};++c<d;){var f=b[c];f in a&&(e[f]=a[f])}return e}function $c(a,b){var c={};return Cb(a,function(a,d,e){b(a,d,e)&&(c[d]=a)}),c}function _c(a,b){for(var c=a.length,d=pg(b.length,c),e=cb(a);d--;){var f=b[d];a[d]=Sc(f,c)?e[f]:x}return a}function ad(a){var b,c=q.support;if(!p(a)||Sf.call(a)!=Z||!Qf.call(a,"constructor")&&(b=a.constructor,"function"==typeof b&&!(b instanceof b)))return!1;var d;return Cb(a,function(a,b){d=b}),d===x||Qf.call(a,d)}function bd(a){for(var b=Oe(a),c=b.length,d=c&&a.length,e=q.support,f=d&&Wc(d)&&(zh(a)||e.nonEnumArgs&&qe(a)),g=-1,h=[];++g<c;){var i=b[g];(f&&Sc(i,d)||Qf.call(a,i))&&h.push(i)}return h}function cd(a){return null==a?[]:Rc(a)?xe(a)?a:Hf(a):Te(a)}function dd(a){return xe(a)?a:Hf(a)}function ed(a){if(zh(a))return a;var b=[];return f(a).replace(ya,function(a,c,d,e){b.push(d?e.replace(Ca,"$1"):c||a)}),b}function fd(a){return a instanceof ba?a.clone():new _(a.__wrapped__,a.__chain__,cb(a.__actions__))}function gd(a,b,c){b=(c?Tc(a,b,c):null==b)?1:og(+b||1,1);for(var d=0,e=a?a.length:0,f=-1,g=Bf(Xf(e/b));e>d;)g[++f]=Ub(a,d,d+=b);return g}function hd(a){for(var b=-1,c=a?a.length:0,d=-1,e=[];++b<c;){var f=a[b];f&&(e[++d]=f)}return e}function id(a,b,c){var d=a?a.length:0;return d?((c?Tc(a,b,c):null==b)&&(b=1),Ub(a,0>b?0:b)):[]}function jd(a,b,c){var d=a?a.length:0;return d?((c?Tc(a,b,c):null==b)&&(b=1),b=d-(+b||0),Ub(a,0,0>b?0:b)):[]}function kd(a,b,c){return a&&a.length?_b(a,Kc(b,c,3),!0,!0):[]}function ld(a,b,c){return a&&a.length?_b(a,Kc(b,c,3),!0):[]}function md(a,b,c,d){var e=a?a.length:0;return e?(c&&"number"!=typeof c&&Tc(a,b,c)&&(c=0,d=e),yb(a,b,c,d)):[]}function nd(a){return a?a[0]:x}function od(a,b,c){var d=a?a.length:0;return c&&Tc(a,b,c)&&(b=!1),d?Bb(a,b):[]}function pd(a){var b=a?a.length:0;return b?Bb(a,!0):[]}function qd(a,b,c){var e=a?a.length:0;if(!e)return-1;if("number"==typeof c)c=0>c?og(e+c,0):c;else if(c){var f=bc(a,b),g=a[f];return(b===b?b===g:g!==g)?f:-1}return d(a,b,c||0)}function rd(a){return jd(a,1)}function sd(){for(var a=[],b=-1,c=arguments.length,e=[],f=Lc(),g=f==d,h=[];++b<c;){var i=arguments[b];Rc(i)&&(a.push(i),e.push(g&&i.length>=120?Lg(b&&i):null))}if(c=a.length,2>c)return h;var j=a[0],k=-1,l=j?j.length:0,m=e[0];a:for(;++k<l;)if(i=j[k],(m?$a(m,i):f(h,i,0))<0){for(b=c;--b;){var n=e[b];if((n?$a(n,i):f(a[b],i,0))<0)continue a}m&&m.push(i),h.push(i)}return h}function td(a){var b=a?a.length:0;return b?a[b-1]:x}function ud(a,b,c){var d=a?a.length:0;if(!d)return-1;var e=d;if("number"==typeof c)e=(0>c?og(d+c,0):pg(c||0,d-1))+1;else if(c){e=bc(a,b,!0)-1;var f=a[e];return(b===b?b===f:f!==f)?e:-1}if(b!==b)return o(a,e,!0);for(;e--;)if(a[e]===b)return e;return-1}function vd(){var a=arguments,b=a[0];if(!b||!b.length)return b;for(var c=0,d=Lc(),e=a.length;++c<e;)for(var f=0,g=a[c];(f=d(b,g,f))>-1;)fg.call(b,f,1);return b}function wd(a,b,c){var d=[];if(!a||!a.length)return d;var e=-1,f=[],g=a.length;for(b=Kc(b,c,3);++e<g;){var h=a[e];b(h,e,a)&&(d.push(h),f.push(e))}return Rb(a,f),d}function xd(a){return id(a,1)}function yd(a,b,c){var d=a?a.length:0;return d?(c&&"number"!=typeof c&&Tc(a,b,c)&&(b=0,c=d),Ub(a,b,c)):[]}function zd(a,b,c){var d=a?a.length:0;return d?((c?Tc(a,b,c):null==b)&&(b=1),Ub(a,0,0>b?0:b)):[]}function Ad(a,b,c){var d=a?a.length:0;return d?((c?Tc(a,b,c):null==b)&&(b=1),b=d-(+b||0),Ub(a,0>b?0:b)):[]}function Bd(a,b,c){return a&&a.length?_b(a,Kc(b,c,3),!1,!0):[]}function Cd(a,b,c){return a&&a.length?_b(a,Kc(b,c,3)):[]}function Dd(a,b,c,e){var f=a?a.length:0;if(!f)return[];null!=b&&"boolean"!=typeof b&&(e=c,c=Tc(a,b,e)?null:b,b=!1);var g=Kc();return(g!==tb||null!=c)&&(c=g(c,e,3)),b&&Lc()==d?s(a,c):Zb(a,c)}function Ed(a){if(!a||!a.length)return[];var b=-1,c=0;a=gb(a,function(a){return Rc(a)?(c=og(a.length,c),!0):void 0});for(var d=Bf(c);++b<c;)d[b]=hb(a,Pb(b));return d}function Fd(a,b,c){var d=a?a.length:0;if(!d)return[];var e=Ed(a);return null==b?e:(b=dc(b,c,4),hb(e,function(a){return kb(a,b,x,!0)}))}function Gd(){for(var a=-1,b=arguments.length;++a<b;){var c=arguments[a];if(Rc(c))var d=d?wb(d,c).concat(wb(c,d)):c}return d?Zb(d):[]}function Hd(a,b){var c=-1,d=a?a.length:0,e={};for(!d||b||zh(a[0])||(b=[]);++c<d;){var f=a[c];b?e[f]=b[c]:f&&(e[f[0]]=f[1])}return e}function Id(a){var b=q(a);return b.__chain__=!0,b}function Jd(a,b,c){return b.call(c,a),a}function Kd(a,b,c){return b.call(c,a)}function Ld(){return Id(this)}function Md(){return new _(this.value(),this.__chain__)}function Nd(a){for(var b,c=this;c instanceof X;){var d=fd(c);b?e.__wrapped__=d:b=d;var e=d;c=c.__wrapped__}return e.__wrapped__=a,b}function Od(){var a=this.__wrapped__;return a instanceof ba?(this.__actions__.length&&(a=new ba(this)),new _(a.reverse(),this.__chain__)):this.thru(function(a){return a.reverse()})}function Pd(){return this.value()+""}function Qd(){return ac(this.__wrapped__,this.__actions__)}function Rd(a,b,c){var d=zh(a)?fb:xb;return c&&Tc(a,b,c)&&(b=null),("function"!=typeof b||c!==x)&&(b=Kc(b,c,3)),d(a,b)}function Sd(a,b,c){var d=zh(a)?gb:zb;return b=Kc(b,c,3),d(a,b)}function Td(a,b){return bh(a,Lb(b))}function Ud(a,b,c,d){var e=a?Og(a):0;return Wc(e)||(a=Te(a),e=a.length),e?(c="number"!=typeof c||d&&Tc(b,c,d)?0:0>c?og(e+c,0):c||0,"string"==typeof a||!zh(a)&&Ee(a)?e>c&&a.indexOf(b,c)>-1:Lc(a,b,c)>-1):!1}function Vd(a,b,c){var d=zh(a)?hb:Kb;return b=Kc(b,c,3),d(a,b)}function Wd(a,b){return Vd(a,uf(b))}function Xd(a,b,c){var d=zh(a)?gb:zb;return b=Kc(b,c,3),d(a,function(a,c,d){return!b(a,c,d)})}function Yd(a,b,c){if(c?Tc(a,b,c):null==b){a=cd(a);var d=a.length;return d>0?a[Sb(0,d-1)]:x}var e=Zd(a);return e.length=pg(0>b?0:+b||0,e.length),e}function Zd(a){a=cd(a);for(var b=-1,c=a.length,d=Bf(c);++b<c;){var e=Sb(0,b);b!=e&&(d[b]=d[e]),d[e]=a[b]}return d}function $d(a){var b=a?Og(a):0;return Wc(b)?b:Lh(a).length}function _d(a,b,c){var d=zh(a)?mb:Vb;return c&&Tc(a,b,c)&&(b=null),("function"!=typeof b||c!==x)&&(b=Kc(b,c,3)),d(a,b)}function ae(a,b,c){if(null==a)return[];c&&Tc(a,b,c)&&(b=null);var d=-1;b=Kc(b,c,3);var e=Kb(a,function(a,c,e){return{criteria:b(a,c,e),index:++d,value:a}});return Wb(e,j)}function be(a,b,c,d){return null==a?[]:(d&&Tc(b,c,d)&&(c=null),zh(b)||(b=null==b?[]:[b]),zh(c)||(c=null==c?[]:[c]),Xb(a,b,c))}function ce(a,b){return Sd(a,Lb(b))}function de(a,b){if("function"!=typeof b){if("function"!=typeof a)throw new Kf(P);var c=a;a=b,b=c}return a=mg(a=+a)?a:0,function(){return--a<1?b.apply(this,arguments):void 0}}function ee(a,b,c){return c&&Tc(a,b,c)&&(b=null),b=a&&null==b?a.length:og(+b||0,0),Fc(a,G,null,null,null,null,b)}function fe(a,b){var c;if("function"!=typeof b){if("function"!=typeof a)throw new Kf(P);var d=a;a=b,b=d}return function(){return--a>0&&(c=b.apply(this,arguments)),1>=a&&(b=null),c}}function ge(a,b,c){function d(){m&&Yf(m),i&&Yf(i),i=m=n=x}function e(){var c=b-(mh()-k);if(0>=c||c>b){i&&Yf(i);var d=n;i=m=n=x,d&&(o=mh(),j=a.apply(l,h),m||i||(h=l=null))}else m=eg(e,c)}function f(){m&&Yf(m),i=m=n=x,(q||p!==b)&&(o=mh(),j=a.apply(l,h),m||i||(h=l=null))}function g(){if(h=arguments,k=mh(),l=this,n=q&&(m||!r),p===!1)var c=r&&!m;else{i||r||(o=k);var d=p-(k-o),g=0>=d||d>p;g?(i&&(i=Yf(i)),o=k,j=a.apply(l,h)):i||(i=eg(f,d))}return g&&m?m=Yf(m):m||b===p||(m=eg(e,b)),c&&(g=!0,j=a.apply(l,h)),!g||m||i||(h=l=null),j}var h,i,j,k,l,m,n,o=0,p=!1,q=!0;if("function"!=typeof a)throw new Kf(P);if(b=0>b?0:+b||0,c===!0){var r=!0;q=!1}else xe(c)&&(r=c.leading,p="maxWait"in c&&og(+c.maxWait||0,b),q="trailing"in c?c.trailing:q);return g.cancel=d,g}function he(a,b){if("function"!=typeof a||b&&"function"!=typeof b)throw new Kf(P);var c=function(){var d=arguments,e=c.cache,f=b?b.apply(this,d):d[0];if(e.has(f))return e.get(f);var g=a.apply(this,d);return e.set(f,g),g};return c.cache=new he.Cache,c}function ie(a){if("function"!=typeof a)throw new Kf(P);return function(){return!a.apply(this,arguments)}}function je(a){return fe(2,a)}function ke(a,b){if("function"!=typeof a)throw new Kf(P);return b=og(b===x?a.length-1:+b||0,0),function(){for(var c=arguments,d=-1,e=og(c.length-b,0),f=Bf(e);++d<e;)f[d]=c[b+d];switch(b){case 0:return a.call(this,f);case 1:return a.call(this,c[0],f);case 2:return a.call(this,c[0],c[1],f)}var g=Bf(b+1);for(d=-1;++d<b;)g[d]=c[d];return g[b]=f,a.apply(this,g)}}function le(a){if("function"!=typeof a)throw new Kf(P);return function(b){return a.apply(this,b)}}function me(a,b,c){var d=!0,e=!0;if("function"!=typeof a)throw new Kf(P);return c===!1?d=!1:xe(c)&&(d="leading"in c?!!c.leading:d,e="trailing"in c?!!c.trailing:e),Qa.leading=d,Qa.maxWait=+b,Qa.trailing=e,ge(a,b,Qa)}function ne(a,b){return b=null==b?of:b,Fc(b,E,null,[a],[])}function oe(a,b,c,d){return b&&"boolean"!=typeof b&&Tc(a,b,c)?b=!1:"function"==typeof b&&(d=c,c=b,b=!1),c="function"==typeof c&&dc(c,d,1),ub(a,b,c)}function pe(a,b,c){return b="function"==typeof b&&dc(b,c,1),ub(a,!0,b)}function qe(a){return p(a)&&Rc(a)&&Sf.call(a)==R}function re(a){return a===!0||a===!1||p(a)&&Sf.call(a)==T}function se(a){return p(a)&&Sf.call(a)==U}function te(a){return!!a&&1===a.nodeType&&p(a)&&Sf.call(a).indexOf("Element")>-1}function ue(a){return null==a?!0:Rc(a)&&(zh(a)||Ee(a)||qe(a)||p(a)&&Bh(a.splice))?!a.length:!Lh(a).length}function ve(a,b,c,d){if(c="function"==typeof c&&dc(c,d,3),!c&&Xc(a)&&Xc(b))return a===b;var e=c?c(a,b):x;return e===x?Hb(a,b,c):!!e}function we(a){return p(a)&&"string"==typeof a.message&&Sf.call(a)==V}function xe(a){var b=typeof a;return"function"==b||!!a&&"object"==b}function ye(a,b,c,d){var e=Lh(b),f=e.length;if(!f)return!0;if(null==a)return!1;if(c="function"==typeof c&&dc(c,d,3),a=dd(a),!c&&1==f){var g=e[0],h=b[g];if(Xc(h))return h===a[g]&&(h!==x||g in a)}for(var i=Bf(f),j=Bf(f);f--;)h=i[f]=b[e[f]],j[f]=Xc(h);return Jb(a,e,i,j,c)}function ze(a){return Ce(a)&&a!=+a}function Ae(a){return null==a?!1:Sf.call(a)==W?Uf.test(Pf.call(a)):p(a)&&Ga.test(a)}function Be(a){return null===a}function Ce(a){return"number"==typeof a||p(a)&&Sf.call(a)==Y}function De(a){return p(a)&&Sf.call(a)==$}function Ee(a){return"string"==typeof a||p(a)&&Sf.call(a)==aa}function Fe(a){return p(a)&&Wc(a.length)&&!!Oa[Sf.call(a)]}function Ge(a){return a===x}function He(a){var b=a?Og(a):0;return Wc(b)?b?cb(a):[]:Te(a)}function Ie(a){return sb(a,Oe(a))}function Je(a,b,c){var d=Fg(a);return c&&Tc(a,b,c)&&(b=null),b?Eg(d,b):d}function Ke(a){return Fb(a,Oe(a))}function Le(a,b,c){var d=null==a?x:Gb(a,ed(b),b+"");return d===x?c:d}function Me(a,b){if(null==a)return!1;var c=Qf.call(a,b);return c||Uc(b)||(b=ed(b),a=1==b.length?a:Gb(a,Ub(b,0,-1)),b=td(b),c=null!=a&&Qf.call(a,b)),c}function Ne(a,b,c){c&&Tc(a,b,c)&&(b=null);for(var d=-1,e=Lh(a),f=e.length,g={};++d<f;){var h=e[d],i=a[h];b?Qf.call(g,i)?g[i].push(h):g[i]=[h]:g[i]=h}return g}function Oe(a){if(null==a)return[];xe(a)||(a=Hf(a));var b=a.length;b=b&&Wc(b)&&(zh(a)||Dg.nonEnumArgs&&qe(a))&&b||0;for(var c=a.constructor,d=-1,e="function"==typeof c&&c.prototype===a,f=Bf(b),g=b>0;++d<b;)f[d]=d+"";for(var h in a)g&&Sc(h,b)||"constructor"==h&&(e||!Qf.call(a,h))||f.push(h);return f}function Pe(a){for(var b=-1,c=Lh(a),d=c.length,e=Bf(d);++b<d;){var f=c[b];e[b]=[f,a[f]]}return e}function Qe(a,b,c){var d=null==a?x:a[b];return d===x&&(null==a||Uc(b,a)||(b=ed(b),a=1==b.length?a:Gb(a,Ub(b,0,-1)),d=null==a?x:a[td(b)]),d=d===x?c:d),Bh(d)?d.call(a):d}function Re(a,b,c){if(null==a)return a;var d=b+"";b=null!=a[d]||Uc(b,a)?[d]:ed(b);for(var e=-1,f=b.length,g=f-1,h=a;null!=h&&++e<f;){var i=b[e];xe(h)&&(e==g?h[i]=c:null==h[i]&&(h[i]=Sc(b[e+1])?[]:{})),h=h[i]}return a}function Se(a,b,c,d){var e=zh(a)||Fe(a);if(b=Kc(b,d,4),null==c)if(e||xe(a)){var f=a.constructor;c=e?zh(a)?new f:[]:Fg(Bh(f)&&f.prototype)}else c={};return(e?db:Db)(a,function(a,d,e){return b(c,a,d,e)}),c}function Te(a){return $b(a,Lh(a))}function Ue(a){return $b(a,Oe(a))}function Ve(a,b,c){return b=+b||0,"undefined"==typeof c?(c=b,b=0):c=+c||0,a>=pg(b,c)&&a<og(b,c)}function We(a,b,c){c&&Tc(a,b,c)&&(b=c=null);var d=null==a,e=null==b;if(null==c&&(e&&"boolean"==typeof a?(c=a,a=1):"boolean"==typeof b&&(c=b,e=!0)),d&&e&&(b=1,e=!1),a=+a||0,e?(b=a,a=0):b=+b||0,c||a%1||b%1){var f=tg();return pg(a+f*(b-a+parseFloat("1e-"+((f+"").length-1))),b)}return Sb(a,b)}function Xe(a){return a=f(a),a&&a.charAt(0).toUpperCase()+a.slice(1)}function Ye(a){return a=f(a),a&&a.replace(Ha,l).replace(Ba,"")}function Ze(a,b,c){a=f(a),b+="";var d=a.length;return c=c===x?d:pg(0>c?0:+c||0,d),c-=b.length,c>=0&&a.indexOf(b,c)==c}function $e(a){return a=f(a),a&&sa.test(a)?a.replace(qa,m):a}function _e(a){return a=f(a),a&&Aa.test(a)?a.replace(za,"\\$&"):a}function af(a,b,c){a=f(a),b=+b;var d=a.length;if(d>=b||!mg(b))return a;var e=(b-d)/2,g=Zf(e),h=Xf(e);
 return c=Cc("",h,c),c.slice(0,g)+a+c}function bf(a,b,c){return c&&Tc(a,b,c)&&(b=0),sg(a,b)}function cf(a,b){var c="";if(a=f(a),b=+b,1>b||!a||!mg(b))return c;do b%2&&(c+=a),b=Zf(b/2),a+=a;while(b);return c}function df(a,b,c){return a=f(a),c=null==c?0:pg(0>c?0:+c||0,a.length),a.lastIndexOf(b,c)==c}function ef(a,b,c){var d=q.templateSettings;c&&Tc(a,b,c)&&(b=c=null),a=f(a),b=qb(Eg({},c||b),d,pb);var e=qb(Eg({},b.imports),d.imports,pb),g=Lh(e),h=$b(e,g),i,j,k=0,l=b.interpolate||Ia,m="__p += '",o=If((b.escape||Ia).source+"|"+l.source+"|"+(l===va?Da:Ia).source+"|"+(b.evaluate||Ia).source+"|$","g"),p="//# sourceURL="+("sourceURL"in b?b.sourceURL:"lodash.templateSources["+ ++Na+"]")+"\n";a.replace(o,function(b,c,d,e,f,g){return d||(d=e),m+=a.slice(k,g).replace(Ja,n),c&&(i=!0,m+="' +\n__e("+c+") +\n'"),f&&(j=!0,m+="';\n"+f+";\n__p += '"),d&&(m+="' +\n((__t = ("+d+")) == null ? '' : __t) +\n'"),k=g+b.length,b}),m+="';\n";var r=b.variable;r||(m="with (obj) {\n"+m+"\n}\n"),m=(j?m.replace(ma,""):m).replace(na,"$1").replace(oa,"$1;"),m="function("+(r||"obj")+") {\n"+(r?"":"obj || (obj = {});\n")+"var __t, __p = ''"+(i?", __e = _.escape":"")+(j?", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n":";\n")+m+"return __p\n}";var s=Xh(function(){return Ef(g,p+"return "+m).apply(x,h)});if(s.source=m,we(s))throw s;return s}function ff(a,b,c){var d=a;return(a=f(a))?(c?Tc(d,b,c):null==b)?a.slice(t(a),u(a)+1):(b+="",a.slice(h(a,b),i(a,b)+1)):a}function gf(a,b,c){var d=a;return a=f(a),a?a.slice((c?Tc(d,b,c):null==b)?t(a):h(a,b+"")):a}function hf(a,b,c){var d=a;return a=f(a),a?(c?Tc(d,b,c):null==b)?a.slice(0,u(a)+1):a.slice(0,i(a,b+"")+1):a}function jf(a,b,c){c&&Tc(a,b,c)&&(b=null);var d=I,e=J;if(null!=b)if(xe(b)){var g="separator"in b?b.separator:g;d="length"in b?+b.length||0:d,e="omission"in b?f(b.omission):e}else d=+b||0;if(a=f(a),d>=a.length)return a;var h=d-e.length;if(1>h)return e;var i=a.slice(0,h);if(null==g)return i+e;if(De(g)){if(a.slice(h).search(g)){var j,k,l=a.slice(0,h);for(g.global||(g=If(g.source,(Ea.exec(g)||"")+"g")),g.lastIndex=0;j=g.exec(l);)k=j.index;i=i.slice(0,null==k?h:k)}}else if(a.indexOf(g,h)!=h){var m=i.lastIndexOf(g);m>-1&&(i=i.slice(0,m))}return i+e}function kf(a){return a=f(a),a&&ra.test(a)?a.replace(pa,v):a}function lf(a,b,c){return c&&Tc(a,b,c)&&(b=null),a=f(a),a.match(b||Ka)||[]}function mf(a,b,c){return c&&Tc(a,b,c)&&(b=null),p(a)?pf(a):tb(a,b)}function nf(a){return function(){return a}}function of(a){return a}function pf(a){return Lb(ub(a,!0))}function qf(a,b){return Mb(a,ub(b,!0))}function rf(a,b,c){if(null==c){var d=xe(b),e=d&&Lh(b),f=e&&e.length&&Fb(b,e);(f?f.length:d)||(f=!1,c=b,b=a,a=this)}f||(f=Fb(b,Lh(b)));var g=!0,h=-1,i=Bh(a),j=f.length;c===!1?g=!1:xe(c)&&"chain"in c&&(g=c.chain);for(;++h<j;){var k=f[h],l=b[k];a[k]=l,i&&(a.prototype[k]=function(b){return function(){var c=this.__chain__;if(g||c){var d=a(this.__wrapped__),e=d.__actions__=cb(this.__actions__);return e.push({func:b,args:arguments,thisArg:a}),d.__chain__=c,d}var f=[this.value()];return ag.apply(f,arguments),b.apply(a,f)}}(l))}return a}function sf(){return a._=Tf,this}function tf(){}function uf(a){return Uc(a)?Pb(a):Qb(a)}function vf(a){return function(b){return Gb(a,ed(b),b+"")}}function wf(a,b,c){c&&Tc(a,b,c)&&(b=c=null),a=+a||0,c=null==c?1:+c||0,null==b?(b=a,a=0):b=+b||0;for(var d=-1,e=og(Xf((b-a)/(c||1)),0),f=Bf(e);++d<e;)f[d]=a,a+=c;return f}function xf(a,b,c){if(a=Zf(a),1>a||!mg(a))return[];var d=-1,e=Bf(pg(a,wg));for(b=dc(b,c,1);++d<a;)wg>d?e[d]=b(d):b(d);return e}function yf(a){var b=++Rf;return f(a)+b}function zf(a,b){return(+a||0)+(+b||0)}function Af(a,b,c){c&&Tc(a,b,c)&&(b=null);var d=Kc(),e=null==b;return d===tb&&e||(e=!1,b=d(b,c,3)),e?nb(zh(a)?a:cd(a)):Yb(a,b)}a=a?bb.defaults(ab.Object(),a,bb.pick(ab,Ma)):ab;var Bf=a.Array,Cf=a.Date,Df=a.Error,Ef=a.Function,Ff=a.Math,Gf=a.Number,Hf=a.Object,If=a.RegExp,Jf=a.String,Kf=a.TypeError,Lf=Bf.prototype,Mf=Hf.prototype,Nf=Jf.prototype,Of=(Of=a.window)&&Of.document,Pf=Ef.prototype.toString,Qf=Mf.hasOwnProperty,Rf=0,Sf=Mf.toString,Tf=a._,Uf=If("^"+_e(Sf).replace(/toString|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),Vf=Ae(Vf=a.ArrayBuffer)&&Vf,Wf=Ae(Wf=Vf&&new Vf(0).slice)&&Wf,Xf=Ff.ceil,Yf=a.clearTimeout,Zf=Ff.floor,$f=Ae($f=Hf.getOwnPropertySymbols)&&$f,_f=Ae(_f=Hf.getPrototypeOf)&&_f,ag=Lf.push,bg=Ae(bg=Hf.preventExtensions)&&bg,cg=Mf.propertyIsEnumerable,dg=Ae(dg=a.Set)&&dg,eg=a.setTimeout,fg=Lf.splice,gg=Ae(gg=a.Uint8Array)&&gg,hg=Ae(hg=a.WeakMap)&&hg,ig=function(){try{var b=Ae(b=a.Float64Array)&&b,c=new b(new Vf(10),0,1)&&b}catch(d){}return c}(),jg=function(){var a=bg&&Ae(a=Hf.assign)&&a;try{if(a){var b=bg({1:0});b[0]=1}}catch(c){try{a(b,"xo")}catch(c){}return!b[1]&&a}return!1}(),kg=Ae(kg=Bf.isArray)&&kg,lg=Ae(lg=Hf.create)&&lg,mg=a.isFinite,ng=Ae(ng=Hf.keys)&&ng,og=Ff.max,pg=Ff.min,qg=Ae(qg=Cf.now)&&qg,rg=Ae(rg=Gf.isFinite)&&rg,sg=a.parseInt,tg=Ff.random,ug=Gf.NEGATIVE_INFINITY,vg=Gf.POSITIVE_INFINITY,wg=Ff.pow(2,32)-1,xg=wg-1,yg=wg>>>1,zg=ig?ig.BYTES_PER_ELEMENT:0,Ag=Ff.pow(2,53)-1,Bg=hg&&new hg,Cg={},Dg=q.support={};!function(a){var b=function(){this.x=a},c=arguments,d={0:a,length:a},e=[];b.prototype={valueOf:a,y:a};for(var f in new b)e.push(f);Dg.funcDecomp=/\bthis\b/.test(function(){return this}),Dg.funcNames="string"==typeof Ef.name;try{Dg.dom=11===Of.createDocumentFragment().nodeType}catch(g){Dg.dom=!1}try{Dg.nonEnumArgs=!cg.call(c,1)}catch(g){Dg.nonEnumArgs=!0}}(1,0),q.templateSettings={escape:ta,evaluate:ua,interpolate:va,variable:"",imports:{_:q}};var Eg=jg||function(a,b){return null==b?a:sb(b,Pg(b),sb(b,Lh(b),a))},Fg=function(){function b(){}return function(c){if(xe(c)){b.prototype=c;var d=new b;b.prototype=null}return d||a.Object()}}(),Gg=jc(Db),Hg=jc(Eb,!0),Ig=kc(),Jg=kc(!0),Kg=Bg?function(a,b){return Bg.set(a,b),a}:of;Wf||(ec=Vf&&gg?function(a){var b=a.byteLength,c=ig?Zf(b/zg):0,d=c*zg,e=new Vf(b);if(c){var f=new ig(e,0,c);f.set(new ig(a,0,c))}return b!=d&&(f=new gg(e,d),f.set(new gg(a,d))),e}:nf(null));var Lg=lg&&dg?function(a){return new Za(a)}:nf(null),Mg=Bg?function(a){return Bg.get(a)}:tf,Ng=function(){return Dg.funcNames?"constant"==nf.name?Pb("name"):function(a){for(var b=a.name,c=Cg[b],d=c?c.length:0;d--;){var e=c[d],f=e.func;if(null==f||f==a)return e.name}return b}:nf("")}(),Og=Pb("length"),Pg=$f?function(a){return $f(dd(a))}:nf([]),Qg=function(){var a=0,b=0;return function(c,d){var e=mh(),f=L-(e-b);if(b=e,f>0){if(++a>=K)return c}else a=0;return Kg(c,d)}}(),Rg=ke(function(a,b){return Rc(a)?wb(a,Bb(b,!1,!0)):[]}),Sg=rc(),Tg=rc(!0),Ug=ke(function(a,c){c=Bb(c);var d=rb(a,c);return Rb(a,c.sort(b)),d}),Vg=Ec(),Wg=Ec(!0),Xg=ke(function(a){return Zb(Bb(a,!1,!0))}),Yg=ke(function(a,b){return Rc(a)?wb(a,b):[]}),Zg=ke(Ed),$g=ke(function(a){var b=a.length,c=a[b-2],d=a[b-1];return b>2&&"function"==typeof c?b-=2:(c=b>1&&"function"==typeof d?(--b,d):x,d=x),a.length=b,Fd(a,c,d)}),_g=ke(function(a,b){return rb(a,Bb(b))}),ah=hc(function(a,b,c){Qf.call(a,c)?++a[c]:a[c]=1}),bh=qc(Gg),ch=qc(Hg,!0),dh=uc(db,Gg),eh=uc(eb,Hg),fh=hc(function(a,b,c){Qf.call(a,c)?a[c].push(b):a[c]=[b]}),gh=hc(function(a,b,c){a[c]=b}),hh=ke(function(a,b,c){var d=-1,e="function"==typeof b,f=Uc(b),g=Rc(a)?Bf(a.length):[];return Gg(a,function(a){var h=e?b:f&&null!=a&&a[b];g[++d]=h?h.apply(a,c):Qc(a,b,c)}),g}),ih=hc(function(a,b,c){a[c?0:1].push(b)},function(){return[[],[]]}),jh=Ac(kb,Gg),kh=Ac(lb,Hg),lh=ke(function(a,b){if(null==a)return[];var c=b[2];return c&&Tc(b[0],b[1],c)&&(b.length=1),Xb(a,Bb(b),[])}),mh=qg||function(){return(new Cf).getTime()},nh=ke(function(a,b,c){var d=z;if(c.length){var e=r(c,nh.placeholder);d|=E}return Fc(a,d,b,c,e)}),oh=ke(function(a,b){b=b.length?Bb(b):Ke(a);for(var c=-1,d=b.length;++c<d;){var e=b[c];a[e]=Fc(a[e],z,a)}return a}),ph=ke(function(a,b,c){var d=z|A;if(c.length){var e=r(c,ph.placeholder);d|=E}return Fc(b,d,a,c,e)}),qh=oc(C),rh=oc(D),sh=ke(function(a,b){return vb(a,1,b)}),th=ke(function(a,b,c){return vb(a,b,c)}),uh=tc(),vh=tc(!0),wh=zc(E),xh=zc(F),yh=ke(function(a,b){return Fc(a,H,null,null,null,Bb(b))}),zh=kg||function(a){return p(a)&&Wc(a.length)&&Sf.call(a)==S};Dg.dom||(te=function(a){return!!a&&1===a.nodeType&&p(a)&&!Ch(a)});var Ah=rg||function(a){return"number"==typeof a&&mg(a)},Bh=e(/x/)||gg&&!e(gg)?function(a){return Sf.call(a)==W}:e,Ch=_f?function(a){if(!a||Sf.call(a)!=Z)return!1;var b=a.valueOf,c=Ae(b)&&(c=_f(b))&&_f(c);return c?a==c||_f(a)==c:ad(a)}:ad,Dh=ic(function(a,b,c){return c?qb(a,b,c):Eg(a,b)}),Eh=ke(function(a){var b=a[0];return null==b?b:(a.push(ob),Dh.apply(x,a))}),Fh=sc(Db),Gh=sc(Eb),Hh=vc(Ig),Ih=vc(Jg),Jh=wc(Db),Kh=wc(Eb),Lh=ng?function(a){var b=null!=a&&a.constructor;return"function"==typeof b&&b.prototype===a||"function"!=typeof a&&Rc(a)?bd(a):xe(a)?ng(a):[]}:bd,Mh=xc(!0),Nh=xc(),Oh=ic(Nb),Ph=ke(function(a,b){if(null==a)return{};if("function"!=typeof b[0]){var b=hb(Bb(b),Jf);return Zc(a,wb(Oe(a),b))}var c=dc(b[0],b[1],3);return $c(a,function(a,b,d){return!c(a,b,d)})}),Qh=ke(function(a,b){return null==a?{}:"function"==typeof b[0]?$c(a,dc(b[0],b[1],3)):Zc(a,Bb(b))}),Rh=mc(function(a,b,c){return b=b.toLowerCase(),a+(c?b.charAt(0).toUpperCase()+b.slice(1):b)}),Sh=mc(function(a,b,c){return a+(c?"-":"")+b.toLowerCase()}),Th=yc(),Uh=yc(!0);8!=sg(La+"08")&&(bf=function(a,b,c){return(c?Tc(a,b,c):null==b)?b=0:b&&(b=+b),a=ff(a),sg(a,b||(Fa.test(a)?16:10))});var Vh=mc(function(a,b,c){return a+(c?"_":"")+b.toLowerCase()}),Wh=mc(function(a,b,c){return a+(c?" ":"")+(b.charAt(0).toUpperCase()+b.slice(1))}),Xh=ke(function(a,b){try{return a.apply(x,b)}catch(c){return we(c)?c:new Df(c)}}),Yh=ke(function(a,b){return function(c){return Qc(c,a,b)}}),Zh=ke(function(a,b){return function(c){return Qc(a,c,b)}}),$h=pc(ib),_h=pc(jb,!0);return q.prototype=X.prototype,_.prototype=Fg(X.prototype),_.prototype.constructor=_,ba.prototype=Fg(X.prototype),ba.prototype.constructor=ba,Ua.prototype["delete"]=Va,Ua.prototype.get=Wa,Ua.prototype.has=Xa,Ua.prototype.set=Ya,Za.prototype.push=_a,he.Cache=Ua,q.after=de,q.ary=ee,q.assign=Dh,q.at=_g,q.before=fe,q.bind=nh,q.bindAll=oh,q.bindKey=ph,q.callback=mf,q.chain=Id,q.chunk=gd,q.compact=hd,q.constant=nf,q.countBy=ah,q.create=Je,q.curry=qh,q.curryRight=rh,q.debounce=ge,q.defaults=Eh,q.defer=sh,q.delay=th,q.difference=Rg,q.drop=id,q.dropRight=jd,q.dropRightWhile=kd,q.dropWhile=ld,q.fill=md,q.filter=Sd,q.flatten=od,q.flattenDeep=pd,q.flow=uh,q.flowRight=vh,q.forEach=dh,q.forEachRight=eh,q.forIn=Hh,q.forInRight=Ih,q.forOwn=Jh,q.forOwnRight=Kh,q.functions=Ke,q.groupBy=fh,q.indexBy=gh,q.initial=rd,q.intersection=sd,q.invert=Ne,q.invoke=hh,q.keys=Lh,q.keysIn=Oe,q.map=Vd,q.mapKeys=Mh,q.mapValues=Nh,q.matches=pf,q.matchesProperty=qf,q.memoize=he,q.merge=Oh,q.method=Yh,q.methodOf=Zh,q.mixin=rf,q.negate=ie,q.omit=Ph,q.once=je,q.pairs=Pe,q.partial=wh,q.partialRight=xh,q.partition=ih,q.pick=Qh,q.pluck=Wd,q.property=uf,q.propertyOf=vf,q.pull=vd,q.pullAt=Ug,q.range=wf,q.rearg=yh,q.reject=Xd,q.remove=wd,q.rest=xd,q.restParam=ke,q.set=Re,q.shuffle=Zd,q.slice=yd,q.sortBy=ae,q.sortByAll=lh,q.sortByOrder=be,q.spread=le,q.take=zd,q.takeRight=Ad,q.takeRightWhile=Bd,q.takeWhile=Cd,q.tap=Jd,q.throttle=me,q.thru=Kd,q.times=xf,q.toArray=He,q.toPlainObject=Ie,q.transform=Se,q.union=Xg,q.uniq=Dd,q.unzip=Ed,q.unzipWith=Fd,q.values=Te,q.valuesIn=Ue,q.where=ce,q.without=Yg,q.wrap=ne,q.xor=Gd,q.zip=Zg,q.zipObject=Hd,q.zipWith=$g,q.backflow=vh,q.collect=Vd,q.compose=vh,q.each=dh,q.eachRight=eh,q.extend=Dh,q.iteratee=mf,q.methods=Ke,q.object=Hd,q.select=Sd,q.tail=xd,q.unique=Dd,rf(q,q),q.add=zf,q.attempt=Xh,q.camelCase=Rh,q.capitalize=Xe,q.clone=oe,q.cloneDeep=pe,q.deburr=Ye,q.endsWith=Ze,q.escape=$e,q.escapeRegExp=_e,q.every=Rd,q.find=bh,q.findIndex=Sg,q.findKey=Fh,q.findLast=ch,q.findLastIndex=Tg,q.findLastKey=Gh,q.findWhere=Td,q.first=nd,q.get=Le,q.has=Me,q.identity=of,q.includes=Ud,q.indexOf=qd,q.inRange=Ve,q.isArguments=qe,q.isArray=zh,q.isBoolean=re,q.isDate=se,q.isElement=te,q.isEmpty=ue,q.isEqual=ve,q.isError=we,q.isFinite=Ah,q.isFunction=Bh,q.isMatch=ye,q.isNaN=ze,q.isNative=Ae,q.isNull=Be,q.isNumber=Ce,q.isObject=xe,q.isPlainObject=Ch,q.isRegExp=De,q.isString=Ee,q.isTypedArray=Fe,q.isUndefined=Ge,q.kebabCase=Sh,q.last=td,q.lastIndexOf=ud,q.max=$h,q.min=_h,q.noConflict=sf,q.noop=tf,q.now=mh,q.pad=af,q.padLeft=Th,q.padRight=Uh,q.parseInt=bf,q.random=We,q.reduce=jh,q.reduceRight=kh,q.repeat=cf,q.result=Qe,q.runInContext=w,q.size=$d,q.snakeCase=Vh,q.some=_d,q.sortedIndex=Vg,q.sortedLastIndex=Wg,q.startCase=Wh,q.startsWith=df,q.sum=Af,q.template=ef,q.trim=ff,q.trimLeft=gf,q.trimRight=hf,q.trunc=jf,q.unescape=kf,q.uniqueId=yf,q.words=lf,q.all=Rd,q.any=_d,q.contains=Ud,q.detect=bh,q.foldl=jh,q.foldr=kh,q.head=nd,q.include=Ud,q.inject=jh,rf(q,function(){var a={};return Db(q,function(b,c){q.prototype[c]||(a[c]=b)}),a}(),!1),q.sample=Yd,q.prototype.sample=function(a){return this.__chain__||null!=a?this.thru(function(b){return Yd(b,a)}):Yd(this.value())},q.VERSION=y,db(["bind","bindKey","curry","curryRight","partial","partialRight"],function(a){q[a].placeholder=q}),db(["dropWhile","filter","map","takeWhile"],function(a,b){var c=b!=O,d=b==M;ba.prototype[a]=function(a,e){var f=this.__filtered__,g=f&&d?new ba(this):this.clone(),h=g.__iteratees__||(g.__iteratees__=[]);return h.push({done:!1,count:0,index:0,iteratee:Kc(a,e,1),limit:-1,type:b}),g.__filtered__=f||c,g}}),db(["drop","take"],function(a,b){var c=a+"While";ba.prototype[a]=function(c){var d=this.__filtered__,e=d&&!b?this.dropWhile():this.clone();if(c=null==c?1:og(Zf(c)||0,0),d)b?e.__takeCount__=pg(e.__takeCount__,c):td(e.__iteratees__).limit=c;else{var f=e.__views__||(e.__views__=[]);f.push({size:c,type:a+(e.__dir__<0?"Right":"")})}return e},ba.prototype[a+"Right"]=function(b){return this.reverse()[a](b).reverse()},ba.prototype[a+"RightWhile"]=function(a,b){return this.reverse()[c](a,b).reverse()}}),db(["first","last"],function(a,b){var c="take"+(b?"Right":"");ba.prototype[a]=function(){return this[c](1).value()[0]}}),db(["initial","rest"],function(a,b){var c="drop"+(b?"":"Right");ba.prototype[a]=function(){return this[c](1)}}),db(["pluck","where"],function(a,b){var c=b?"filter":"map",d=b?Lb:uf;ba.prototype[a]=function(a){return this[c](d(a))}}),ba.prototype.compact=function(){return this.filter(of)},ba.prototype.reject=function(a,b){return a=Kc(a,b,1),this.filter(function(b){return!a(b)})},ba.prototype.slice=function(a,b){a=null==a?0:+a||0;var c=this;return 0>a?c=this.takeRight(-a):a&&(c=this.drop(a)),b!==x&&(b=+b||0,c=0>b?c.dropRight(-b):c.take(b-a)),c},ba.prototype.toArray=function(){return this.drop(0)},Db(ba.prototype,function(a,b){var c=q[b];if(c){var d=/^(?:filter|map|reject)|While$/.test(b),e=/^(?:first|last)$/.test(b);q.prototype[b]=function(){var b=arguments,f=this.__chain__,g=this.__wrapped__,h=!!this.__actions__.length,i=g instanceof ba,j=b[0],k=i||zh(g);k&&d&&"function"==typeof j&&1!=j.length&&(i=k=!1);var l=i&&!h;if(e&&!f)return l?a.call(g):c.call(q,this.value());var m=function(a){var d=[a];return ag.apply(d,b),c.apply(q,d)};if(k){var n=l?g:new ba(this),o=a.apply(n,b);if(!e&&(h||o.__actions__)){var p=o.__actions__||(o.__actions__=[]);p.push({func:Kd,args:[m],thisArg:q})}return new _(o,f)}return this.thru(m)}}}),db(["concat","join","pop","push","replace","shift","sort","splice","split","unshift"],function(a){var b=(/^(?:replace|split)$/.test(a)?Nf:Lf)[a],c=/^(?:push|sort|unshift)$/.test(a)?"tap":"thru",d=/^(?:join|pop|replace|shift)$/.test(a);q.prototype[a]=function(){var a=arguments;return d&&!this.__chain__?b.apply(this.value(),a):this[c](function(c){return b.apply(c,a)})}}),Db(ba.prototype,function(a,b){var c=q[b];if(c){var d=c.name,e=Cg[d]||(Cg[d]=[]);e.push({name:b,func:c})}}),Cg[Bc(null,A).name]=[{name:"wrapper",func:null}],ba.prototype.clone=Ra,ba.prototype.reverse=Sa,ba.prototype.value=Ta,q.prototype.chain=Ld,q.prototype.commit=Md,q.prototype.plant=Nd,q.prototype.reverse=Od,q.prototype.toString=Pd,q.prototype.run=q.prototype.toJSON=q.prototype.valueOf=q.prototype.value=Qd,q.prototype.collect=q.prototype.map,q.prototype.head=q.prototype.first,q.prototype.select=q.prototype.filter,q.prototype.tail=q.prototype.rest,q}var x,y="3.8.0",z=1,A=2,B=4,C=8,D=16,E=32,F=64,G=128,H=256,I=30,J="...",K=150,L=16,M=0,N=1,O=2,P="Expected a function",Q="__lodash_placeholder__",R="[object Arguments]",S="[object Array]",T="[object Boolean]",U="[object Date]",V="[object Error]",W="[object Function]",X="[object Map]",Y="[object Number]",Z="[object Object]",$="[object RegExp]",_="[object Set]",aa="[object String]",ba="[object WeakMap]",ca="[object ArrayBuffer]",da="[object Float32Array]",ea="[object Float64Array]",fa="[object Int8Array]",ga="[object Int16Array]",ha="[object Int32Array]",ia="[object Uint8Array]",ja="[object Uint8ClampedArray]",ka="[object Uint16Array]",la="[object Uint32Array]",ma=/\b__p \+= '';/g,na=/\b(__p \+=) '' \+/g,oa=/(__e\(.*?\)|\b__t\)) \+\n'';/g,pa=/&(?:amp|lt|gt|quot|#39|#96);/g,qa=/[&<>"'`]/g,ra=RegExp(pa.source),sa=RegExp(qa.source),ta=/<%-([\s\S]+?)%>/g,ua=/<%([\s\S]+?)%>/g,va=/<%=([\s\S]+?)%>/g,wa=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\n\\]|\\.)*?\1)\]/,xa=/^\w*$/,ya=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\n\\]|\\.)*?)\2)\]/g,za=/[.*+?^${}()|[\]\/\\]/g,Aa=RegExp(za.source),Ba=/[\u0300-\u036f\ufe20-\ufe23]/g,Ca=/\\(\\)?/g,Da=/\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,Ea=/\w*$/,Fa=/^0[xX]/,Ga=/^\[object .+?Constructor\]$/,Ha=/[\xc0-\xd6\xd8-\xde\xdf-\xf6\xf8-\xff]/g,Ia=/($^)/,Ja=/['\n\r\u2028\u2029\\]/g,Ka=function(){var a="[A-Z\\xc0-\\xd6\\xd8-\\xde]",b="[a-z\\xdf-\\xf6\\xf8-\\xff]+";return RegExp(a+"+(?="+a+b+")|"+a+"?"+b+"|"+a+"+|[0-9]+","g")}(),La=" 	\f \ufeff\n\r\u2028\u2029 ᠎             　",Ma=["Array","ArrayBuffer","Date","Error","Float32Array","Float64Array","Function","Int8Array","Int16Array","Int32Array","Math","Number","Object","RegExp","Set","String","_","clearTimeout","document","isFinite","parseInt","setTimeout","TypeError","Uint8Array","Uint8ClampedArray","Uint16Array","Uint32Array","WeakMap","window"],Na=-1,Oa={};Oa[da]=Oa[ea]=Oa[fa]=Oa[ga]=Oa[ha]=Oa[ia]=Oa[ja]=Oa[ka]=Oa[la]=!0,Oa[R]=Oa[S]=Oa[ca]=Oa[T]=Oa[U]=Oa[V]=Oa[W]=Oa[X]=Oa[Y]=Oa[Z]=Oa[$]=Oa[_]=Oa[aa]=Oa[ba]=!1;var Pa={};Pa[R]=Pa[S]=Pa[ca]=Pa[T]=Pa[U]=Pa[da]=Pa[ea]=Pa[fa]=Pa[ga]=Pa[ha]=Pa[Y]=Pa[Z]=Pa[$]=Pa[aa]=Pa[ia]=Pa[ja]=Pa[ka]=Pa[la]=!0,Pa[V]=Pa[W]=Pa[X]=Pa[_]=Pa[ba]=!1;var Qa={leading:!1,maxWait:0,trailing:!1},Ra={"À":"A","Á":"A","Â":"A","Ã":"A","Ä":"A","Å":"A","à":"a","á":"a","â":"a","ã":"a","ä":"a","å":"a","Ç":"C","ç":"c","Ð":"D","ð":"d","È":"E","É":"E","Ê":"E","Ë":"E","è":"e","é":"e","ê":"e","ë":"e","Ì":"I","Í":"I","Î":"I","Ï":"I","ì":"i","í":"i","î":"i","ï":"i","Ñ":"N","ñ":"n","Ò":"O","Ó":"O","Ô":"O","Õ":"O","Ö":"O","Ø":"O","ò":"o","ó":"o","ô":"o","õ":"o","ö":"o","ø":"o","Ù":"U","Ú":"U","Û":"U","Ü":"U","ù":"u","ú":"u","û":"u","ü":"u","Ý":"Y","ý":"y","ÿ":"y","Æ":"Ae","æ":"ae","Þ":"Th","þ":"th","ß":"ss"},Sa={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;","`":"&#96;"},Ta={"&amp;":"&","&lt;":"<","&gt;":">","&quot;":'"',"&#39;":"'","&#96;":"`"},Ua={"function":!0,object:!0},Va={"\\":"\\","'":"'","\n":"n","\r":"r","\u2028":"u2028","\u2029":"u2029"},Wa=Ua[typeof exports]&&exports&&!exports.nodeType&&exports,Xa=Ua[typeof module]&&module&&!module.nodeType&&module,Ya=Wa&&Xa&&"object"==typeof global&&global&&global.Object&&global,Za=Ua[typeof self]&&self&&self.Object&&self,$a=Ua[typeof window]&&window&&window.Object&&window,_a=Xa&&Xa.exports===Wa&&Wa,ab=Ya||$a!==(this&&this.window)&&$a||Za||this,bb=w();"function"==typeof define&&"object"==typeof define.amd&&define.amd?define(function(){return bb}):Wa&&Xa&&(_a?(Xa.exports=bb)._=bb:Wa._=bb),a.constant("lodash",bb)}]);
-var app = angular.module('seminorBlogGenerator', ['ngRoute', 'ngLodash']);
+var app = angular.module('seminorBlogGenerator', ['ngSanitize', 'ngRoute', 'ngLodash']);
 
 app.config(["$locationProvider", function($locationProvider) {
   $locationProvider.html5Mode({
