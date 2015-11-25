@@ -8,7 +8,9 @@
     self.hbs = '';
 
     $scope.$watch(function() {return self.contents}, function() {
-      self.md = self.hbs({contents: self.contents});
+      if (self.contents.length > 0) {
+        self.md = self.hbs({contents: self.contents});
+      }
     }, true);
 
     self.init = function() {
