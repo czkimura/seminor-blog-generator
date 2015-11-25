@@ -21,5 +21,9 @@
         self.contents = response.data.contents;
       })
     }
+
+    self.expandContent = function() {
+      self.contents.push({});
+    }
   })
 }());

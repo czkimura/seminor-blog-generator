@@ -9,7 +9,23 @@
   </head>
 
   <body class="" ng-app="seminorBlogGenerator" ng-controller="mainController as ngMain" ng-init="ngMain.init()">
-    <div id="content">
+    <div id="content" class="row">
+      <form>
+        <div ng-repeat="content in ngMain.contents" ng-cloak>
+          <dl>
+            <dt><label for="title[{{$index}}]">Title</label></dt>
+            <dd><input type="text" name="title[{{$index}}]" ng-model="content.title" ng-value="content.title"></dd>
+            <dt><label for="name[{{$index}}]">Name</label></dt>
+            <dd><input type="text" name="name[{{$index}}]" ng-model="content.name" ng-value="content.name"></dd>
+            <dt><label for="slide[{{$index}}]">Slide</label></dt>
+            <dd><input type="text" name="slide[{{$index}}]" ng-model="content.slide" ng-value="content.slide"></dd>
+            <dt><label for="comment[{{$index}}]">Comment</label></dt>
+            <dd><textarea name="comment[{{$index}}]" rows="5" ng-model="content.comment" ng-bind-html="content.comment"></textarea></dd>
+          </dl>
+          <hr>
+        </div>
+        <button ng-click="ngMain.expandContent()">項目追加</button>
+      </form>
 <script type="text/x-handlebars-template" id="sw-template">
 //// 序文
 
@@ -23,7 +39,7 @@
 <a name="{{ urlencode title }}"></a>
 ## {{ title }} ({{ name  }})
 
-//// コメント
+{{ comment }}
 
 {{#if slide }}
 {{ slide }}
