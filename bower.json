@@ -17,7 +17,8 @@
     "angular-cookies": "~1.4.7",
     "jquery": "~2.1.4",
     "handlebars": "~4.0.5",
-    "angular-sanitize": "~1.4.8"
+    "angular-sanitize": "~1.4.8",
+    "foundation": "~5.5.3"
   },
   "private": true
 }
