@@ -3,7 +3,7 @@
   var app = angular.module('seminorBlogGenerator');
   app.controller('mainController', function($scope, $document, $http, lodash) {
     var self = this;
-    self.contents = [];
+    self.contents = [{}];
     self.md = '';
     self.hbs = '';
 
@@ -13,17 +13,20 @@
       }
     }, true);
 
-    self.init = function() {
+    self.init = function(url) {
       self.hbs = Handlebars.compile(angular.element('#sw-template').text());
+      if (!lodash.isString(url) || url.length === 0) {
+        return ;
+      }
       $http({
-        url: '/json/mock.json'
+        url: url
       }).then(function(response) {
         self.contents = response.data.contents;
       })
     }
 
     self.expandContent = function() {
-      self.contents.push({});
+      seld.contents.push({});
     }
   })
 }());
