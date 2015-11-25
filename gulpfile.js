@@ -74,6 +74,7 @@ gulp.task('js', ['ngConfig', 'ngTpl'], function() {
   var srcList = {
     lib: [
       'bower_components/jquery/dist/jquery.min.js',
+      'bower_components/handlebars/handlebars.min.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/ng-lodash/build/ng-lodash.min.js',
