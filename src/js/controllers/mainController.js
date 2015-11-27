@@ -26,7 +26,7 @@
     }
 
     self.expandContent = function() {
-      seld.contents.push({});
+      self.contents.push({});
     }
   })
 }());
