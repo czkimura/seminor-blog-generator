@@ -30778,7 +30778,7 @@ Handlebars.registerHelper('urlencode', function(str){
     }
 
     self.expandContent = function() {
-      seld.contents.push({});
+      self.contents.push({});
     }
   }])
 }());

@@ -10,4 +10,4 @@ $ gulp serve
 ```
 
 * browse
-http://localhost:3800
+http://localhost:3800/ng.html
