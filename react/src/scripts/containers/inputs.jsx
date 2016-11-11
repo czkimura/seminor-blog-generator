@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Inputs from '../components/inputs'
+import AppActions from '../actions/app'
 
 const mapStateToProps = (state) => {
   return state
@@ -8,7 +9,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleClick: () => { dispatch(AppActions.increment()) }
+    handleClick: () => { dispatch(AppActions.addInputs()) }
   }
 }
 
@@ -22,11 +23,10 @@ class InputsContainer extends React.Component {
     entries: React.PropTypes.array
   }
   static defaultProps = {
-    entries: [0, 1]
   }
 
-
   render() {
+    const { handleClick } = this.props;
     const inputsList = this.props.entries.map((v) => {
       return <Inputs key={v} id={v} />
     });
@@ -34,6 +34,7 @@ class InputsContainer extends React.Component {
     return (
       <div>
         {inputsList}
+        <button className="button" onClick={handleClick}>Add</button>
       </div>
     );
   }

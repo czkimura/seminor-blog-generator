@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import App from '../components/app'
-import Inputs from '../components/inputs'
 import AppActions from '../actions/app'
 
 const mapStateToProps = (state) => {
@@ -25,7 +24,6 @@ class AppContainer extends React.Component {
     return (
       <div>
         <App fuga={fuga} handleClick={handleClick} />
-        <Inputs />
       </div>
     );
   }

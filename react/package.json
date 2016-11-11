@@ -4,6 +4,7 @@
   "main": "libs/index.js",
   "dependencies": {
     "babel-polyfill": "^6.13.0",
+    "bulma": "^0.2.3",
     "classnames": "^2.2.5",
     "eventemitter3": "^1.2.0",
     "flat": "^2.0.1",
@@ -15,6 +16,7 @@
     "react": "^15.2.1",
     "react-c3js": "^0.1.8",
     "react-date-range": "^0.2.4",
+    "react-debounce-input": "^2.4.1",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.2.1",

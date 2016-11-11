@@ -1,4 +1,10 @@
 import React from 'react';
+import DebounceInput from 'react-debounce-input';
+
+
+class Input extends DebounceInput {
+  // static defaultProps = Object.assign({}, DebounceInput.defaultProps, {onChange: onChange})
+}
 
 export default class Inputs extends React.Component {
   static propTypes = {
@@ -10,10 +16,13 @@ export default class Inputs extends React.Component {
   };
 
   static defaultProps = {
+  };
+
+  placeholders = {
     title: 'Title',
     name: 'Name',
-    slide: '',
-    comment: '',
+    slide: 'Slide Tag',
+    comment: 'About',
   };
 
   render() {
@@ -23,16 +32,16 @@ export default class Inputs extends React.Component {
 
     return (
       <div>
-        {JSON.stringify(this.props)}
+        {JSON.stringify(this.placeholders)}
         <dl>
-          <dt><label htmlFor={attachLabel('title')}>Title</label></dt>
-          <dd><input type="text" name={attachLabel('title')} defaultValue={this.props.title} /></dd>
-          <dt><label htmlFor={attachLabel('name')}>Name</label></dt>
-          <dd><input type="text" name={attachLabel('name')} defaultValue={this.props.name} /></dd>
-          <dt><label htmlFor={attachLabel('slide')}>Slide</label></dt>
-          <dd><input type="text" name={attachLabel('slide')} defaultValue={this.props.slide} /></dd>
-          <dt><label htmlFor={attachLabel('comment')}>Comment</label></dt>
-          <dd><textarea name={attachLabel('comment')} rows="5" defaultValue={this.props.comment} /></dd>
+          <dt className="control"><label className="label" htmlFor={attachLabel('title')}>Title</label></dt>
+          <dd className="control"><Input className="input" type="text" name={attachLabel('title')} placeholder={this.placeholders.title} /></dd>
+          <dt className="control"><label className="label" htmlFor={attachLabel('name')}>Name</label></dt>
+          <dd className="control"><Input className="input" type="text" name={attachLabel('name')} placeholder={this.placeholders.name} /></dd>
+          <dt className="control"><label className="label" htmlFor={attachLabel('slide')}>Slide</label></dt>
+          <dd className="control"><Input className="input" type="text" name={attachLabel('slide')} placeholder={this.placeholders.slide} /></dd>
+          <dt className="control"><label className="label" htmlFor={attachLabel('comment')}>Comment</label></dt>
+          <dd className="control"><textarea className="textarea" name={attachLabel('comment')} rows="5" placeholder={this.placeholders.comment} /></dd>
         </dl>
         <hr />
       </div>
