@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 // 初期ステート設定
 const initialState = {
   fuga: 0,
@@ -5,13 +7,18 @@ const initialState = {
 }
 
 export default function reducer(state = initialState, action) {
-  switch(action.type) {
+  switch(_.get(action, 'type', '')) {
     case 'INCREMENT': {
       return { fuga: state.fuga + 1 }
     }
-    case 'ADD_INPUTS' : {
-      console.log('aaaa', state);
-      return { entries: state.entries.concat([state.entries.length]) }
+    case 'ADD_INPUTS': {
+      return {
+        entries: state.entries.concat([state.entries.length])
+      }
+    }
+    case 'CHANGE_INPUTS_STATE': {
+      console.log(state)
+      return state
     }
     default:
       return state

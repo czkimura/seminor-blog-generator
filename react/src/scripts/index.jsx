@@ -11,7 +11,6 @@ const rootEl = document.getElementById('root') // 流しこむ対象の要素
 ReactDOM.render(
   <Provider store={store}>
     <div className="container">
-      <App />
       <Inputs />
     </div>
   </Provider>,
